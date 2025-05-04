@@ -1,0 +1,62 @@
+.confirmBasePage {
+  overflow: hidden;
+  .confirmSuccess {
+    height: 90vh;
+    justify-content: space-between;
+    padding: 15px;
+    .writeOffInformation {
+      padding: 15px;
+      border-radius: 15px;
+      .cardImage {
+        border-radius: 15px;
+        min-width: 100px;
+        min-height: 100px;
+      }
+    }
+  }
+  .tagContainer {
+    justify-content: flex-end;
+    align-items: flex-end;
+    .theClosestTag {
+      border: 1px solid #627cff;
+      padding: 2px 5px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .distanceNum {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+  .bottomBtns {
+    position: fixed;
+    bottom: 10px;
+    width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .storeInfo {
+    padding: 14px 15px;
+    margin-top: 10px;
+    border-radius: 15px;
+    .storeNums {
+      align-items: center;
+    }
+  }
+}
+.storeAddressText {
+  letter-spacing: 1px;
+}
+.storeSelectorList {
+  position: relative;
+  .common-modal-content__close {
+    display: none;
+  }
+  .common-modal-content__title {
+    padding: 5px;
+  }
+}
+.specifications-content,
+.detail-content {
+  width: 100% !important;
+}

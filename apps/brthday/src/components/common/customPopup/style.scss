@@ -1,0 +1,22 @@
+.alertContent {
+  width: 95vw;
+  animation-duration: 200ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+
+  .centerContainer {
+    max-width: 93%;
+    height: fit-content;
+    margin: 0 auto;
+    border-radius: var(--radio-large);
+    padding: var(--padding-normal);
+    .customTitleContainer {
+      box-sizing: border-box;
+    }
+  }
+  .confirmBtn {
+    .customButtonTarget {
+      padding: 16px 0 !important;
+    }
+  }
+}

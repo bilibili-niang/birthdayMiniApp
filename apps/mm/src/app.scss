@@ -1,0 +1,65 @@
+@import './style/common';
+
+.iconfont {
+  font-size: inherit;
+}
+* {
+  box-sizing: border-box;
+}
+/* 设置全局默认字体大小 */
+:root {
+  font-size: 14px; /* 设置默认字体大小为 14px */
+  color: red;
+}
+page,
+view,
+text,
+image,
+button,
+video,
+map,
+scroll-view,
+swiper,
+input,
+textarea,
+navigator {
+  box-sizing: border-box;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+#app {
+  max-width: 600px;
+  margin: 0 auto;
+}
+page {
+  height: 100%;
+}
+navigator text,
+text text,
+text navigator {
+  display: inline;
+}
+textarea {
+  background: none;
+  font-size: inherit;
+}
+.taro_page {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.loading-skeleton {
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.hidePicture {
+  opacity: 1;
+  position: fixed;
+  top: -100vh;
+  left: -100vh;
+}

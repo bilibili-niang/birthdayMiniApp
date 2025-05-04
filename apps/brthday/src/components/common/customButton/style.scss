@@ -1,0 +1,43 @@
+@import 'src/style/common';
+
+.customButton {
+  margin-top: var(--margin-s);
+  @include durationTime(300ms);
+
+  &:after {
+    @include durationTime(300ms);
+  }
+
+  .customButtonTarget {
+    @include durationTime(300ms);
+    border-radius: var(--radio-large-l);
+    padding: var(--padding-large-l) var(--padding-small);
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  .defaultBackgroundColor {
+    background: var(--buttonBackgroundColor);
+  }
+
+  .defaultColor {
+    color: var(--fontColor);
+  }
+
+  .customButtonTargetClicked {
+    background: gray !important;
+    color: var(--fontColor) !important;
+    font-size: 14px;
+  }
+}
+
+// 按钮禁用样式
+.disabledBtn {
+  //  background: var(--disableTheme) !important;
+  color: var(--fontColor) !important;
+  position: relative;
+  border-radius: var(--radio-large-l);
+  @include durationTime(300ms);
+  pointer-events: none;
+  opacity: 0.4 !important;
+}

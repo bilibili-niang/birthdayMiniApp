@@ -1,0 +1,32 @@
+.c_switch {
+  flex-shrink: 0;
+}
+.c_switch-button {
+  flex-shrink: 0;
+  width: 37px;
+  height: 21px;
+  border-radius: 20px;
+  background-color: #eee;
+  transition: all 0.2s linear;
+  display: flex;
+  align-items: center;
+  padding: 1.5px 2px;
+}
+.c_switch-thumb {
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: all 0.15s linear;
+  left: 0;
+  position: relative;
+}
+.c_switch--checked {
+  .c_switch-button {
+    background-color: $color-primary;
+    color: #fff;
+  }
+  .c_switch-thumb {
+    left: 16px;
+  }
+}

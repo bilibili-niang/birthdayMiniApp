@@ -1,0 +1,8 @@
+{
+  "name": "@kacat/styles",
+  "version": "0.1.0",
+  "private": true,
+  "description": "公共样式放这里",
+  "main": "./index.ts",
+  "module": "./index.ts"
+}

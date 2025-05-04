@@ -1,0 +1,7 @@
+{
+  "name": "@kacat/config",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./index.ts",
+  "module": "./index.ts"
+}

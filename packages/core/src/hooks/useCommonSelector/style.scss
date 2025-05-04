@@ -1,0 +1,31 @@
+.use-common-selector {
+  min-height: 100%;
+}
+
+.use-common-selector__header {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  padding: 0 12px 10px 12px;
+  background-color: #f5f6fa;
+  .search {
+    background-color: #fff;
+    height: 36px;
+    margin: 0;
+    height: 52px;
+    border-radius: 15px;
+  }
+}
+
+.use-common-selector__content {
+  padding: 12px;
+}
+.use-common-selector__item-default {
+  background-color: #fff;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
