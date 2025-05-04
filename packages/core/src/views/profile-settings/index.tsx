@@ -23,10 +23,6 @@ const fieldWidgets = {
   [FiledType.address]: Address
 }
 
-if (process.env.TARO_APP_SCENE === 'venue') {
-  fieldWidgets[FiledType.faceImage] = require('./fileds/face')
-}
-
 export const ProfileSettings = defineComponent({
   name: 'ProfileSettings',
   setup() {

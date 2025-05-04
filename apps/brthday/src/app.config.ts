@@ -1,21 +1,12 @@
 export default defineAppConfig({
-  pages: ['pages/index', 'pages/store/index', 'pages/mine/index'],
+  pages: ['pages/index'],
   subPackages: [
     {
       root: 'packageMain',
       pages: [
         'index',
-        'login/index',
-        'writeOff/index',
-        'writeOffRecord/index',
-        'container/index',
-        'storeSelector/index'
       ]
     },
-    {
-      root: 'packageB',
-      pages: ['confirmSuccess/index', 'confirmSecond/index', 'passwordReset/index']
-    }
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -29,7 +20,7 @@ export default defineAppConfig({
   requiredPrivateInfos: ['chooseAddress', 'getLocation'],
   permission: {
     'scope.userLocation': {
-      desc: '你的位置信息将用于小程序计算店铺距离'
+      desc: '你的位置信息将用于小程序计算距离'
     }
   }
 })

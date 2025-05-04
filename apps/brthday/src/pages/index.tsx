@@ -1,8 +1,5 @@
 import { ref, defineComponent } from 'vue'
-import LoginSelector from './loginSelector'
-import Taro from '@tarojs/taro'
-import { reLaunchToIndex } from '../router'
-import { Spin } from '@kacat/core'
+import { BasePage, Spin } from '@kacat/core'
 
 definePageConfig({
   navigationStyle: 'custom'
@@ -12,26 +9,33 @@ export default defineComponent({
   name: 'IndexPage',
   setup() {
     const isLoading = ref(true)
-    const init = async () => {
-      const localStoreData = Taro.getStorageSync('storeData')
-      if (localStoreData) {
-        reLaunchToIndex()
-      } else {
+    const init = () => {
+      setTimeout(() => {
         isLoading.value = false
-      }
+      }, 1000)
     }
 
-    // 初始化页面逻辑
     init()
     return () => {
       if (isLoading.value) {
         return (
           <div class="loadingContainer">
-            <Spin />
+            <Spin/>
           </div>
         )
       } else {
-        return <LoginSelector />
+        return <BasePage
+          useScrollView
+          navigator={{
+            title: '',
+            showMenuButton: false,
+            navigationBarBackgroundColor: 'transparent'
+          }}
+          backgroundColor="rgba(241, 243, 251, 1)"
+        >
+          这里是首页
+
+        </BasePage>
       }
     }
   }
