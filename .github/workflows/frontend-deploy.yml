@@ -1,0 +1,40 @@
+name: Frontend Deploy
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "miniApp/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install Dependencies
+        run: |
+          cd miniApp
+          npm install
+
+      - name: Build
+        run: |
+          cd miniApp
+          npm run build
+
+      - name: Deploy to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 2333
+          source: "miniApp/dist/*"
+          target: "/birthday/behind"
+          strip_components: 1

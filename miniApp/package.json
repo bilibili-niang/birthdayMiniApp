@@ -9,8 +9,6 @@
     "pre-commit": "esno scripts/pre-commit",
     "commit-msg": "esno scripts/commit-msg",
     "gen:app": "esno scripts/generate-app",
-    "dev:h5": "pnpm -F @kacat/playground dev:h5",
-    "dev:weapp": "pnpm -F @kacat/playground dev:weapp",
     "dev:coupon:h5": "pnpm -F @kacat/coupon dev:h5",
     "dev:coupon:weapp": "pnpm -F @kacat/coupon dev:weapp",
     "build:coupon:h5": "pnpm -F @kacat/coupon build:h5",

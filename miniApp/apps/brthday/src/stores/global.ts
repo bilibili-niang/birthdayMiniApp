@@ -7,8 +7,8 @@ import { oneStoreType } from './types'
 import { goodsDataType } from '../api/stores/type'
 import store from '../api/stores/index'
 
-const useGlobalStore = defineStore('store-global', () => {
-  const appid = 'wxa9495b1e841b96d4'
+export const useGlobalStore = defineStore('store-global', () => {
+  const appid = 'wxd6da8519cfe92dd8'
 
   // 存储用来展示的用户信息,每个用户信息在商户里
   const userInfo = ref<phoneLoginType[] | null>(null)
@@ -139,4 +139,3 @@ const useGlobalStore = defineStore('store-global', () => {
   }
 })
 
-export default useGlobalStore

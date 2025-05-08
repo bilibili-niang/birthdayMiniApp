@@ -1,16 +1,41 @@
 import Taro from '@tarojs/taro'
+import { useGlobalStore } from '../stores'
+import {
+  buildUrl,
+} from '@kacat/core'
 
-/**
- * 跳转登录页
- * @param type
- * @example
- * password 密码登录
- * phone 手机验证码登录
- */
-export const goToLogin = (type?: 'phone' | 'password') => {
-  Taro.navigateTo({
-    url: `/packageMain/login/index?type=${type || 'phone'}`
+/** 返回主界面（Tab栏页） */
+export const backToIndex = (tabKey?: string, force = false) => {
+  if (tabKey) {
+    useGlobalStore().toggleTab(tabKey)
+  }
+  const url = buildUrl('/packageMain/index', {
+    tabKey: tabKey
   })
+  if (process.env.TARO_ENV !== 'h5') {
+    if (force) {
+      Taro.reLaunch({
+        url: url
+      })
+      return
+    }
+    try {
+      Taro.navigateBack({
+        delta: 100,
+        fail: err => {
+          console.log(err.errMsg)
+          Taro.redirectTo({
+            url: url
+          })
+        }
+      })
+    } catch (err) {}
+  } else {
+    // FIXME 这里可能会造成首页重新渲染？
+    Taro.redirectTo({
+      url: url
+    })
+  }
 }
 
 // reLaunch 商铺列表页面
@@ -39,13 +64,6 @@ export const jumpToPageContainer = (id?: string) => {
     url: `/packageMain/container/index?id=${id}`
   })
 }
-// reluanch 首页
-export const reLaunchToIndex = () => {
-  Taro.reLaunch({
-    url: '/packageMain/container/index'
-  })
-}
-
 /**
  * 跳转核销页面,可能传一个参数,也可能不传
  * @param id {string | null}
@@ -84,14 +102,6 @@ export const goToSuccessPage = (id?: string) => {
     })
   }
 }
-/**
- * 选择店铺之后的核销跳转
- */
-export const goConfirmSecond = () => {
-  Taro.navigateTo({
-    url: '/packageB/confirmSecond/index'
-  })
-}
 
 // 前往密码重置
 export const goToResetPassword = (phone: string | null) => {
@@ -99,12 +109,3 @@ export const goToResetPassword = (phone: string | null) => {
     url: '/packageB/passwordReset/index?phone=' + phone
   })
 }
-
-// 微店的商户选择
-export const goToMerchantSelector = () => {
-  Taro.navigateTo({
-    url: '/packageMain/storeSelector/index'
-  })
-}
-
-// TODO 运动馆商户的选择
