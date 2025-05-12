@@ -1,11 +1,13 @@
 #!/bin/bash
 
-echo ""
+echo "============================="
+echo "[DEBUG] 脚本开始执行"
 # 输出当前时间
 date "+%Y-%m-%d %H:%M:%S"
 echo "Start"
 
 # 验证WebHook参数
+echo "[DEBUG] 检查参数"
 echo "WebHook参数：$1"
 if [ -z "$1" ]; then
     echo "错误：缺少项目参数"
@@ -21,15 +23,18 @@ if [ "$1" != "birthdayMiniApp" ]; then
 fi
 
 # Git项目配置
+echo "[DEBUG] 设置Git配置"
 gitPath="/www/wwwroot/$1"
 gitHttp="https://oauth2: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@github.com/bilibili-niang/birthdayMiniApp.git"
 
-echo "Web站点路径：$gitPath"
+echo "[DEBUG] Web站点路径：$gitPath"
+echo "[DEBUG] Git URL：$gitHttp"
 
 # 如果目录不存在则创建
+echo "[DEBUG] 检查目录是否存在：$gitPath"
 if [ ! -d "$gitPath" ]; then
-    echo "该项目路径不存在"
-    echo "新建项目目录"
+    echo "[DEBUG] 该项目路径不存在"
+    echo "[DEBUG] 尝试新建项目目录"
     mkdir -p "$gitPath" || {
         echo "错误：创建目录失败"
         echo "End"
@@ -38,6 +43,7 @@ if [ ! -d "$gitPath" ]; then
 fi
 
 # 切换到项目目录
+echo "[DEBUG] 尝试切换到目录：$gitPath"
 cd "$gitPath" || {
     echo "错误：无法切换到项目目录"
     echo "End"
@@ -45,8 +51,10 @@ cd "$gitPath" || {
 }
 
 # 初始化或更新git仓库
+echo "[DEBUG] 检查是否存在.git目录"
 if [ ! -d ".git" ]; then
-    echo "在该目录下克隆 git"
+    echo "[DEBUG] .git目录不存在，开始克隆"
+    echo "[DEBUG] 执行: git clone $gitHttp ."
     git clone "$gitHttp" . || {
         echo "错误：Git克隆失败"
         echo "End"
@@ -54,7 +62,8 @@ if [ ! -d ".git" ]; then
     }
 else
     # 获取最新代码并重置到master分支
-    echo "拉取最新的项目文件"
+    echo "[DEBUG] 仓库已存在，开始更新"
+    echo "[DEBUG] 执行: git fetch origin"
     git fetch origin || {
         echo "错误：Git fetch失败"
         echo "End"
