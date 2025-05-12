@@ -25,7 +25,7 @@ fi
 # Git项目配置
 echo "[DEBUG] 设置Git配置"
 gitPath="/www/wwwroot/$1"
-gitHttp="https://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:x-oauth-basic@github.com/bilibili-niang/birthdayMiniApp.git"
+gitHttp="https://bilibili-niang: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@github.com/bilibili-niang/birthdayMiniApp.git"
 
 echo "[DEBUG] Web站点路径：$gitPath"
 echo "[DEBUG] Git URL：$gitHttp"
@@ -55,7 +55,10 @@ echo "[DEBUG] 检查是否存在.git目录"
 if [ ! -d ".git" ]; then
     echo "[DEBUG] .git目录不存在，开始克隆"
     echo "[DEBUG] 执行: git clone $gitHttp ."
-    git clone "$gitHttp" . || {
+    # 添加 -v 参数来显示详细信息
+    git clone -v "$gitHttp" . 2>&1 || {
+        echo "[DEBUG] 克隆失败的详细错误信息："
+        echo "$?"
         echo "错误：Git克隆失败"
         echo "End"
         exit 1
