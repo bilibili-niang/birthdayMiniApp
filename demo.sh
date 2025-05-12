@@ -22,7 +22,7 @@ fi
 
 # Git项目配置
 gitPath="/www/wwwroot/$1"
-gitHttp="https://github.com/bilibili-niang/birthdayMiniApp.git"
+gitHttp="https://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@github.com/bilibili-niang/birthdayMiniApp.git"
 
 echo "Web站点路径：$gitPath"
 
