@@ -25,7 +25,7 @@ fi
 # Git项目配置
 echo "[DEBUG] 设置Git配置"
 gitPath="/www/wwwroot/$1"
-gitHttp="https://oauth2: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@github.com/bilibili-niang/birthdayMiniApp.git"
+gitHttp="https://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:x-oauth-basic@github.com/bilibili-niang/birthdayMiniApp.git"
 
 echo "[DEBUG] Web站点路径：$gitPath"
 echo "[DEBUG] Git URL：$gitHttp"
