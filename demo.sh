@@ -72,13 +72,18 @@ else
         exit 1
     }
     
-    git reset --hard origin/master || {
+    # 获取默认分支名称
+    defaultBranch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+    echo "[DEBUG] 默认分支：$defaultBranch"
+    
+    git reset --hard "origin/$defaultBranch" || {
         echo "错误：Git reset失败"
         echo "End"
         exit 1
     }
     
-    git pull || {
+    echo "[DEBUG] 拉取分支：$defaultBranch"
+    git pull origin "$defaultBranch" || {
         echo "错误：Git pull失败"
         echo "End"
         exit 1
