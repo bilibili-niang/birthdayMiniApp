@@ -124,7 +124,7 @@ export default defineComponent({
                     toggle(item)
                   }}
                 >
-                  <div class="index-tab__icon">{icon && <img src={icon} />}</div>
+                  <div class="index-tab__icon">{icon && <img src={icon}/>}</div>
                   <span
                     class="index-tab__name"
                     style={{
@@ -146,14 +146,14 @@ export default defineComponent({
                 onTouchstart={
                   process.env.TARO_ENV !== 'h5'
                     ? () => {
-                        Taro.vibrateShort({
-                          type: 'medium'
-                        })
-                      }
+                      Taro.vibrateShort({
+                        type: 'medium'
+                      })
+                    }
                     : undefined
                 }
               >
-                <div class="index-tab__icon">{icon && <img class="index-tab__icon-image" src={icon} />}</div>
+                <div class="index-tab__icon">{icon && <img class="index-tab__icon-image" src={icon}/>}</div>
                 <span
                   class="index-tab__name"
                   style={{

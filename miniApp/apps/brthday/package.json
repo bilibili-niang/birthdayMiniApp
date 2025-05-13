@@ -9,6 +9,7 @@
     "css": "sass"
   },
   "scripts": {
+    "dev:weapp": "npm run build:weapp -- --watch",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
@@ -18,7 +19,6 @@
     "build:qq": "taro build --type qq",
     "build:quickapp": "taro build --type quickapp",
     "build:wxapp": "taro build --type weapp --watch --env production",
-    "dev:weapp": "npm run build:weapp -- --watch",
     "devForCompress:wxapp": "taro build --type weapp --watch --env production --mode test",
     "dev:swan": "npm run build:swan -- --watch",
     "dev:alipay": "npm run build:alipay -- --watch",
