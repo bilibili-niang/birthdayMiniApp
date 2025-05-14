@@ -7,7 +7,7 @@ import onError from 'koa-onerror'
 import staticFiles from 'koa-static'
 import { error, trace } from '@/config/log4j'
 import { ctxBody } from '@/utils'
-
+import { loggerMiddleware } from '@/middleware/loggerMiddleware'
 
 const app = new koa()
 
@@ -32,6 +32,7 @@ app
     error('响应错误,' + JSON.stringify(err))
 
   })
+  .use(loggerMiddleware)
   .use(async (ctx, next) => {
     ctx.set('Access-Control-Allow-Origin', '*')
     ctx.set('Access-Control-Allow-Headers', 'Content-Type')
