@@ -50,8 +50,16 @@ const seq = new Sequelize(DATABASE_NAME, process.env.USER_NAME, process.env.DATA
     info(`数据库 ${DATABASE_NAME} 检查/创建完成`);
     
     // 然后连接到数据库并创建表
-    await seq.sync()
-    console.log('数据库表结构创建/更新完成！')
+    info(`开始同步数据库表结构，已加载模型: [${Object.keys(seq.models).join(', ')}]`);
+    try {
+      // 使用force:true确保创建表，如果已存在则先删除
+      // 注意: 正式环境不建议使用force:true，这里只是为了测试
+      await seq.sync({ force: true });
+      info('数据库表结构创建/更新完成！');
+    } catch (syncError) {
+      info(`表同步错误: ${syncError.message}`);
+      throw syncError;
+    }
   } catch (error) {
     console.error('无法连接或初始化数据库:', error)
   }
