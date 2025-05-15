@@ -2,6 +2,8 @@ import './index.scss'
 import { ref, defineComponent } from 'vue'
 import { BasePage, Spin, TabBar } from '@kacat/core'
 import useAction from '../hooks/useAction'
+import { storeToRefs } from 'pinia'
+import { useGlobalStore } from '../stores'
 
 definePageConfig({
   navigationStyle: 'custom'
@@ -10,6 +12,9 @@ definePageConfig({
 export default defineComponent({
   name: 'IndexPage',
   setup() {
+    const appStore = useGlobalStore()
+
+    const { tabs, currentTab, loadedTab } = storeToRefs(appStore)
     const isLoading = ref(true)
     const init = () => {
       setTimeout(() => {
@@ -17,14 +22,17 @@ export default defineComponent({
       }, 1000)
     }
     const onTabChange = (key: string, keyIndex: number, item: any) => {
+      console.log('key',key)
       if (item?.action && item?.actionEnable) {
         useAction(item.action)
         return
       } else {
+        console.log('key')
         console.log(key)
+        appStore.toggleTab(key)
       }
+      console.log('currentTab.value', currentTab.value)
     }
-    const currentTab = ref(0)
 
     init()
 
@@ -41,26 +49,27 @@ export default defineComponent({
           useScrollView
           navigator={{
             title: '',
-            immersive: true,
             showMenuButton: false,
             navigationBarBackgroundColor: 'transparent'
           }}
           backgroundColor="rgba(241, 243, 251, 1)"
         >
           这里是首页
+          currentTab:
+          {currentTab.value}
           <TabBar
             tabs={[
               {
-                key: 0,
+                key: '0',
                 text: '联系人',
-                icon: 'indexHome',
+                icon: 'https://pic1.imgdb.cn/item/682371c558cb8da5c8f0ba0a.png',
                 activeIcon: '',
                 actionEnable: true
               },
               {
-                key: 1,
+                key: 'home',
                 text: '我的',
-                icon: 'a-accountcircle',
+                icon: 'https://pic1.imgdb.cn/item/682371eb58cb8da5c8f0ba1e.png',
                 activeIcon: '',
                 actionEnable: true
               }
