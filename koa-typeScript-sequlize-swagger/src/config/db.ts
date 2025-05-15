@@ -9,15 +9,10 @@ const NODE_ENV = process.env.NODE_ENV || 'local'; // 默认使用 local 环境
 console.log('NODE_ENV:');
 console.log(NODE_ENV);
 
-
-// 检测当前运行的脚本名称来确定环境
-const isProductionScript = process.argv.some(arg => arg.includes('production') || arg.includes('prod'));
-const isTestScript = process.argv.some(arg => arg.includes('test') || arg.includes('local'));
-
 // 根据运行环境选择不同的数据库名称
 const getDatabaseName = () => {
   // 如果是测试环境，使用测试数据库
-  if (NODE_ENV === 'test' || NODE_ENV === 'local' || isTestScript || !isProductionScript) {
+  if (NODE_ENV === 'local') {
     return 'birthdayDb_test';
   }
   // 如果是生产环境，使用正式环境数据库
