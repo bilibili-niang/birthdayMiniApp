@@ -17,7 +17,7 @@ export default defineComponent({
         <BasePage
           useScrollView
           navigator={{
-            title: '',
+            title: '主页',
             showMenuButton: false,
             navigationBarBackgroundColor: 'transparent'
           }}

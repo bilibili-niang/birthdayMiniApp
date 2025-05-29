@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue'
+import { BasePage } from '@kacat/core'
 
 definePageConfig({
   enableShareAppMessage: true,
@@ -13,9 +14,22 @@ export default defineComponent({
   setup(props, { emit }) {
     return () => {
       return (
-        <div class="home-page">
-          home
-        </div>
+
+
+        <BasePage
+          useScrollView
+          navigator={{
+            title: '列表',
+            showMenuButton: false,
+            navigationBarBackgroundColor: 'transparent'
+          }}
+          backgroundColor="rgba(255, 255, 255, 1)"
+        >
+
+          <div class="home-page">
+            home
+          </div>
+        </BasePage>
       )
     }
   }
