@@ -22,9 +22,6 @@ importers:
       '@kacat/deck':
         specifier: workspace:*
         version: link:packages/deck
-      '@kacat/survey':
-        specifier: workspace:*
-        version: link:packages/survey
       '@kacat/ui':
         specifier: workspace:*
         version: link:packages/ui
@@ -113,9 +110,6 @@ importers:
       '@babel/core':
         specifier: ^7.8.0
         version: https://registry.npmmirror.com/@babel/core/-/core-7.8.0.tgz
-      '@kacat/tmap-types':
-        specifier: workspace:*
-        version: link:shared/tmap-types
       '@tarojs/cli':
         specifier: 3.6.19
         version: https://registry.npmmirror.com/@tarojs/cli/-/cli-3.6.19.tgz(postcss@https://registry.npmmirror.com/postcss/-/postcss-8.4.18.tgz)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
@@ -240,18 +234,6 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1(hwy4brbq5pvz5hlx3qxfyjtwxm)
 
-  apps/mm:
-    dependencies:
-      '@kacat/styles':
-        specifier: workspace:*
-        version: link:../../packages/styles
-      '@kacat/utils':
-        specifier: workspace:*
-        version: link:../../packages/utils
-      taro-code:
-        specifier: ^4.0.1
-        version: https://registry.npmmirror.com/taro-code/-/taro-code-4.0.1.tgz(ibqo2vt3zqc6bqr37drcz323zu)
-
   packages/config: {}
 
   packages/core:
@@ -264,8 +246,6 @@ importers:
 
   packages/styles: {}
 
-  packages/survey: {}
-
   packages/ui:
     dependencies:
       '@kacat/styles':
@@ -273,12 +253,6 @@ importers:
         version: link:../styles
 
   packages/utils: {}
-
-  shared/constants: {}
-
-  shared/tmap-types: {}
-
-  shared/utils: {}
 
 packages:
 
@@ -3148,25 +3122,13 @@ packages:
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==, tarball: https://registry.npmmirror.com/@types/debug/-/debug-4.1.12.tgz}
     version: 4.1.12
 
-  '@types/eslint-scope@3.7.7':
-    resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
-
   '@types/eslint-scope@https://registry.npmmirror.com/@types/eslint-scope/-/eslint-scope-3.7.7.tgz':
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==, tarball: https://registry.npmmirror.com/@types/eslint-scope/-/eslint-scope-3.7.7.tgz}
     version: 3.7.7
 
-  '@types/eslint@8.56.2':
-    resolution: {integrity: sha512-uQDwm1wFHmbBbCZCqAlq6Do9LYwByNZHWzXppSnay9SuwJ+VRbjkbLABer54kcPnMSlG6Fdiy2yaFXm/z9Z5gw==}
-
   '@types/eslint@https://registry.npmmirror.com/@types/eslint/-/eslint-8.56.2.tgz':
     resolution: {integrity: sha512-uQDwm1wFHmbBbCZCqAlq6Do9LYwByNZHWzXppSnay9SuwJ+VRbjkbLABer54kcPnMSlG6Fdiy2yaFXm/z9Z5gw==, tarball: https://registry.npmmirror.com/@types/eslint/-/eslint-8.56.2.tgz}
     version: 8.56.2
-
-  '@types/estree@0.0.51':
-    resolution: {integrity: sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==}
-
-  '@types/estree@1.0.5':
-    resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
   '@types/estree@https://registry.npmmirror.com/@types/estree/-/estree-0.0.51.tgz':
     resolution: {integrity: sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==, tarball: https://registry.npmmirror.com/@types/estree/-/estree-0.0.51.tgz}
@@ -3693,18 +3655,12 @@ packages:
     resolution: {integrity: sha512-qFbXoxS44pi2FkgFjPvF4h7c9oMDutpyBdcJdMYIMg9XyXli2meFMuaKn+UMgsClo//Th6+beeCgqweT/79BVA==, tarball: https://registry.npmmirror.com/@vueuse/shared/-/shared-10.7.2.tgz}
     version: 10.7.2
 
-  '@webassemblyjs/ast@1.11.1':
-    resolution: {integrity: sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw==}
-
   '@webassemblyjs/ast@1.9.0':
     resolution: {integrity: sha512-C6wW5L+b7ogSDVqymbkkvuW9kruN//YisMED04xzeBBqjHa2FYnmvOlS6Xj68xWQRgWvI9cIglsjFowH/RJyEA==}
 
   '@webassemblyjs/ast@https://registry.npmmirror.com/@webassemblyjs/ast/-/ast-1.11.1.tgz':
     resolution: {integrity: sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw==, tarball: https://registry.npmmirror.com/@webassemblyjs/ast/-/ast-1.11.1.tgz}
     version: 1.11.1
-
-  '@webassemblyjs/floating-point-hex-parser@1.11.1':
-    resolution: {integrity: sha512-iGRfyc5Bq+NnNuX8b5hwBrRjzf0ocrJPI6GWFodBFzmFnyvrQ83SHKhmilCU/8Jv67i4GJZBMhEzltxzcNagtQ==}
 
   '@webassemblyjs/floating-point-hex-parser@1.9.0':
     resolution: {integrity: sha512-TG5qcFsS8QB4g4MhrxK5TqfdNe7Ey/7YL/xN+36rRjl/BlGE/NcBvJcqsRgCP6Z92mRE+7N50pRIi8SmKUbcQA==}
@@ -3713,18 +3669,12 @@ packages:
     resolution: {integrity: sha512-iGRfyc5Bq+NnNuX8b5hwBrRjzf0ocrJPI6GWFodBFzmFnyvrQ83SHKhmilCU/8Jv67i4GJZBMhEzltxzcNagtQ==, tarball: https://registry.npmmirror.com/@webassemblyjs/floating-point-hex-parser/-/floating-point-hex-parser-1.11.1.tgz}
     version: 1.11.1
 
-  '@webassemblyjs/helper-api-error@1.11.1':
-    resolution: {integrity: sha512-RlhS8CBCXfRUR/cwo2ho9bkheSXG0+NwooXcc3PAILALf2QLdFyj7KGsKRbVc95hZnhnERon4kW/D3SZpp6Tcg==}
-
   '@webassemblyjs/helper-api-error@1.9.0':
     resolution: {integrity: sha512-NcMLjoFMXpsASZFxJ5h2HZRcEhDkvnNFOAKneP5RbKRzaWJN36NC4jqQHKwStIhGXu5mUWlUUk7ygdtrO8lbmw==}
 
   '@webassemblyjs/helper-api-error@https://registry.npmmirror.com/@webassemblyjs/helper-api-error/-/helper-api-error-1.11.1.tgz':
     resolution: {integrity: sha512-RlhS8CBCXfRUR/cwo2ho9bkheSXG0+NwooXcc3PAILALf2QLdFyj7KGsKRbVc95hZnhnERon4kW/D3SZpp6Tcg==, tarball: https://registry.npmmirror.com/@webassemblyjs/helper-api-error/-/helper-api-error-1.11.1.tgz}
     version: 1.11.1
-
-  '@webassemblyjs/helper-buffer@1.11.1':
-    resolution: {integrity: sha512-gwikF65aDNeeXa8JxXa2BAk+REjSyhrNC9ZwdT0f8jc4dQQeDQ7G4m0f2QCLPJiMTTO6wfDmRmj/pW0PsUvIcA==}
 
   '@webassemblyjs/helper-buffer@1.9.0':
     resolution: {integrity: sha512-qZol43oqhq6yBPx7YM3m9Bv7WMV9Eevj6kMi6InKOuZxhw+q9hOkvq5e/PpKSiLfyetpaBnogSbNCfBwyB00CA==}
@@ -3742,15 +3692,9 @@ packages:
   '@webassemblyjs/helper-module-context@1.9.0':
     resolution: {integrity: sha512-MJCW8iGC08tMk2enck1aPW+BE5Cw8/7ph/VGZxwyvGbJwjktKkDK7vy7gAmMDx88D7mhDTCNKAW5tED+gZ0W8g==}
 
-  '@webassemblyjs/helper-numbers@1.11.1':
-    resolution: {integrity: sha512-vDkbxiB8zfnPdNK9Rajcey5C0w+QJugEglN0of+kmO8l7lDb77AnlKYQF7aarZuCrv+l0UvqL+68gSDr3k9LPQ==}
-
   '@webassemblyjs/helper-numbers@https://registry.npmmirror.com/@webassemblyjs/helper-numbers/-/helper-numbers-1.11.1.tgz':
     resolution: {integrity: sha512-vDkbxiB8zfnPdNK9Rajcey5C0w+QJugEglN0of+kmO8l7lDb77AnlKYQF7aarZuCrv+l0UvqL+68gSDr3k9LPQ==, tarball: https://registry.npmmirror.com/@webassemblyjs/helper-numbers/-/helper-numbers-1.11.1.tgz}
     version: 1.11.1
-
-  '@webassemblyjs/helper-wasm-bytecode@1.11.1':
-    resolution: {integrity: sha512-PvpoOGiJwXeTrSf/qfudJhwlvDQxFgelbMqtq52WWiXC6Xgg1IREdngmPN3bs4RoO83PnL/nFrxucXj1+BX62Q==}
 
   '@webassemblyjs/helper-wasm-bytecode@1.9.0':
     resolution: {integrity: sha512-R7FStIzyNcd7xKxCZH5lE0Bqy+hGTwS3LJjuv1ZVxd9O7eHCedSdrId/hMOd20I+v8wDXEn+bjfKDLzTepoaUw==}
@@ -3759,18 +3703,12 @@ packages:
     resolution: {integrity: sha512-PvpoOGiJwXeTrSf/qfudJhwlvDQxFgelbMqtq52WWiXC6Xgg1IREdngmPN3bs4RoO83PnL/nFrxucXj1+BX62Q==, tarball: https://registry.npmmirror.com/@webassemblyjs/helper-wasm-bytecode/-/helper-wasm-bytecode-1.11.1.tgz}
     version: 1.11.1
 
-  '@webassemblyjs/helper-wasm-section@1.11.1':
-    resolution: {integrity: sha512-10P9No29rYX1j7F3EVPX3JvGPQPae+AomuSTPiF9eBQeChHI6iqjMIwR9JmOJXwpnn/oVGDk7I5IlskuMwU/pg==}
-
   '@webassemblyjs/helper-wasm-section@1.9.0':
     resolution: {integrity: sha512-XnMB8l3ek4tvrKUUku+IVaXNHz2YsJyOOmz+MMkZvh8h1uSJpSen6vYnw3IoQ7WwEuAhL8Efjms1ZWjqh2agvw==}
 
   '@webassemblyjs/helper-wasm-section@https://registry.npmmirror.com/@webassemblyjs/helper-wasm-section/-/helper-wasm-section-1.11.1.tgz':
     resolution: {integrity: sha512-10P9No29rYX1j7F3EVPX3JvGPQPae+AomuSTPiF9eBQeChHI6iqjMIwR9JmOJXwpnn/oVGDk7I5IlskuMwU/pg==, tarball: https://registry.npmmirror.com/@webassemblyjs/helper-wasm-section/-/helper-wasm-section-1.11.1.tgz}
     version: 1.11.1
-
-  '@webassemblyjs/ieee754@1.11.1':
-    resolution: {integrity: sha512-hJ87QIPtAMKbFq6CGTkZYJivEwZDbQUgYd3qKSadTNOhVY7p+gfP6Sr0lLRVTaG1JjFj+r3YchoqRYxNH3M0GQ==}
 
   '@webassemblyjs/ieee754@1.9.0':
     resolution: {integrity: sha512-dcX8JuYU/gvymzIHc9DgxTzUUTLexWwt8uCTWP3otys596io0L5aW02Gb1RjYpx2+0Jus1h4ZFqjla7umFniTg==}
@@ -3779,18 +3717,12 @@ packages:
     resolution: {integrity: sha512-hJ87QIPtAMKbFq6CGTkZYJivEwZDbQUgYd3qKSadTNOhVY7p+gfP6Sr0lLRVTaG1JjFj+r3YchoqRYxNH3M0GQ==, tarball: https://registry.npmmirror.com/@webassemblyjs/ieee754/-/ieee754-1.11.1.tgz}
     version: 1.11.1
 
-  '@webassemblyjs/leb128@1.11.1':
-    resolution: {integrity: sha512-BJ2P0hNZ0u+Th1YZXJpzW6miwqQUGcIHT1G/sf72gLVD9DZ5AdYTqPNbHZh6K1M5VmKvFXwGSWZADz+qBWxeRw==}
-
   '@webassemblyjs/leb128@1.9.0':
     resolution: {integrity: sha512-ENVzM5VwV1ojs9jam6vPys97B/S65YQtv/aanqnU7D8aSoHFX8GyhGg0CMfyKNIHBuAVjy3tlzd5QMMINa7wpw==}
 
   '@webassemblyjs/leb128@https://registry.npmmirror.com/@webassemblyjs/leb128/-/leb128-1.11.1.tgz':
     resolution: {integrity: sha512-BJ2P0hNZ0u+Th1YZXJpzW6miwqQUGcIHT1G/sf72gLVD9DZ5AdYTqPNbHZh6K1M5VmKvFXwGSWZADz+qBWxeRw==, tarball: https://registry.npmmirror.com/@webassemblyjs/leb128/-/leb128-1.11.1.tgz}
     version: 1.11.1
-
-  '@webassemblyjs/utf8@1.11.1':
-    resolution: {integrity: sha512-9kqcxAEdMhiwQkHpkNiorZzqpGrodQQ2IGrHHxCy+Ozng0ofyMA0lTqiLkVs1uzTRejX+/O0EOT7KxqVPuXosQ==}
 
   '@webassemblyjs/utf8@1.9.0':
     resolution: {integrity: sha512-GZbQlWtopBTP0u7cHrEx+73yZKrQoBMpwkGEIqlacljhXCkVM1kMQge/Mf+csMJAjEdSwhOyLAS0AoR3AG5P8w==}
@@ -3799,18 +3731,12 @@ packages:
     resolution: {integrity: sha512-9kqcxAEdMhiwQkHpkNiorZzqpGrodQQ2IGrHHxCy+Ozng0ofyMA0lTqiLkVs1uzTRejX+/O0EOT7KxqVPuXosQ==, tarball: https://registry.npmmirror.com/@webassemblyjs/utf8/-/utf8-1.11.1.tgz}
     version: 1.11.1
 
-  '@webassemblyjs/wasm-edit@1.11.1':
-    resolution: {integrity: sha512-g+RsupUC1aTHfR8CDgnsVRVZFJqdkFHpsHMfJuWQzWU3tvnLC07UqHICfP+4XyL2tnr1amvl1Sdp06TnYCmVkA==}
-
   '@webassemblyjs/wasm-edit@1.9.0':
     resolution: {integrity: sha512-FgHzBm80uwz5M8WKnMTn6j/sVbqilPdQXTWraSjBwFXSYGirpkSWE2R9Qvz9tNiTKQvoKILpCuTjBKzOIm0nxw==}
 
   '@webassemblyjs/wasm-edit@https://registry.npmmirror.com/@webassemblyjs/wasm-edit/-/wasm-edit-1.11.1.tgz':
     resolution: {integrity: sha512-g+RsupUC1aTHfR8CDgnsVRVZFJqdkFHpsHMfJuWQzWU3tvnLC07UqHICfP+4XyL2tnr1amvl1Sdp06TnYCmVkA==, tarball: https://registry.npmmirror.com/@webassemblyjs/wasm-edit/-/wasm-edit-1.11.1.tgz}
     version: 1.11.1
-
-  '@webassemblyjs/wasm-gen@1.11.1':
-    resolution: {integrity: sha512-F7QqKXwwNlMmsulj6+O7r4mmtAlCWfO/0HdgOxSklZfQcDu0TpLiD1mRt/zF25Bk59FIjEuGAIyn5ei4yMfLhA==}
 
   '@webassemblyjs/wasm-gen@1.9.0':
     resolution: {integrity: sha512-cPE3o44YzOOHvlsb4+E9qSqjc9Qf9Na1OO/BHFy4OI91XDE14MjFN4lTMezzaIWdPqHnsTodGGNP+iRSYfGkjA==}
@@ -3819,18 +3745,12 @@ packages:
     resolution: {integrity: sha512-F7QqKXwwNlMmsulj6+O7r4mmtAlCWfO/0HdgOxSklZfQcDu0TpLiD1mRt/zF25Bk59FIjEuGAIyn5ei4yMfLhA==, tarball: https://registry.npmmirror.com/@webassemblyjs/wasm-gen/-/wasm-gen-1.11.1.tgz}
     version: 1.11.1
 
-  '@webassemblyjs/wasm-opt@1.11.1':
-    resolution: {integrity: sha512-VqnkNqnZlU5EB64pp1l7hdm3hmQw7Vgqa0KF/KCNO9sIpI6Fk6brDEiX+iCOYrvMuBWDws0NkTOxYEb85XQHHw==}
-
   '@webassemblyjs/wasm-opt@1.9.0':
     resolution: {integrity: sha512-Qkjgm6Anhm+OMbIL0iokO7meajkzQD71ioelnfPEj6r4eOFuqm4YC3VBPqXjFyyNwowzbMD+hizmprP/Fwkl2A==}
 
   '@webassemblyjs/wasm-opt@https://registry.npmmirror.com/@webassemblyjs/wasm-opt/-/wasm-opt-1.11.1.tgz':
     resolution: {integrity: sha512-VqnkNqnZlU5EB64pp1l7hdm3hmQw7Vgqa0KF/KCNO9sIpI6Fk6brDEiX+iCOYrvMuBWDws0NkTOxYEb85XQHHw==, tarball: https://registry.npmmirror.com/@webassemblyjs/wasm-opt/-/wasm-opt-1.11.1.tgz}
     version: 1.11.1
-
-  '@webassemblyjs/wasm-parser@1.11.1':
-    resolution: {integrity: sha512-rrBujw+dJu32gYB7/Lup6UhdkPx9S9SnobZzRVL7VcBH9Bt9bCBLEuX/YXOOtBsOZ4NQrRykKhffRWHvigQvOA==}
 
   '@webassemblyjs/wasm-parser@1.9.0':
     resolution: {integrity: sha512-9+wkMowR2AmdSWQzsPEjFU7njh8HTO5MqO8vjwEHuM+AMHioNqSBONRdr0NQQ3dVQrzp0s8lTcYqzUdb7YgELA==}
@@ -3841,9 +3761,6 @@ packages:
 
   '@webassemblyjs/wast-parser@1.9.0':
     resolution: {integrity: sha512-qsqSAP3QQ3LyZjNC/0jBJ/ToSxfYJ8kYyuiGvtn/8MK89VrNEfwj7BPQzJVHi0jGTRK2dGdJ5PRqhtjzoww+bw==}
-
-  '@webassemblyjs/wast-printer@1.11.1':
-    resolution: {integrity: sha512-IQboUWM4eKzWW+N/jij2sRatKMh99QEelo3Eb2q0qXkvPRISAj8Qxtmw5itwqK+TTkBuUIE45AxYPToqPtL5gg==}
 
   '@webassemblyjs/wast-printer@1.9.0':
     resolution: {integrity: sha512-2J0nE95rHXHyQ24cWjMKJ1tqB/ds8z/cyeOZxJhcb+rW+SQASVjuznUSmdz5GpVJTzU8JkhYut0D3siFDD6wsA==}
@@ -3894,13 +3811,6 @@ packages:
   acorn-globals@https://registry.npmmirror.com/acorn-globals/-/acorn-globals-7.0.1.tgz:
     resolution: {integrity: sha512-umOSDSDrfHbTNPuNpC2NSnnA3LUrqpevPb4T9jRx4MagXNS0rs+gwiTcAvqCRmsD6utzsrzNt+ebm00SNWiC3Q==, tarball: https://registry.npmmirror.com/acorn-globals/-/acorn-globals-7.0.1.tgz}
     version: 7.0.1
-
-  acorn-import-assertions@1.9.0:
-    resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
-    version: 1.9.0
-    deprecated: package has been renamed to acorn-import-attributes
-    peerDependencies:
-      acorn: ^8
 
   acorn-import-assertions@https://registry.npmmirror.com/acorn-import-assertions/-/acorn-import-assertions-1.9.0.tgz:
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==, tarball: https://registry.npmmirror.com/acorn-import-assertions/-/acorn-import-assertions-1.9.0.tgz}
@@ -4000,7 +3910,6 @@ packages:
 
   ajv-keywords@3.5.2:
     resolution: {integrity: sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==}
-    version: 3.5.2
     peerDependencies:
       ajv: ^6.9.1
 
@@ -6642,10 +6551,6 @@ packages:
     resolution: {integrity: sha512-Nv9m36S/vxpsI+Hc4/ZGRs0n9mXqSWGGq49zxb/cJfPAQMbUtttJAlNPS4AQzaBdw/pKskw5bMbekT/Y7W/Wlg==}
     engines: {node: '>=6.9.0'}
 
-  enhanced-resolve@5.15.0:
-    resolution: {integrity: sha512-LXYT42KJ7lpIKECr2mAXIaMldcNCh/7E0KBKOu4KSfkHmP+mZmSs+8V5gBAqisWBy0OO4W5Oyys0GO1Y8KtdKg==}
-    engines: {node: '>=10.13.0'}
-
   enhanced-resolve@https://registry.npmmirror.com/enhanced-resolve/-/enhanced-resolve-5.15.0.tgz:
     resolution: {integrity: sha512-LXYT42KJ7lpIKECr2mAXIaMldcNCh/7E0KBKOu4KSfkHmP+mZmSs+8V5gBAqisWBy0OO4W5Oyys0GO1Y8KtdKg==, tarball: https://registry.npmmirror.com/enhanced-resolve/-/enhanced-resolve-5.15.0.tgz}
     version: 5.15.0
@@ -6694,9 +6599,6 @@ packages:
 
   es-array-method-boxes-properly@1.0.0:
     resolution: {integrity: sha512-wd6JXUmyHmt8T5a2xreUwKcGPq6f1f+WwIJkijUqiGcJz1qqnZgP6XIK+QyIWU5lT7imeNxUll48bziG+TSYcA==}
-
-  es-module-lexer@0.9.3:
-    resolution: {integrity: sha512-1HQ2M2sPtxwnvOvT1ZClHyQDiggdNjURWpY2we6aMKCQiUVxTmVs2UYPLIrD84sS+kMdUwfBSylbJPwNnBrnHQ==}
 
   es-module-lexer@https://registry.npmmirror.com/es-module-lexer/-/es-module-lexer-0.10.5.tgz:
     resolution: {integrity: sha512-+7IwY/kiGAacQfY+YBhKMvEmyAJnw5grTUgjG85Pe7vcUI/6b7pZjZG8nQ7+48YhzEAEqrEgD2dCz/JIK+AYvw==, tarball: https://registry.npmmirror.com/es-module-lexer/-/es-module-lexer-0.10.5.tgz}
@@ -6934,10 +6836,6 @@ packages:
   eslint-scope@4.0.3:
     resolution: {integrity: sha512-p7VutNr1O/QrxysMo3E45FjYDTeXBy0iTltPFNSqKAIfjDSXC+4dj+qfyuD8bfAXrW/y6lW3O76VaYNPKfpKrg==}
     engines: {node: '>=4.0.0'}
-
-  eslint-scope@5.1.1:
-    resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}
-    engines: {node: '>=8.0.0'}
 
   eslint-scope@https://registry.npmmirror.com/eslint-scope/-/eslint-scope-5.1.1.tgz:
     resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==, tarball: https://registry.npmmirror.com/eslint-scope/-/eslint-scope-5.1.1.tgz}
@@ -7764,9 +7662,6 @@ packages:
     version: 6.0.2
     engines: {node: '>=10.13.0'}
 
-  glob-to-regexp@0.4.1:
-    resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
-
   glob-to-regexp@https://registry.npmmirror.com/glob-to-regexp/-/glob-to-regexp-0.3.0.tgz:
     resolution: {integrity: sha512-Iozmtbqv0noj0uDDqoL0zNq0VBEfK2YFoMAZoxJe4cwphvLR+JskfF30QhXHOR4m3KrE6NLRYw+U9MRXvifyig==, tarball: https://registry.npmmirror.com/glob-to-regexp/-/glob-to-regexp-0.3.0.tgz}
     version: 0.3.0
@@ -8184,7 +8079,6 @@ packages:
 
   html-webpack-plugin@4.5.2:
     resolution: {integrity: sha512-q5oYdzjKUIPQVjOosjgvCHQOv9Ett9CYYHlgvJeXG0qQvdSojnBq4vAdQBwn1+yGveAwHCoe/rMR86ozX3+c2A==}
-    version: 4.5.2
     engines: {node: '>=6.9'}
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
@@ -9158,10 +9052,6 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
 
-  jest-worker@27.5.1:
-    resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
-    engines: {node: '>= 10.13.0'}
-
   jest-worker@https://registry.npmmirror.com/jest-worker/-/jest-worker-27.5.1.tgz:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==, tarball: https://registry.npmmirror.com/jest-worker/-/jest-worker-27.5.1.tgz}
     version: 27.5.1
@@ -9408,7 +9298,6 @@ packages:
 
   less-loader@7.3.0:
     resolution: {integrity: sha512-Mi8915g7NMaLlgi77mgTTQvK022xKRQBIVDSyfl3ErTuBhmZBQab0mjeJjNNqGbdR+qrfTleKXqbGI4uEFavxg==}
-    version: 7.3.0
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       less: ^3.5.0 || ^4.0.0
@@ -9558,10 +9447,6 @@ packages:
   loader-runner@2.4.0:
     resolution: {integrity: sha512-Jsmr89RcXGIwivFY21FcRrisYZfvLMTWx5kOLc+JTxtpBOG6xML0vzbc6SEQG2FO9/4Fc3wW4LVcB5DmGflaRw==}
     engines: {node: '>=4.3.0 <5.0.0 || >=5.10'}
-
-  loader-runner@4.3.0:
-    resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==}
-    engines: {node: '>=6.11.5'}
 
   loader-runner@https://registry.npmmirror.com/loader-runner/-/loader-runner-4.3.0.tgz:
     resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==, tarball: https://registry.npmmirror.com/loader-runner/-/loader-runner-4.3.0.tgz}
@@ -12532,7 +12417,6 @@ packages:
 
   sass-loader@10.2.0:
     resolution: {integrity: sha512-kUceLzC1gIHz0zNJPpqRsJyisWatGYNFRmv2CKZK2/ngMJgLqxTbXwe/hJ85luyvZkgqU3VlJ33UVF2T/0g6mw==}
-    version: 10.2.0
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       fibers: '>= 3.1.0'
@@ -12716,9 +12600,6 @@ packages:
 
   serialize-javascript@4.0.0:
     resolution: {integrity: sha512-GaNA54380uFefWghODBWEGisLZFj00nS5ACs6yHa9nLqlLpVLO8ChDGeKRjZnV4Nh4n0Qi7nhYZD/9fCPzEqkw==}
-
-  serialize-javascript@6.0.2:
-    resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
 
   serialize-javascript@https://registry.npmmirror.com/serialize-javascript/-/serialize-javascript-6.0.2.tgz:
     resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==, tarball: https://registry.npmmirror.com/serialize-javascript/-/serialize-javascript-6.0.2.tgz}
@@ -13361,7 +13242,6 @@ packages:
 
   style-loader@1.3.0:
     resolution: {integrity: sha512-V7TCORko8rs9rIqkSrlMfkqA63DfoGBBJmK1kKGCcSi+BWb4cqz0SRsnp4l6rU5iwOEd0/2ePv68SV22VXon4Q==}
-    version: 1.3.0
     engines: {node: '>= 8.9.0'}
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
@@ -13399,7 +13279,6 @@ packages:
 
   stylus-loader@3.0.2:
     resolution: {integrity: sha512-+VomPdZ6a0razP+zinir61yZgpw2NfljeSsdUF5kJuEzlo3khXhY19Fn6l8QQz1GRJGtMCo8nG5C04ePyV7SUA==}
-    version: 3.0.2
     peerDependencies:
       stylus: '>=0.52.4'
 
@@ -13438,10 +13317,6 @@ packages:
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
-
-  supports-color@8.1.1:
-    resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
-    engines: {node: '>=10'}
 
   supports-color@https://registry.npmmirror.com/supports-color/-/supports-color-2.0.0.tgz:
     resolution: {integrity: sha512-KKNVtd6pCYgPIKU4cp2733HWYCpplQhddZLBUryaAHou723x+FRzQ5Df824Fj+IyyuiQTRoub4SnIFfIcrp70g==, tarball: https://registry.npmmirror.com/supports-color/-/supports-color-2.0.0.tgz}
@@ -13525,10 +13400,6 @@ packages:
     resolution: {integrity: sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==}
     engines: {node: '>=6'}
 
-  tapable@2.2.1:
-    resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
-    engines: {node: '>=6'}
-
   tapable@https://registry.npmmirror.com/tapable/-/tapable-1.1.3.tgz:
     resolution: {integrity: sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==, tarball: https://registry.npmmirror.com/tapable/-/tapable-1.1.3.tgz}
     version: 1.1.3
@@ -13560,19 +13431,6 @@ packages:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
 
-  taro-code@https://registry.npmmirror.com/taro-code/-/taro-code-4.0.1.tgz:
-    resolution: {integrity: sha512-9nyPVNYiKrYOgebB5JuLLNgLA15llvNS/qjNE4Llqetqi9F1J9SaYlFcZnOrJFPJIT3vdETNrC++afjY1XSt0A==, tarball: https://registry.npmmirror.com/taro-code/-/taro-code-4.0.1.tgz}
-    version: 4.0.1
-    peerDependencies:
-      '@tarojs/components': '>=3'
-      '@tarojs/mini-runner': '>=3'
-      '@tarojs/react': '>=3'
-      '@tarojs/runtime': '>=3'
-      '@tarojs/taro': '>=3'
-      '@tarojs/webpack-runner': '>=3'
-      react: '>=18.0.0'
-      react-dom: '>=18.0.0'
-
   terser-webpack-plugin@1.4.5:
     resolution: {integrity: sha512-04Rfe496lN8EYruwi6oPQkG0vo8C+HT49X687FZnpPF0qMAIHONI6HEXYPKDOE8e5HjXTyKfqRd/agHtH0kOtw==}
     engines: {node: '>= 6.9.0'}
@@ -13584,23 +13442,6 @@ packages:
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
-
-  terser-webpack-plugin@5.3.10:
-    resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
-    version: 5.3.10
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      '@swc/core': '*'
-      esbuild: '*'
-      uglify-js: '*'
-      webpack: ^5.1.0
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      esbuild:
-        optional: true
-      uglify-js:
-        optional: true
 
   terser-webpack-plugin@https://registry.npmmirror.com/terser-webpack-plugin/-/terser-webpack-plugin-5.3.10.tgz:
     resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==, tarball: https://registry.npmmirror.com/terser-webpack-plugin/-/terser-webpack-plugin-5.3.10.tgz}
@@ -14193,7 +14034,6 @@ packages:
 
   url-loader@4.1.0:
     resolution: {integrity: sha512-IzgAAIC8wRrg6NYkFIJY09vtktQcsvU8V6HhtQj9PTefbYImzLB1hufqo4m+RyM5N3mLx5BqJKccgxJS+W3kqw==}
-    version: 4.1.0
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       file-loader: '*'
@@ -14495,10 +14335,6 @@ packages:
   watchpack@1.7.5:
     resolution: {integrity: sha512-9P3MWk6SrKjHsGkLT2KHXdQ/9SNkyoJbabxnKOoJepsvJjJG8uYTR3yTPxPQvNDI3w4Nz1xnE0TLHK4RIVe/MQ==}
 
-  watchpack@2.4.0:
-    resolution: {integrity: sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==}
-    engines: {node: '>=10.13.0'}
-
   watchpack@https://registry.npmmirror.com/watchpack/-/watchpack-2.4.0.tgz:
     resolution: {integrity: sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==, tarball: https://registry.npmmirror.com/watchpack/-/watchpack-2.4.0.tgz}
     version: 2.4.0
@@ -14538,7 +14374,6 @@ packages:
 
   webpack-dev-middleware@3.7.3:
     resolution: {integrity: sha512-djelc/zGiz9nZj/U7PTBi2ViorGJXEWo/3ltkPbDyxCXhhEXkW0ce99falaok4TPj+AsxLiXJR0EBOb0zh9fKQ==}
-    version: 3.7.3
     engines: {node: '>= 6'}
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
@@ -14552,7 +14387,6 @@ packages:
 
   webpack-dev-server@3.11.3:
     resolution: {integrity: sha512-3x31rjbEQWKMNzacUZRE6wXvUFuGpH7vr0lIEbYpMAG9BOxi0928QU1BBswOAP3kg3H1O4hiS+sq4YyAn6ANnA==}
-    version: 3.11.3
     engines: {node: '>= 6.11.5'}
     hasBin: true
     peerDependencies:
@@ -14597,10 +14431,6 @@ packages:
   webpack-sources@1.4.3:
     resolution: {integrity: sha512-lgTS3Xhv1lCOKo7SA5TjKXMjpSM4sBjNV5+q2bqesbSPs5FjGmU6jjtBSkX9b4qW87vDIsCIlUPOEhbZrMdjeQ==}
 
-  webpack-sources@3.2.3:
-    resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
-    engines: {node: '>=10.13.0'}
-
   webpack-sources@https://registry.npmmirror.com/webpack-sources/-/webpack-sources-2.3.1.tgz:
     resolution: {integrity: sha512-y9EI9AO42JjEcrTJFOYmVywVZdKVUfOvDUPsJea5GIr1JOEGFVqwlY2K098fFoIjOkDzHn2AjRvM8dsBZu+gCA==, tarball: https://registry.npmmirror.com/webpack-sources/-/webpack-sources-2.3.1.tgz}
     version: 2.3.1
@@ -14626,17 +14456,6 @@ packages:
       webpack-cli:
         optional: true
       webpack-command:
-        optional: true
-
-  webpack@5.78.0:
-    resolution: {integrity: sha512-gT5DP72KInmE/3azEaQrISjTvLYlSM0j1Ezhht/KLVkrqtv10JoP/RXhwmX/frrutOPuSq3o5Vq0ehR/4Vmd1g==}
-    version: 5.78.0
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-    peerDependencies:
-      webpack-cli: '*'
-    peerDependenciesMeta:
-      webpack-cli:
         optional: true
 
   webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz:
@@ -17764,6 +17583,7 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.22
+    optional: true
 
   '@jridgewell/source-map@https://registry.npmmirror.com/@jridgewell/source-map/-/source-map-0.3.5.tgz':
     dependencies:
@@ -18294,12 +18114,12 @@ snapshots:
     dependencies:
       '@babel/core': 7.23.9
       '@tarojs/helper': 3.6.23
-      '@tarojs/plugin-platform-alipay': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
+      '@tarojs/plugin-platform-alipay': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
       '@tarojs/plugin-platform-jd': 3.6.23(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
-      '@tarojs/plugin-platform-qq': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
-      '@tarojs/plugin-platform-swan': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
-      '@tarojs/plugin-platform-tt': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
-      '@tarojs/plugin-platform-weapp': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
+      '@tarojs/plugin-platform-qq': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
+      '@tarojs/plugin-platform-swan': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
+      '@tarojs/plugin-platform-tt': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
+      '@tarojs/plugin-platform-weapp': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
       '@tarojs/runner-utils': 3.6.23
       '@tarojs/runtime': 3.6.23(@tarojs/shared@3.6.23)
       '@tarojs/shared': 3.6.23
@@ -18341,81 +18161,6 @@ snapshots:
       stylus-loader: 3.0.2(stylus@0.55.0)
       terser-webpack-plugin: 3.1.0(webpack@4.46.0)
       url-loader: 4.1.0(file-loader@6.0.0(webpack@4.46.0))(webpack@4.46.0)
-      vm2: 3.9.19
-      webpack: 4.46.0
-      webpack-chain: 4.9.0
-      webpack-format-messages: 2.0.6
-      webpack-sources: 1.4.3
-    transitivePeerDependencies:
-      - '@swc/helpers'
-      - '@tarojs/components'
-      - '@types/react'
-      - '@types/webpack'
-      - '@types/webpack-dev-server'
-      - bluebird
-      - bufferutil
-      - canvas
-      - fibers
-      - node-sass
-      - rework
-      - rework-visit
-      - supports-color
-      - utf-8-validate
-      - vue
-      - webpack-cli
-      - webpack-command
-
-  '@tarojs/mini-runner@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(postcss@8.4.33)(rework-visit@1.0.0)(rework@1.0.1)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))':
-    dependencies:
-      '@babel/core': 7.23.9
-      '@tarojs/helper': 3.6.23
-      '@tarojs/plugin-platform-alipay': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
-      '@tarojs/plugin-platform-jd': 3.6.23(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
-      '@tarojs/plugin-platform-qq': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
-      '@tarojs/plugin-platform-swan': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
-      '@tarojs/plugin-platform-tt': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
-      '@tarojs/plugin-platform-weapp': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
-      '@tarojs/runner-utils': 3.6.23
-      '@tarojs/runtime': 3.6.23(@tarojs/shared@3.6.23)
-      '@tarojs/shared': 3.6.23
-      '@tarojs/taro': 3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
-      '@tarojs/taro-loader': 3.6.23(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
-      acorn-walk: 8.3.2
-      autoprefixer: 9.8.8
-      babel-loader: 8.2.1(@babel/core@7.23.9)(webpack@4.46.0)
-      babel-preset-taro: 3.6.23(@babel/core@7.23.9)
-      copy-webpack-plugin: 5.1.2(webpack@4.46.0)
-      css-loader: 5.2.7(webpack@4.46.0)
-      csso-webpack-plugin: 2.0.0-beta.1
-      file-loader: 6.0.0(webpack@4.46.0)
-      html-minifier: 4.0.0
-      jsdom: 21.1.2
-      less: 4.2.0
-      less-loader: 7.3.0(less@https://registry.npmmirror.com/less/-/less-4.2.0.tgz)(webpack@4.46.0)
-      loader-utils: 1.4.2
-      lodash: 4.17.21
-      md5: 2.3.0
-      micromatch: 4.0.5
-      mini-css-extract-plugin: 0.9.0(webpack@4.46.0)
-      miniprogram-simulate: 1.6.1
-      mkdirp: 1.0.4
-      ora: 5.4.1
-      postcss: 8.4.33
-      postcss-html-transform: 3.6.23(postcss@8.4.33)
-      postcss-import: 14.1.0(postcss@8.4.33)
-      postcss-loader: 4.3.0(postcss@8.4.33)(webpack@4.46.0)
-      postcss-pxtransform: 3.6.23(postcss@8.4.33)
-      postcss-url: 10.1.3(postcss@8.4.33)
-      regenerator-runtime: 0.11.1
-      resolve: 1.22.8
-      resolve-url-loader: 4.0.0(rework-visit@1.0.0)(rework@1.0.1)
-      sass: 1.50.0
-      sass-loader: 10.2.0(sass@https://registry.npmmirror.com/sass/-/sass-1.50.0.tgz)(webpack@4.46.0)
-      sax: 1.2.4
-      stylus: 0.55.0
-      stylus-loader: 3.0.2(stylus@https://registry.npmmirror.com/stylus/-/stylus-0.55.0.tgz)
-      terser-webpack-plugin: 3.1.0(webpack@4.46.0)
-      url-loader: 4.1.0(file-loader@https://registry.npmmirror.com/file-loader/-/file-loader-6.0.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)))(webpack@4.46.0)
       vm2: 3.9.19
       webpack: 4.46.0
       webpack-chain: 4.9.0
@@ -18532,7 +18277,7 @@ snapshots:
       - '@tarojs/taro'
       - supports-color
 
-  '@tarojs/plugin-platform-alipay@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))':
+  '@tarojs/plugin-platform-alipay@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))':
     dependencies:
       '@tarojs/components': 3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
       '@tarojs/service': 3.6.23(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
@@ -18598,9 +18343,9 @@ snapshots:
       - supports-color
       - vue
 
-  '@tarojs/plugin-platform-qq@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))':
+  '@tarojs/plugin-platform-qq@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))':
     dependencies:
-      '@tarojs/plugin-platform-weapp': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
+      '@tarojs/plugin-platform-weapp': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
       '@tarojs/service': 3.6.23(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
       '@tarojs/shared': 3.6.23
     transitivePeerDependencies:
@@ -18623,7 +18368,7 @@ snapshots:
       - supports-color
       - vue
 
-  '@tarojs/plugin-platform-swan@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))':
+  '@tarojs/plugin-platform-swan@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))':
     dependencies:
       '@tarojs/components': 3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
       '@tarojs/service': 3.6.23(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
@@ -18647,7 +18392,7 @@ snapshots:
       - supports-color
       - vue
 
-  '@tarojs/plugin-platform-tt@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))':
+  '@tarojs/plugin-platform-tt@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))':
     dependencies:
       '@tarojs/components': 3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
       '@tarojs/service': 3.6.23(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
@@ -18671,7 +18416,7 @@ snapshots:
       - supports-color
       - vue
 
-  '@tarojs/plugin-platform-weapp@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))':
+  '@tarojs/plugin-platform-weapp@3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))':
     dependencies:
       '@tarojs/components': 3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
       '@tarojs/service': 3.6.23(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))
@@ -18964,65 +18709,6 @@ snapshots:
       - vue
       - webpack-cli
 
-  '@tarojs/webpack-runner@3.6.23(@babel/core@7.23.9)(@tarojs/shared@3.6.23)(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))':
-    dependencies:
-      '@open-wc/webpack-import-meta-loader': 0.4.7
-      '@tarojs/helper': 3.6.23
-      '@tarojs/runner-utils': 3.6.23
-      '@tarojs/runtime': 3.6.23(@tarojs/shared@3.6.23)
-      '@tarojs/taro': 3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
-      '@tarojs/taro-loader': 3.6.23(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
-      acorn-walk: 8.3.2
-      autoprefixer: 9.8.8
-      babel-loader: 8.2.1(@babel/core@7.23.9)(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      copy-webpack-plugin: 5.1.2(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      css-loader: 5.2.7(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      csso-webpack-plugin: 2.0.0-beta.1
-      detect-port: 1.5.1
-      file-loader: 6.0.0(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      html-webpack-plugin: 4.5.2(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      less: 4.2.0
-      less-loader: 7.3.0(less@https://registry.npmmirror.com/less/-/less-4.2.0.tgz)(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      lodash: 4.17.21
-      mini-css-extract-plugin: 0.9.0(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      open: 7.0.2
-      ora: 5.4.1
-      postcss: 8.4.33
-      postcss-html-transform: 3.6.23(postcss@8.4.33)
-      postcss-import: 12.0.1
-      postcss-loader: 4.3.0(postcss@8.4.33)(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      postcss-plugin-constparse: 3.6.23(postcss@8.4.33)
-      postcss-pxtransform: 3.6.23(postcss@8.4.33)
-      postcss-url: 8.0.0
-      resolve: 1.22.8
-      resolve-url-loader: 3.1.3
-      sass: 1.50.0
-      sass-loader: 10.2.0(sass@https://registry.npmmirror.com/sass/-/sass-1.50.0.tgz)(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      style-loader: 1.3.0(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      stylus: 0.55.0
-      stylus-loader: 3.0.2(stylus@https://registry.npmmirror.com/stylus/-/stylus-0.55.0.tgz)
-      terser-webpack-plugin: 3.1.0(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      url-loader: 4.1.0(file-loader@https://registry.npmmirror.com/file-loader/-/file-loader-6.0.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)))(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-      webpack-chain: 4.9.0
-      webpack-dev-server: 3.11.3(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      webpack-format-messages: 2.0.6
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@swc/helpers'
-      - '@tarojs/shared'
-      - '@types/react'
-      - '@types/webpack'
-      - '@types/webpack-dev-server'
-      - bluebird
-      - bufferutil
-      - fibers
-      - node-sass
-      - supports-color
-      - utf-8-validate
-      - vue
-      - webpack-cli
-
   '@tarojs/webpack5-prebundle@https://registry.npmmirror.com/@tarojs/webpack5-prebundle/-/webpack5-prebundle-3.6.19.tgz(postcss@https://registry.npmmirror.com/postcss/-/postcss-8.4.18.tgz)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))':
     dependencies:
       '@tarojs/helper': https://registry.npmmirror.com/@tarojs/helper/-/helper-3.6.19.tgz
@@ -19227,29 +18913,15 @@ snapshots:
     dependencies:
       '@types/ms': https://registry.npmmirror.com/@types/ms/-/ms-0.7.34.tgz
 
-  '@types/eslint-scope@3.7.7':
-    dependencies:
-      '@types/eslint': 8.56.2
-      '@types/estree': 1.0.5
-
   '@types/eslint-scope@https://registry.npmmirror.com/@types/eslint-scope/-/eslint-scope-3.7.7.tgz':
     dependencies:
       '@types/eslint': https://registry.npmmirror.com/@types/eslint/-/eslint-8.56.2.tgz
       '@types/estree': https://registry.npmmirror.com/@types/estree/-/estree-0.0.51.tgz
 
-  '@types/eslint@8.56.2':
-    dependencies:
-      '@types/estree': 1.0.5
-      '@types/json-schema': 7.0.15
-
   '@types/eslint@https://registry.npmmirror.com/@types/eslint/-/eslint-8.56.2.tgz':
     dependencies:
       '@types/estree': https://registry.npmmirror.com/@types/estree/-/estree-0.0.51.tgz
       '@types/json-schema': https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.15.tgz
-
-  '@types/estree@0.0.51': {}
-
-  '@types/estree@1.0.5': {}
 
   '@types/estree@https://registry.npmmirror.com/@types/estree/-/estree-0.0.51.tgz': {}
 
@@ -19890,11 +19562,6 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@webassemblyjs/ast@1.11.1':
-    dependencies:
-      '@webassemblyjs/helper-numbers': 1.11.1
-      '@webassemblyjs/helper-wasm-bytecode': 1.11.1
-
   '@webassemblyjs/ast@1.9.0':
     dependencies:
       '@webassemblyjs/helper-module-context': 1.9.0
@@ -19906,19 +19573,13 @@ snapshots:
       '@webassemblyjs/helper-numbers': https://registry.npmmirror.com/@webassemblyjs/helper-numbers/-/helper-numbers-1.11.1.tgz
       '@webassemblyjs/helper-wasm-bytecode': https://registry.npmmirror.com/@webassemblyjs/helper-wasm-bytecode/-/helper-wasm-bytecode-1.11.1.tgz
 
-  '@webassemblyjs/floating-point-hex-parser@1.11.1': {}
-
   '@webassemblyjs/floating-point-hex-parser@1.9.0': {}
 
   '@webassemblyjs/floating-point-hex-parser@https://registry.npmmirror.com/@webassemblyjs/floating-point-hex-parser/-/floating-point-hex-parser-1.11.1.tgz': {}
 
-  '@webassemblyjs/helper-api-error@1.11.1': {}
-
   '@webassemblyjs/helper-api-error@1.9.0': {}
 
   '@webassemblyjs/helper-api-error@https://registry.npmmirror.com/@webassemblyjs/helper-api-error/-/helper-api-error-1.11.1.tgz': {}
-
-  '@webassemblyjs/helper-buffer@1.11.1': {}
 
   '@webassemblyjs/helper-buffer@1.9.0': {}
 
@@ -19934,30 +19595,15 @@ snapshots:
     dependencies:
       '@webassemblyjs/ast': 1.9.0
 
-  '@webassemblyjs/helper-numbers@1.11.1':
-    dependencies:
-      '@webassemblyjs/floating-point-hex-parser': 1.11.1
-      '@webassemblyjs/helper-api-error': 1.11.1
-      '@xtuc/long': 4.2.2
-
   '@webassemblyjs/helper-numbers@https://registry.npmmirror.com/@webassemblyjs/helper-numbers/-/helper-numbers-1.11.1.tgz':
     dependencies:
       '@webassemblyjs/floating-point-hex-parser': https://registry.npmmirror.com/@webassemblyjs/floating-point-hex-parser/-/floating-point-hex-parser-1.11.1.tgz
       '@webassemblyjs/helper-api-error': https://registry.npmmirror.com/@webassemblyjs/helper-api-error/-/helper-api-error-1.11.1.tgz
       '@xtuc/long': https://registry.npmmirror.com/@xtuc/long/-/long-4.2.2.tgz
 
-  '@webassemblyjs/helper-wasm-bytecode@1.11.1': {}
-
   '@webassemblyjs/helper-wasm-bytecode@1.9.0': {}
 
   '@webassemblyjs/helper-wasm-bytecode@https://registry.npmmirror.com/@webassemblyjs/helper-wasm-bytecode/-/helper-wasm-bytecode-1.11.1.tgz': {}
-
-  '@webassemblyjs/helper-wasm-section@1.11.1':
-    dependencies:
-      '@webassemblyjs/ast': 1.11.1
-      '@webassemblyjs/helper-buffer': 1.11.1
-      '@webassemblyjs/helper-wasm-bytecode': 1.11.1
-      '@webassemblyjs/wasm-gen': 1.11.1
 
   '@webassemblyjs/helper-wasm-section@1.9.0':
     dependencies:
@@ -19973,10 +19619,6 @@ snapshots:
       '@webassemblyjs/helper-wasm-bytecode': https://registry.npmmirror.com/@webassemblyjs/helper-wasm-bytecode/-/helper-wasm-bytecode-1.11.1.tgz
       '@webassemblyjs/wasm-gen': https://registry.npmmirror.com/@webassemblyjs/wasm-gen/-/wasm-gen-1.11.1.tgz
 
-  '@webassemblyjs/ieee754@1.11.1':
-    dependencies:
-      '@xtuc/ieee754': 1.2.0
-
   '@webassemblyjs/ieee754@1.9.0':
     dependencies:
       '@xtuc/ieee754': 1.2.0
@@ -19984,10 +19626,6 @@ snapshots:
   '@webassemblyjs/ieee754@https://registry.npmmirror.com/@webassemblyjs/ieee754/-/ieee754-1.11.1.tgz':
     dependencies:
       '@xtuc/ieee754': https://registry.npmmirror.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz
-
-  '@webassemblyjs/leb128@1.11.1':
-    dependencies:
-      '@xtuc/long': 4.2.2
 
   '@webassemblyjs/leb128@1.9.0':
     dependencies:
@@ -19997,22 +19635,9 @@ snapshots:
     dependencies:
       '@xtuc/long': https://registry.npmmirror.com/@xtuc/long/-/long-4.2.2.tgz
 
-  '@webassemblyjs/utf8@1.11.1': {}
-
   '@webassemblyjs/utf8@1.9.0': {}
 
   '@webassemblyjs/utf8@https://registry.npmmirror.com/@webassemblyjs/utf8/-/utf8-1.11.1.tgz': {}
-
-  '@webassemblyjs/wasm-edit@1.11.1':
-    dependencies:
-      '@webassemblyjs/ast': 1.11.1
-      '@webassemblyjs/helper-buffer': 1.11.1
-      '@webassemblyjs/helper-wasm-bytecode': 1.11.1
-      '@webassemblyjs/helper-wasm-section': 1.11.1
-      '@webassemblyjs/wasm-gen': 1.11.1
-      '@webassemblyjs/wasm-opt': 1.11.1
-      '@webassemblyjs/wasm-parser': 1.11.1
-      '@webassemblyjs/wast-printer': 1.11.1
 
   '@webassemblyjs/wasm-edit@1.9.0':
     dependencies:
@@ -20036,14 +19661,6 @@ snapshots:
       '@webassemblyjs/wasm-parser': https://registry.npmmirror.com/@webassemblyjs/wasm-parser/-/wasm-parser-1.11.1.tgz
       '@webassemblyjs/wast-printer': https://registry.npmmirror.com/@webassemblyjs/wast-printer/-/wast-printer-1.11.1.tgz
 
-  '@webassemblyjs/wasm-gen@1.11.1':
-    dependencies:
-      '@webassemblyjs/ast': 1.11.1
-      '@webassemblyjs/helper-wasm-bytecode': 1.11.1
-      '@webassemblyjs/ieee754': 1.11.1
-      '@webassemblyjs/leb128': 1.11.1
-      '@webassemblyjs/utf8': 1.11.1
-
   '@webassemblyjs/wasm-gen@1.9.0':
     dependencies:
       '@webassemblyjs/ast': 1.9.0
@@ -20060,13 +19677,6 @@ snapshots:
       '@webassemblyjs/leb128': https://registry.npmmirror.com/@webassemblyjs/leb128/-/leb128-1.11.1.tgz
       '@webassemblyjs/utf8': https://registry.npmmirror.com/@webassemblyjs/utf8/-/utf8-1.11.1.tgz
 
-  '@webassemblyjs/wasm-opt@1.11.1':
-    dependencies:
-      '@webassemblyjs/ast': 1.11.1
-      '@webassemblyjs/helper-buffer': 1.11.1
-      '@webassemblyjs/wasm-gen': 1.11.1
-      '@webassemblyjs/wasm-parser': 1.11.1
-
   '@webassemblyjs/wasm-opt@1.9.0':
     dependencies:
       '@webassemblyjs/ast': 1.9.0
@@ -20080,15 +19690,6 @@ snapshots:
       '@webassemblyjs/helper-buffer': https://registry.npmmirror.com/@webassemblyjs/helper-buffer/-/helper-buffer-1.11.1.tgz
       '@webassemblyjs/wasm-gen': https://registry.npmmirror.com/@webassemblyjs/wasm-gen/-/wasm-gen-1.11.1.tgz
       '@webassemblyjs/wasm-parser': https://registry.npmmirror.com/@webassemblyjs/wasm-parser/-/wasm-parser-1.11.1.tgz
-
-  '@webassemblyjs/wasm-parser@1.11.1':
-    dependencies:
-      '@webassemblyjs/ast': 1.11.1
-      '@webassemblyjs/helper-api-error': 1.11.1
-      '@webassemblyjs/helper-wasm-bytecode': 1.11.1
-      '@webassemblyjs/ieee754': 1.11.1
-      '@webassemblyjs/leb128': 1.11.1
-      '@webassemblyjs/utf8': 1.11.1
 
   '@webassemblyjs/wasm-parser@1.9.0':
     dependencies:
@@ -20115,11 +19716,6 @@ snapshots:
       '@webassemblyjs/helper-api-error': 1.9.0
       '@webassemblyjs/helper-code-frame': 1.9.0
       '@webassemblyjs/helper-fsm': 1.9.0
-      '@xtuc/long': 4.2.2
-
-  '@webassemblyjs/wast-printer@1.11.1':
-    dependencies:
-      '@webassemblyjs/ast': 1.11.1
       '@xtuc/long': 4.2.2
 
   '@webassemblyjs/wast-printer@1.9.0':
@@ -20166,10 +19762,6 @@ snapshots:
     dependencies:
       acorn: https://registry.npmmirror.com/acorn/-/acorn-8.11.3.tgz
       acorn-walk: https://registry.npmmirror.com/acorn-walk/-/acorn-walk-8.3.2.tgz
-
-  acorn-import-assertions@1.9.0(acorn@https://registry.npmmirror.com/acorn/-/acorn-8.11.3.tgz):
-    dependencies:
-      acorn: https://registry.npmmirror.com/acorn/-/acorn-8.11.3.tgz
 
   acorn-import-assertions@https://registry.npmmirror.com/acorn-import-assertions/-/acorn-import-assertions-1.9.0.tgz(acorn@https://registry.npmmirror.com/acorn/-/acorn-8.11.3.tgz):
     dependencies:
@@ -20243,10 +19835,6 @@ snapshots:
   ajv-keywords@3.5.2(ajv@6.12.6):
     dependencies:
       ajv: 6.12.6
-
-  ajv-keywords@3.5.2(ajv@https://registry.npmmirror.com/ajv/-/ajv-6.12.6.tgz):
-    dependencies:
-      ajv: https://registry.npmmirror.com/ajv/-/ajv-6.12.6.tgz
 
   ajv-keywords@https://registry.npmmirror.com/ajv-keywords/-/ajv-keywords-3.5.2.tgz(ajv@https://registry.npmmirror.com/ajv/-/ajv-6.12.6.tgz):
     dependencies:
@@ -20578,16 +20166,6 @@ snapshots:
       pify: 4.0.1
       schema-utils: 2.7.1
       webpack: 4.46.0
-
-  babel-loader@8.2.1(@babel/core@7.23.9)(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      '@babel/core': 7.23.9
-      find-cache-dir: 2.1.0
-      loader-utils: 1.4.2
-      make-dir: 2.1.0
-      pify: 4.0.1
-      schema-utils: 2.7.1
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
 
   babel-loader@https://registry.npmmirror.com/babel-loader/-/babel-loader-8.2.1.tgz(@babel/core@https://registry.npmmirror.com/@babel/core/-/core-7.8.0.tgz)(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
@@ -21796,22 +21374,6 @@ snapshots:
       webpack: 4.46.0
       webpack-log: 2.0.0
 
-  copy-webpack-plugin@5.1.2(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      cacache: 12.0.4
-      find-cache-dir: 2.1.0
-      glob-parent: 3.1.0
-      globby: 7.1.1
-      is-glob: 4.0.3
-      loader-utils: 1.4.2
-      minimatch: 3.1.2
-      normalize-path: 3.0.0
-      p-limit: 2.3.0
-      schema-utils: 1.0.0
-      serialize-javascript: 4.0.0
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-      webpack-log: 2.0.0
-
   copy-webpack-plugin@https://registry.npmmirror.com/copy-webpack-plugin/-/copy-webpack-plugin-10.2.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
       fast-glob: https://registry.npmmirror.com/fast-glob/-/fast-glob-3.3.2.tgz
@@ -21957,20 +21519,6 @@ snapshots:
       schema-utils: 3.3.0
       semver: 7.5.4
       webpack: 4.46.0
-
-  css-loader@5.2.7(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      icss-utils: 5.1.0(postcss@8.4.33)
-      loader-utils: 2.0.4
-      postcss: 8.4.33
-      postcss-modules-extract-imports: 3.0.0(postcss@8.4.33)
-      postcss-modules-local-by-default: 4.0.4(postcss@8.4.33)
-      postcss-modules-scope: 3.1.1(postcss@8.4.33)
-      postcss-modules-values: 4.0.0(postcss@8.4.33)
-      postcss-value-parser: 4.2.0
-      schema-utils: 3.3.0
-      semver: 7.5.4
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
 
   css-loader@https://registry.npmmirror.com/css-loader/-/css-loader-3.4.2.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
@@ -22732,11 +22280,6 @@ snapshots:
       memory-fs: 0.5.0
       tapable: 1.1.3
 
-  enhanced-resolve@5.15.0:
-    dependencies:
-      graceful-fs: 4.2.11
-      tapable: 2.2.1
-
   enhanced-resolve@https://registry.npmmirror.com/enhanced-resolve/-/enhanced-resolve-5.15.0.tgz:
     dependencies:
       graceful-fs: https://registry.npmmirror.com/graceful-fs/-/graceful-fs-4.2.11.tgz
@@ -22809,8 +22352,6 @@ snapshots:
       which-typed-array: 1.1.14
 
   es-array-method-boxes-properly@1.0.0: {}
-
-  es-module-lexer@0.9.3: {}
 
   es-module-lexer@https://registry.npmmirror.com/es-module-lexer/-/es-module-lexer-0.10.5.tgz: {}
 
@@ -23046,11 +22587,6 @@ snapshots:
       - supports-color
 
   eslint-scope@4.0.3:
-    dependencies:
-      esrecurse: 4.3.0
-      estraverse: 4.3.0
-
-  eslint-scope@5.1.1:
     dependencies:
       esrecurse: 4.3.0
       estraverse: 4.3.0
@@ -23515,12 +23051,6 @@ snapshots:
       schema-utils: 2.7.1
       webpack: 4.46.0
 
-  file-loader@6.0.0(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      loader-utils: 2.0.4
-      schema-utils: 2.7.1
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-
   file-loader@https://registry.npmmirror.com/file-loader/-/file-loader-6.0.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
       loader-utils: https://registry.npmmirror.com/loader-utils/-/loader-utils-2.0.4.tgz
@@ -23956,8 +23486,6 @@ snapshots:
   glob-parent@https://registry.npmmirror.com/glob-parent/-/glob-parent-6.0.2.tgz:
     dependencies:
       is-glob: https://registry.npmmirror.com/is-glob/-/is-glob-4.0.3.tgz
-
-  glob-to-regexp@0.4.1: {}
 
   glob-to-regexp@https://registry.npmmirror.com/glob-to-regexp/-/glob-to-regexp-0.3.0.tgz: {}
 
@@ -24420,19 +23948,6 @@ snapshots:
       tapable: 1.1.3
       util.promisify: 1.0.0
       webpack: 4.46.0
-
-  html-webpack-plugin@4.5.2(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      '@types/html-minifier-terser': 5.1.2
-      '@types/tapable': 1.0.12
-      '@types/webpack': 4.41.38
-      html-minifier-terser: 5.1.1
-      loader-utils: 1.4.2
-      lodash: 4.17.21
-      pretty-error: 2.1.2
-      tapable: 1.1.3
-      util.promisify: 1.0.0
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
 
   html-webpack-plugin@https://registry.npmmirror.com/html-webpack-plugin/-/html-webpack-plugin-5.5.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
@@ -25214,12 +24729,6 @@ snapshots:
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
-  jest-worker@27.5.1:
-    dependencies:
-      '@types/node': 18.15.11
-      merge-stream: 2.0.0
-      supports-color: 8.1.1
-
   jest-worker@https://registry.npmmirror.com/jest-worker/-/jest-worker-27.5.1.tgz:
     dependencies:
       '@types/node': https://registry.npmmirror.com/@types/node/-/node-18.15.11.tgz
@@ -25456,22 +24965,6 @@ snapshots:
       schema-utils: 3.3.0
       webpack: 4.46.0
 
-  less-loader@7.3.0(less@https://registry.npmmirror.com/less/-/less-4.2.0.tgz)(webpack@4.46.0):
-    dependencies:
-      klona: 2.0.6
-      less: https://registry.npmmirror.com/less/-/less-4.2.0.tgz
-      loader-utils: 2.0.4
-      schema-utils: 3.3.0
-      webpack: 4.46.0
-
-  less-loader@7.3.0(less@https://registry.npmmirror.com/less/-/less-4.2.0.tgz)(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      klona: 2.0.6
-      less: https://registry.npmmirror.com/less/-/less-4.2.0.tgz
-      loader-utils: 2.0.4
-      schema-utils: 3.3.0
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-
   less-loader@https://registry.npmmirror.com/less-loader/-/less-loader-10.2.0.tgz(less@https://registry.npmmirror.com/less/-/less-4.2.0.tgz)(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
       klona: https://registry.npmmirror.com/klona/-/klona-2.0.6.tgz
@@ -25651,8 +25144,6 @@ snapshots:
       strip-bom: https://registry.npmmirror.com/strip-bom/-/strip-bom-3.0.0.tgz
 
   loader-runner@2.4.0: {}
-
-  loader-runner@4.3.0: {}
 
   loader-runner@https://registry.npmmirror.com/loader-runner/-/loader-runner-4.3.0.tgz: {}
 
@@ -26206,14 +25697,6 @@ snapshots:
       normalize-url: 1.9.1
       schema-utils: 1.0.0
       webpack: 4.46.0
-      webpack-sources: 1.4.3
-
-  mini-css-extract-plugin@0.9.0(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      loader-utils: 1.4.2
-      normalize-url: 1.9.1
-      schema-utils: 1.0.0
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
       webpack-sources: 1.4.3
 
   mini-css-extract-plugin@https://registry.npmmirror.com/mini-css-extract-plugin/-/mini-css-extract-plugin-2.4.6.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
@@ -27347,16 +26830,6 @@ snapshots:
       schema-utils: 3.3.0
       semver: 7.5.4
       webpack: 4.46.0
-
-  postcss-loader@4.3.0(postcss@8.4.33)(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      cosmiconfig: 7.1.0
-      klona: 2.0.6
-      loader-utils: 2.0.4
-      postcss: 8.4.33
-      schema-utils: 3.3.0
-      semver: 7.5.4
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
 
   postcss-loader@https://registry.npmmirror.com/postcss-loader/-/postcss-loader-7.3.4.tgz(postcss@https://registry.npmmirror.com/postcss/-/postcss-8.4.18.tgz)(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
@@ -28507,28 +27980,6 @@ snapshots:
     optionalDependencies:
       sass: 1.50.0
 
-  sass-loader@10.2.0(sass@https://registry.npmmirror.com/sass/-/sass-1.50.0.tgz)(webpack@4.46.0):
-    dependencies:
-      klona: 2.0.6
-      loader-utils: 2.0.4
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      semver: 7.5.4
-      webpack: 4.46.0
-    optionalDependencies:
-      sass: https://registry.npmmirror.com/sass/-/sass-1.50.0.tgz
-
-  sass-loader@10.2.0(sass@https://registry.npmmirror.com/sass/-/sass-1.50.0.tgz)(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      klona: 2.0.6
-      loader-utils: 2.0.4
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      semver: 7.5.4
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-    optionalDependencies:
-      sass: https://registry.npmmirror.com/sass/-/sass-1.50.0.tgz
-
   sass-loader@https://registry.npmmirror.com/sass-loader/-/sass-loader-12.4.0.tgz(sass@https://registry.npmmirror.com/sass/-/sass-1.50.0.tgz)(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
       klona: https://registry.npmmirror.com/klona/-/klona-2.0.6.tgz
@@ -28587,7 +28038,7 @@ snapshots:
     dependencies:
       '@types/json-schema': 7.0.15
       ajv: 6.12.6
-      ajv-keywords: 3.5.2(ajv@https://registry.npmmirror.com/ajv/-/ajv-6.12.6.tgz)
+      ajv-keywords: 3.5.2(ajv@6.12.6)
 
   schema-utils@https://registry.npmmirror.com/schema-utils/-/schema-utils-2.7.1.tgz:
     dependencies:
@@ -28741,10 +28192,6 @@ snapshots:
       upper-case-first: https://registry.npmmirror.com/upper-case-first/-/upper-case-first-2.0.2.tgz
 
   serialize-javascript@4.0.0:
-    dependencies:
-      randombytes: 2.1.0
-
-  serialize-javascript@6.0.2:
     dependencies:
       randombytes: 2.1.0
 
@@ -29389,12 +28836,6 @@ snapshots:
       schema-utils: 2.7.1
       webpack: 4.46.0
 
-  style-loader@1.3.0(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      loader-utils: 2.0.4
-      schema-utils: 2.7.1
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-
   style-loader@https://registry.npmmirror.com/style-loader/-/style-loader-1.3.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
       loader-utils: https://registry.npmmirror.com/loader-utils/-/loader-utils-2.0.4.tgz
@@ -29469,13 +28910,6 @@ snapshots:
       stylus: 0.55.0
       when: 3.6.4
 
-  stylus-loader@3.0.2(stylus@https://registry.npmmirror.com/stylus/-/stylus-0.55.0.tgz):
-    dependencies:
-      loader-utils: 1.4.2
-      lodash.clonedeep: 4.5.0
-      stylus: https://registry.npmmirror.com/stylus/-/stylus-0.55.0.tgz
-      when: 3.6.4
-
   stylus-loader@https://registry.npmmirror.com/stylus-loader/-/stylus-loader-6.2.0.tgz(stylus@https://registry.npmmirror.com/stylus/-/stylus-0.55.0.tgz)(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
       fast-glob: https://registry.npmmirror.com/fast-glob/-/fast-glob-3.3.2.tgz
@@ -29528,10 +28962,6 @@ snapshots:
       has-flag: 3.0.0
 
   supports-color@7.2.0:
-    dependencies:
-      has-flag: 4.0.0
-
-  supports-color@8.1.1:
     dependencies:
       has-flag: 4.0.0
 
@@ -29606,8 +29036,6 @@ snapshots:
 
   tapable@1.1.3: {}
 
-  tapable@2.2.1: {}
-
   tapable@https://registry.npmmirror.com/tapable/-/tapable-1.1.3.tgz: {}
 
   tapable@https://registry.npmmirror.com/tapable/-/tapable-2.2.1.tgz: {}
@@ -29642,17 +29070,6 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  taro-code@https://registry.npmmirror.com/taro-code/-/taro-code-4.0.1.tgz(ibqo2vt3zqc6bqr37drcz323zu):
-    dependencies:
-      '@tarojs/components': 3.6.19(postcss@8.4.33)(react@18.2.0)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
-      '@tarojs/mini-runner': 3.6.23(@tarojs/components@3.6.19(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)))(postcss@8.4.33)(rework-visit@1.0.0)(rework@1.0.1)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
-      '@tarojs/react': 3.6.23(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(@tarojs/shared@3.6.23)(react@18.2.0)
-      '@tarojs/runtime': 3.6.23(@tarojs/shared@3.6.23)
-      '@tarojs/taro': 3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23(@tarojs/shared@3.6.23))(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))
-      '@tarojs/webpack-runner': 3.6.23(@babel/core@7.23.9)(@tarojs/shared@3.6.23)(postcss@8.4.33)(vue@https://registry.npmmirror.com/vue/-/vue-3.4.15.tgz(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz))(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
   terser-webpack-plugin@1.4.5(webpack@4.46.0):
     dependencies:
       cacache: 12.0.4
@@ -29681,32 +29098,6 @@ snapshots:
     transitivePeerDependencies:
       - bluebird
 
-  terser-webpack-plugin@3.1.0(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      cacache: 15.3.0
-      find-cache-dir: 3.3.2
-      jest-worker: 26.6.2
-      p-limit: 3.1.0
-      schema-utils: 2.7.1
-      serialize-javascript: 4.0.0
-      source-map: 0.6.1
-      terser: 4.8.1
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-      webpack-sources: 1.4.3
-    transitivePeerDependencies:
-      - bluebird
-
-  terser-webpack-plugin@5.3.10(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.22
-      jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.2
-      terser: 5.27.0
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-    optionalDependencies:
-      '@swc/core': https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz
-
   terser-webpack-plugin@https://registry.npmmirror.com/terser-webpack-plugin/-/terser-webpack-plugin-5.3.10.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)(esbuild@https://registry.npmmirror.com/esbuild/-/esbuild-0.14.54.tgz)(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
       '@jridgewell/trace-mapping': https://registry.npmmirror.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.22.tgz
@@ -29732,6 +29123,7 @@ snapshots:
       acorn: 8.11.3
       commander: 2.20.3
       source-map-support: 0.5.21
+    optional: true
 
   terser@https://registry.npmmirror.com/terser/-/terser-5.27.0.tgz:
     dependencies:
@@ -30222,24 +29614,6 @@ snapshots:
     optionalDependencies:
       file-loader: 6.0.0(webpack@4.46.0)
 
-  url-loader@4.1.0(file-loader@https://registry.npmmirror.com/file-loader/-/file-loader-6.0.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)))(webpack@4.46.0):
-    dependencies:
-      loader-utils: 2.0.4
-      mime-types: 2.1.35
-      schema-utils: 2.7.1
-      webpack: 4.46.0
-    optionalDependencies:
-      file-loader: https://registry.npmmirror.com/file-loader/-/file-loader-6.0.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-
-  url-loader@4.1.0(file-loader@https://registry.npmmirror.com/file-loader/-/file-loader-6.0.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)))(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      loader-utils: 2.0.4
-      mime-types: 2.1.35
-      schema-utils: 2.7.1
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-    optionalDependencies:
-      file-loader: https://registry.npmmirror.com/file-loader/-/file-loader-6.0.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-
   url-loader@https://registry.npmmirror.com/url-loader/-/url-loader-4.1.0.tgz(file-loader@https://registry.npmmirror.com/file-loader/-/file-loader-6.0.0.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)))(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
       loader-utils: https://registry.npmmirror.com/loader-utils/-/loader-utils-2.0.4.tgz
@@ -30576,11 +29950,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  watchpack@2.4.0:
-    dependencies:
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-
   watchpack@https://registry.npmmirror.com/watchpack/-/watchpack-2.4.0.tgz:
     dependencies:
       glob-to-regexp: https://registry.npmmirror.com/glob-to-regexp/-/glob-to-regexp-0.4.1.tgz
@@ -30625,15 +29994,6 @@ snapshots:
       webpack: 4.46.0
       webpack-log: 2.0.0
 
-  webpack-dev-middleware@3.7.3(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      memory-fs: 0.4.1
-      mime: 2.5.2
-      mkdirp: 0.5.6
-      range-parser: 1.2.1
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-      webpack-log: 2.0.0
-
   webpack-dev-middleware@https://registry.npmmirror.com/webpack-dev-middleware/-/webpack-dev-middleware-5.3.3.tgz(webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
     dependencies:
       colorette: https://registry.npmmirror.com/colorette/-/colorette-2.0.20.tgz
@@ -30676,46 +30036,6 @@ snapshots:
       url: 0.11.3
       webpack: 4.46.0
       webpack-dev-middleware: 3.7.3(webpack@4.46.0)
-      webpack-log: 2.0.0
-      ws: 6.2.2
-      yargs: 13.3.2
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  webpack-dev-server@3.11.3(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)):
-    dependencies:
-      ansi-html-community: 0.0.8
-      bonjour: 3.5.0
-      chokidar: 2.1.8(supports-color@6.1.0)
-      compression: 1.7.4(supports-color@6.1.0)
-      connect-history-api-fallback: 1.6.0
-      debug: 4.3.4(supports-color@6.1.0)
-      del: 4.1.1
-      express: 4.18.2(supports-color@6.1.0)
-      html-entities: 1.4.0
-      http-proxy-middleware: 0.19.1(debug@4.3.4(supports-color@6.1.0))(supports-color@6.1.0)
-      import-local: 2.0.0
-      internal-ip: 4.3.0
-      ip: 1.1.8
-      is-absolute-url: 3.0.3
-      killable: 1.0.1
-      loglevel: 1.9.1
-      opn: 5.5.0
-      p-retry: 3.0.1
-      portfinder: 1.0.32(supports-color@6.1.0)
-      schema-utils: 1.0.0
-      selfsigned: 1.10.14
-      semver: 6.3.1
-      serve-index: 1.9.1(supports-color@6.1.0)
-      sockjs: 0.3.24
-      sockjs-client: 1.6.1(supports-color@6.1.0)
-      spdy: 4.0.2(supports-color@6.1.0)
-      strip-ansi: 3.0.1
-      supports-color: 6.1.0
-      url: 0.11.3
-      webpack: 5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)
-      webpack-dev-middleware: 3.7.3(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
       webpack-log: 2.0.0
       ws: 6.2.2
       yargs: 13.3.2
@@ -30787,8 +30107,6 @@ snapshots:
       source-list-map: 2.0.1
       source-map: 0.6.1
 
-  webpack-sources@3.2.3: {}
-
   webpack-sources@https://registry.npmmirror.com/webpack-sources/-/webpack-sources-2.3.1.tgz:
     dependencies:
       source-list-map: https://registry.npmmirror.com/source-list-map/-/source-list-map-2.0.1.tgz
@@ -30825,37 +30143,6 @@ snapshots:
       webpack-sources: 1.4.3
     transitivePeerDependencies:
       - supports-color
-
-  webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz):
-    dependencies:
-      '@types/eslint-scope': 3.7.7
-      '@types/estree': 0.0.51
-      '@webassemblyjs/ast': 1.11.1
-      '@webassemblyjs/wasm-edit': 1.11.1
-      '@webassemblyjs/wasm-parser': 1.11.1
-      acorn: 8.11.3
-      acorn-import-assertions: 1.9.0(acorn@https://registry.npmmirror.com/acorn/-/acorn-8.11.3.tgz)
-      browserslist: 4.22.3
-      chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.15.0
-      es-module-lexer: 0.9.3
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz)(webpack@5.78.0(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz))
-      watchpack: 2.4.0
-      webpack-sources: 3.2.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
 
   webpack@https://registry.npmmirror.com/webpack/-/webpack-5.78.0.tgz(@swc/core@https://registry.npmmirror.com/@swc/core/-/core-1.3.23.tgz):
     dependencies:
