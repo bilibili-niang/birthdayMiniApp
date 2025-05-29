@@ -3,8 +3,7 @@ import { defineComponent, ref } from 'vue'
 import { BasePage, Spin, TabBar } from '@kacat/core'
 import useAction from '../hooks/useAction'
 import { storeToRefs } from 'pinia'
-import * as stores from '../stores'
-import { useGlobalStore } from '../stores'
+import { useGlobalStore, userStore } from '../stores'
 import { homeKey, minePage, pageConfig } from '../constants/pages'
 import Mine from '../packageMain/mine/index'
 import Home from '../packageMain/home/index'
@@ -16,28 +15,27 @@ definePageConfig({
 export default defineComponent({
   name: 'IndexPage',
   setup() {
-    console.log('stores', stores)
-    console.log('userStore', userStore)
-    const appStore = useGlobalStore()
 
-    const { tabs, currentTab, loadedTab } = storeToRefs(appStore)
+    const appStoreEle = useGlobalStore()
+    const userStoreEle = userStore()
+    const { loginStatus } = storeToRefs(userStoreEle)
+
+    const { tabs, currentTab, loadedTab } = storeToRefs(appStoreEle)
     const isLoading = ref(true)
-    // const userStore = userStore()
-    // const { loginStatus } = storeToRefs(userStore)
     const init = () => {
-
-      // console.log('loginStatus', loginStatus)
+      console.log('loginStatus', loginStatus)
 
       setTimeout(() => {
         isLoading.value = false
       }, 700)
     }
     const onTabChange = (key: string, keyIndex: number, item: any) => {
+      console.log(loginStatus)
       if (item?.action && item?.actionEnable) {
         useAction(item.action)
         return void 0
       } else {
-        appStore.toggleTab(key)
+        appStoreEle.toggleTab(key)
       }
     }
 

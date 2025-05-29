@@ -1,7 +1,4 @@
 import useGlobalStore from './global'
-import userStore from './user'
+import { userStore } from './user'
 
-export {
-  userStore,
-  useGlobalStore
-}
+export { useGlobalStore, userStore }

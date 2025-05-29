@@ -1,9 +1,15 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-export default defineStore('store-global', () => {
+export const userStore = defineStore('userStore', () => {
+
+  const userInfo = ref({})
+
+  const loginStatus = ref(false)
 
   return {
-    a: 'null'
+    userInfo,
+    loginStatus: loginStatus.value
   }
 })
 

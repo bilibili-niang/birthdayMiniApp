@@ -35,7 +35,6 @@ const useTab = (options: {
   let lastTab = currentTab.value
 
   const toggleTab = (key: string) => {
-    console.log('key', key)
     lastTab = currentTab.value
     currentTab.value = key
     loadedTab.value[key] = true
