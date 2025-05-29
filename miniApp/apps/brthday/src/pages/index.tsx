@@ -1,6 +1,6 @@
 import './index.scss'
 import { defineComponent, ref } from 'vue'
-import { BasePage, Spin, TabBar } from '@kacat/core'
+import { BasePage, Spin, TabBar, useModal } from '@kacat/core'
 import useAction from '../hooks/useAction'
 import { storeToRefs } from 'pinia'
 import { useGlobalStore, userStore } from '../stores'
@@ -19,14 +19,29 @@ export default defineComponent({
     const appStoreEle = useGlobalStore()
     const userStoreEle = userStore()
     const { loginStatus } = (userStoreEle)
-    // const { loginStatus } = storeToRefs(userStoreEle)
+    const login = () => {
+      console.log('loginStatus.value', loginStatus.value)
+      if (!loginStatus.value) {
+        useModal({
+          title: '请登录',
+          height: '100%',
+          closeable: false,
+          maskCloseableValue: false,
+          onClose: () => 0,
+          content: () => {
+            return <div class="login-content">
+              登录一下
+            </div>
+          }
+        })
+      }
+    }
 
     const { tabs, currentTab, loadedTab } = storeToRefs(appStoreEle)
     const isLoading = ref(true)
     const init = () => {
-      console.log('loginStatus', loginStatus.value)
-
       setTimeout(() => {
+        login()
         isLoading.value = false
       }, 700)
     }
@@ -53,6 +68,9 @@ export default defineComponent({
       } else {
         return <BasePage
           useScrollView
+          onClick={() => {
+            login()
+          }}
           navigator={{
             title: '',
             showMenuButton: false,
