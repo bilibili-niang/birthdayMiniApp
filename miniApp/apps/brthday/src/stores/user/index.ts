@@ -1,15 +1,17 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export const userStore = defineStore('userStore', () => {
 
   const userInfo = ref({})
 
-  const loginStatus = ref(false)
+  const loginStatus = computed(() => {
+    return !!Object.keys(userInfo.value).length || false
+  })
 
   return {
     userInfo,
-    loginStatus: loginStatus.value
+    loginStatus
   }
 })
 

@@ -18,12 +18,13 @@ export default defineComponent({
 
     const appStoreEle = useGlobalStore()
     const userStoreEle = userStore()
-    const { loginStatus } = storeToRefs(userStoreEle)
+    const { loginStatus } = (userStoreEle)
+    // const { loginStatus } = storeToRefs(userStoreEle)
 
     const { tabs, currentTab, loadedTab } = storeToRefs(appStoreEle)
     const isLoading = ref(true)
     const init = () => {
-      console.log('loginStatus', loginStatus)
+      console.log('loginStatus', loginStatus.value)
 
       setTimeout(() => {
         isLoading.value = false
