@@ -35,8 +35,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@kacat-shared/constants": "workspace:*",
-    "@kacat-shared/utils": "workspace:*",
     "@kacat/config": "workspace:*",
     "@kacat/core": "workspace:*",
     "@kacat/deck": "workspace:*",

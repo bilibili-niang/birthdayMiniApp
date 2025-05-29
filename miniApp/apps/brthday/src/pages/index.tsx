@@ -1,5 +1,5 @@
 import './index.scss'
-import { ref, defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { BasePage, Spin, TabBar } from '@kacat/core'
 import useAction from '../hooks/useAction'
 import { storeToRefs } from 'pinia'
@@ -22,10 +22,9 @@ export default defineComponent({
       }, 1000)
     }
     const onTabChange = (key: string, keyIndex: number, item: any) => {
-      console.log('key',key)
       if (item?.action && item?.actionEnable) {
         useAction(item.action)
-        return
+        return void 0
       } else {
         console.log('key')
         console.log(key)
