@@ -34,28 +34,24 @@ const useGlobalStore = defineStore('store-global', () => {
    * TabBar 切换控制
    * 存在 action 则说明是跳转function
    * */
-    // const { tabs, currentTab, loadedTab, toggleTab } = useTabBar({
-  const { tabs, currentTab, loadedTab } = useTabBar({
-      current: 'home',
-      tabs: computed(
-        () =>
-          indexTabConfig.value?.list.map(item => {
-            if (!item) return {}
-            return {
-              key: item.page?.id || uuid(),
-              text: item.text,
-              icon: item.icon.normal?.url,
-              activeIcon: item.icon.active?.url,
-              action: item?.action || false,
-              actionEnable: item?.actionEnable
-            }
-          }) ?? []
-      )
-    })
-  const toggleTab = (key: any) => {
-    console.log('key===>')
-    console.log(key)
-  }
+  const { tabs, currentTab, loadedTab, toggleTab } = useTabBar({
+    // const { tabs, currentTab, loadedTab } = useTabBar({
+    current: 'home',
+    tabs: computed(
+      () =>
+        indexTabConfig.value?.list.map(item => {
+          if (!item) return {}
+          return {
+            key: item.page?.id || uuid(),
+            text: item.text,
+            icon: item.icon.normal?.url,
+            activeIcon: item.icon.active?.url,
+            action: item?.action || false,
+            actionEnable: item?.actionEnable
+          }
+        }) ?? []
+    )
+  })
 
   return {
     version,

@@ -3,7 +3,11 @@ import { defineComponent, ref } from 'vue'
 import { BasePage, Spin, TabBar } from '@kacat/core'
 import useAction from '../hooks/useAction'
 import { storeToRefs } from 'pinia'
+import * as stores from '../stores'
 import { useGlobalStore } from '../stores'
+import { homeKey, minePage, pageConfig } from '../constants/pages'
+import Mine from '../packageMain/mine/index'
+import Home from '../packageMain/home/index'
 
 definePageConfig({
   navigationStyle: 'custom'
@@ -12,25 +16,29 @@ definePageConfig({
 export default defineComponent({
   name: 'IndexPage',
   setup() {
+    console.log('stores', stores)
+    console.log('userStore', userStore)
     const appStore = useGlobalStore()
 
     const { tabs, currentTab, loadedTab } = storeToRefs(appStore)
     const isLoading = ref(true)
+    // const userStore = userStore()
+    // const { loginStatus } = storeToRefs(userStore)
     const init = () => {
+
+      // console.log('loginStatus', loginStatus)
+
       setTimeout(() => {
         isLoading.value = false
-      }, 1000)
+      }, 700)
     }
     const onTabChange = (key: string, keyIndex: number, item: any) => {
       if (item?.action && item?.actionEnable) {
         useAction(item.action)
         return void 0
       } else {
-        console.log('key')
-        console.log(key)
         appStore.toggleTab(key)
       }
-      console.log('currentTab.value', currentTab.value)
     }
 
     init()
@@ -51,28 +59,13 @@ export default defineComponent({
             showMenuButton: false,
             navigationBarBackgroundColor: 'transparent'
           }}
-          backgroundColor="rgba(241, 243, 251, 1)"
+          backgroundColor="rgba(255, 255, 255, 1)"
         >
           这里是首页
-          currentTab:
-          {currentTab.value}
+          {currentTab.value == minePage && <Mine/>}
+          {currentTab.value == homeKey && <Home/>}
           <TabBar
-            tabs={[
-              {
-                key: '0',
-                text: '联系人',
-                icon: 'https://pic1.imgdb.cn/item/682371c558cb8da5c8f0ba0a.png',
-                activeIcon: '',
-                actionEnable: true
-              },
-              {
-                key: 'home',
-                text: '我的',
-                icon: 'https://pic1.imgdb.cn/item/682371eb58cb8da5c8f0ba1e.png',
-                activeIcon: '',
-                actionEnable: true
-              }
-            ]}
+            tabs={pageConfig}
             color="black"
             current={currentTab.value}
             onChange={onTabChange}

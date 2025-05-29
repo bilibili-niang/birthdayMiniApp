@@ -1,5 +1,6 @@
 import { computed, isRef, Ref, ref, watch } from 'vue'
 import { ITabBarItem } from '../components/tab-bar'
+
 const useTab = (options: {
   /** tab 列表 */
   tabs: ITabBarItem[] | Ref<ITabBarItem[]>
@@ -34,6 +35,7 @@ const useTab = (options: {
   let lastTab = currentTab.value
 
   const toggleTab = (key: string) => {
+    console.log('key', key)
     lastTab = currentTab.value
     currentTab.value = key
     loadedTab.value[key] = true

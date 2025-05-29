@@ -1,1 +1,7 @@
-export { default as useGlobalStore } from './global'
+import useGlobalStore from './global'
+import userStore from './user'
+
+export {
+  userStore,
+  useGlobalStore
+}
