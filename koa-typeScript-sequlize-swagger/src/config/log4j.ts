@@ -127,7 +127,6 @@ const fatal = (e: string, context?: LogContext) => {
 
 // 初始化日志文件
 const initLogFiles = () => {
-  const timestamp = new Date()
   info('======================================')
   info('日志系统初始化完成')
   info('日志文件说明：')
@@ -142,8 +141,7 @@ const initLogFiles = () => {
   warn('警告和错误日志文件初始化完成，用于记录系统异常')
 }
 
-// 执行初始化
-initLogFiles()
+// initLogFiles()
 
 // 导出日志函数
 export {
