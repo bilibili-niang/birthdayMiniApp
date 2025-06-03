@@ -70,14 +70,7 @@ export default defineComponent({
     })
 
     const toggle = (item: ITabBarItem) => {
-      if (item.actionEnable) {
-        if (openType(item)) {
-          return void 0
-        }
-        emit('action', item.action)
-      } else {
-        emit('change', item.key, tabs.value.indexOf(item), item)
-      }
+      emit('change', item.key, tabs.value.indexOf(item), item)
     }
 
     const openType = (item: ITabBarItem) => {

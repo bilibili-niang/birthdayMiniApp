@@ -35,12 +35,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@kacat-shared/constants": "workspace:*",
-    "@kacat-shared/utils": "workspace:*",
     "@kacat/config": "workspace:*",
     "@kacat/core": "workspace:*",
     "@kacat/deck": "workspace:*",
-    "@kacat/survey": "workspace:*",
     "@kacat/ui": "workspace:*",
     "@kacat/utils": "workspace:*",
     "@nutui/nutui-taro": "^4.3.3",
@@ -72,7 +69,6 @@
   "devDependencies": {
     "@ant-design-vue/vue-jsx-hot-loader": "^0.1.4",
     "@babel/core": "^7.8.0",
-    "@kacat/tmap-types": "workspace:*",
     "@tarojs/cli": "3.6.19",
     "@tarojs/plugin-html": "^3.6.23",
     "@tarojs/plugin-http": "^3.6.23",

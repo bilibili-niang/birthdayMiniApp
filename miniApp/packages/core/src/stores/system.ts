@@ -8,7 +8,6 @@ import { $getOpenAppId, $getShortLinkContent } from '../api'
 import { initWxJssdk } from '../setup'
 import { navigateTo, safeParse } from '../utils'
 import emitter from '../utils/emitter'
-import { useToast } from '../hooks'
 
 const useAppStore = defineStore('App', () => {
   const merchantId = ref('')

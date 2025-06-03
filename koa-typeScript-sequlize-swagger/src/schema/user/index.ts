@@ -1,4 +1,4 @@
-import { Column, DataType, Table, Length } from 'sequelize-typescript'
+import { Column, DataType, Table, Length, IsEmail, IsUrl, Default } from 'sequelize-typescript'
 import BaseModel from '@/schema/baseModal'
 
 @Table({
@@ -23,4 +23,38 @@ export default class User extends BaseModel {
     comment: '密码'
   })
   declare password: string
+
+  @IsUrl
+  @Column({
+    type: DataType.STRING,
+    comment: '用户头像URL',
+    allowNull: true
+  })
+  declare avatar: string
+
+  @Column({
+    type: DataType.STRING(11),
+    comment: '手机号',
+    allowNull: true,
+    validate: {
+      is: /^1[3-9]\d{9}$/
+    }
+  })
+  declare phoneNumber: string
+
+  @IsEmail
+  @Column({
+    type: DataType.STRING,
+    comment: '邮箱',
+    allowNull: true
+  })
+  declare email: string
+
+  @Default('保密')
+  @Column({
+    type: DataType.ENUM('男', '女', '保密'),
+    comment: '性别',
+    defaultValue: '保密'
+  })
+  declare gender: string
 }

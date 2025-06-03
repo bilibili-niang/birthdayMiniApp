@@ -35,6 +35,7 @@ const useGlobalStore = defineStore('store-global', () => {
    * 存在 action 则说明是跳转function
    * */
   const { tabs, currentTab, loadedTab, toggleTab } = useTabBar({
+    // const { tabs, currentTab, loadedTab } = useTabBar({
     current: 'home',
     tabs: computed(
       () =>

@@ -1,13 +1,6 @@
 import { Context } from 'koa'
-import { body, middlewares, responses, routeConfig } from 'koa-swagger-decorator'
-import {
-  CreateUserReq,
-  CreateUserRes,
-  DeleteUserQuery,
-  DeleteUserRes,
-  IDeleteUserQuery,
-} from './type'
-import { ParsedArgs, z } from 'koa-swagger-decorator'
+import { body, middlewares, ParsedArgs, responses, routeConfig } from 'koa-swagger-decorator'
+import { CreateUserReq, CreateUserRes, DeleteUserQuery, DeleteUserRes, IDeleteUserQuery, } from './type'
 import { ICreateUserReq } from '@/controller/User/type'
 import User from '@/schema/user'
 import { ctxBody, deleteByIdMiddleware, paginationMiddleware } from '@/utils'
@@ -36,7 +29,7 @@ class UserController {
           success: true,
           code: 200,
           msg: '创建用户成功',
-          data: res.dataValues
+          data: res
         })
       })
       .catch(e => {
@@ -48,6 +41,38 @@ class UserController {
         })
       })
   }
+
+  @routeConfig({
+    method: 'post',
+    path: '/user/login',
+    summary: '用户登录',
+    tags: ['用户', '登录']
+  })
+  @body(CreateUserReq)
+  @responses(CreateUserRes)
+  async UserLogin(ctx: Context, args: ParsedArgs<ICreateUserReq>) {
+
+    await User.findOne({ where: args.body })
+      .then((res: any) => {
+        console.log('res', res)
+
+        ctx.body = ctxBody({
+          success: true,
+          code: 200,
+          msg: '用户登录成功',
+          data: res
+        })
+      })
+      .catch(e => {
+        ctx.body = ctxBody({
+          success: false,
+          code: 500,
+          msg: '用户登录失败',
+          data: e
+        })
+      })
+  }
+
 
   @routeConfig({
     method: 'get',

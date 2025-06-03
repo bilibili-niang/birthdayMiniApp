@@ -1,8 +1,8 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "卡猫工作台",
+  "projectname": "birthday",
   "description": "",
-  "appid": "touristappid",
+  "appid": "wxd6da8519cfe92dd8",
   "setting": {
     "urlCheck": true,
     "es6": false,
