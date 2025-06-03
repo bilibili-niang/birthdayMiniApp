@@ -1,0 +1,63 @@
+$prefix: bir;
+.#{$prefix}-basic-layout {
+  &[data-layout='layoutA'] {
+  }
+  &[data-layout='layoutB'] {
+    .basic-layout-brand {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+    .basic-layout-brand__text {
+      transform: scale(0.8);
+    }
+    .basic-layout-brand img {
+      width: 44px;
+      height: 44px;
+    }
+  }
+  &[data-layout='layoutC'] {
+    .basic-layout-brand {
+      align-items: center;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+    .basic-layout-brand img {
+      width: 44px;
+      height: 44px;
+    }
+  }
+}
+.basic-layout-brand {
+  display: flex;
+  font-size: 16px;
+  img {
+    height: 50px;
+    width: 50px;
+  }
+}
+.basic-layout-brand__text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4px;
+  justify-content: center;
+  line-height: 1;
+  gap: 4px;
+  font-weight: bold;
+  small {
+    font-size: 12px;
+    text-align: justify;
+    text-align-last: justify;
+  }
+  strong {
+    letter-spacing: 6px;
+    padding-left: 1px;
+  }
+}
+// 竖向占位
+.verticalPlaceholder {
+  display: flex;
+  height: 100%;
+  width: 1rem;
+}
