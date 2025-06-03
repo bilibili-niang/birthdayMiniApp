@@ -10,7 +10,7 @@ export default defineComponent({
       $getConfig().then((res: any) => {
         if (res.success) {
           setTimeout(() => {
-            // document.getElementById('app')?.setAttribute('data-mounted', 'true')
+            document.getElementById('app')?.setAttribute('data-mounted', 'true')
           }, 700)
         }
       })
