@@ -1,4 +1,4 @@
-import { Column, DataType, Table, Length, IsEmail, IsUrl, Default } from 'sequelize-typescript'
+import { Column, DataType, Default, IsEmail, IsUrl, Length, Table } from 'sequelize-typescript'
 import BaseModel from '@/schema/baseModal'
 
 @Table({
@@ -54,7 +54,6 @@ export default class User extends BaseModel {
   @Column({
     type: DataType.ENUM('男', '女', '保密'),
     comment: '性别',
-    defaultValue: '保密'
   })
   declare gender: string
 }
