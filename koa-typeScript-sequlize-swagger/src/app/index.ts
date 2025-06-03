@@ -48,6 +48,7 @@ app
   }))
   //开放html模板的静态目录,你可以把打包后的html文件放到这个目录下
   .use(staticFiles(path.join(__dirname, '../static/views/'), { extensions: ['html'] }))
+  .use(staticFiles(path.join(__dirname, '../logs/'), { extensions: ['log'] }))
   .use(indexRouter.routes())
   // .use(validate)
   .on('error', async (err, ctx, next) => {
