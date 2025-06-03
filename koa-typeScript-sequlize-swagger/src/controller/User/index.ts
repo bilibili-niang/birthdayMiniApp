@@ -4,7 +4,9 @@ import { CreateUserReq, CreateUserRes, DeleteUserQuery, DeleteUserRes, IDeleteUs
 import { ICreateUserReq } from '@/controller/User/type'
 import User from '@/schema/user'
 import { ctxBody, deleteByIdMiddleware, paginationMiddleware } from '@/utils'
-import { paginationQuery } from '@/controller/common/queryType'
+import { headerParams, paginationQuery } from '@/controller/common/queryType'
+import { jwtMust } from '@/middleware'
+
 
 class UserController {
 
@@ -80,9 +82,13 @@ class UserController {
     summary: '用户列表',
     tags: ['用户'],
     request: {
+      headers: headerParams(),
       query: paginationQuery()
-    }
+    },
   })
+  @middlewares([
+    jwtMust
+  ])
   @responses(CreateUserRes)
   async getUserList(ctx: Context, args: ParsedArgs<ICreateUserReq>) {
     await paginationMiddleware(ctx, User, '查询用户列表')

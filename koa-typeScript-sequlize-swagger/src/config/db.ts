@@ -59,6 +59,9 @@ const seq = new Sequelize(DATABASE_NAME, process.env.USER_NAME, process.env.DATA
       // 这会保留表中的数据，只更新表结构
       await seq.sync({ alter: true })
       info('数据库表结构创建/更新完成！')
+      // 清除控制台
+      console.clear()
+
     } catch (syncError) {
       info(`表同步错误: ${syncError.message}`)
       throw syncError

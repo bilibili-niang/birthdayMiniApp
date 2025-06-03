@@ -4,6 +4,7 @@
 
 import { z } from 'koa-swagger-decorator'
 
+
 /*
 * 构建并返回查询条件
 * */
@@ -15,3 +16,10 @@ export const paginationQuery = (params?: object) => {
     ...params
   })
 }
+
+export const headerAuth = 'bladeauth'
+
+// 构建header中的校验
+export const headerParams = () => z.object({
+  [headerAuth]: z.string()
+})
