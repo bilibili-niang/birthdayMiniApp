@@ -1,10 +1,16 @@
-import { Context } from 'koa'
+import jwt from 'jsonwebtoken'
+import md5 from 'md5'
+import { Context, Next } from 'koa'
 import { body, middlewares, ParsedArgs, responses, routeConfig } from 'koa-swagger-decorator'
-import { CreateUserReq, CreateUserRes, DeleteUserQuery, DeleteUserRes, IDeleteUserQuery, } from './type'
+import { CreateUserReq, CreateUserRes, DeleteUserQuery, DeleteUserRes, IDeleteUserQuery, UserLoginRes } from './type'
 import { ICreateUserReq } from '@/controller/User/type'
 import User from '@/schema/user'
-import { ctxBody, deleteByIdMiddleware, paginationMiddleware } from '@/utils'
-import { paginationQuery } from '@/controller/common/queryType'
+import { ctxBody, deleteByIdMiddleware, jwtEncryption, paginationMiddleware } from '@/utils'
+import { headerAuth, headerParams, paginationQuery } from '@/controller/common/queryType'
+import { jwtMust } from '@/middleware'
+import { salt } from '@/constant'
+import { error } from '@/config/log4j'
+
 
 class UserController {
 
@@ -16,14 +22,12 @@ class UserController {
   })
   @body(CreateUserReq)
   @responses(CreateUserRes)
-  @middlewares([
-    async (ctx: Context, next: any) => {
-      // 可以对ctx进行操作,然后放行
-      await next()
-    }
-  ])
   async CreateUser(ctx: Context, args: ParsedArgs<ICreateUserReq>) {
-    await User.create(args.body)
+    const { password, ...restData } = args.body
+    await User.create({
+      ...restData,
+      password: md5(password)
+    })
       .then((res: any) => {
         ctx.body = ctxBody({
           success: true,
@@ -37,7 +41,7 @@ class UserController {
           success: false,
           code: 500,
           msg: '创建用户失败',
-          data: e
+          data: e?.errors?.[0]?.message
         })
       })
   }
@@ -49,27 +53,41 @@ class UserController {
     tags: ['用户', '登录']
   })
   @body(CreateUserReq)
-  @responses(CreateUserRes)
+  @responses(UserLoginRes)
   async UserLogin(ctx: Context, args: ParsedArgs<ICreateUserReq>) {
 
-    await User.findOne({ where: args.body })
-      .then((res: any) => {
-        console.log('res', res)
+    const loginError = e => {
+      return ctxBody({
+        success: false,
+        code: 500,
+        msg: '用户登录失败',
+        data: e
+      })
+    }
 
-        ctx.body = ctxBody({
-          success: true,
-          code: 200,
-          msg: '用户登录成功',
-          data: res
-        })
+    await User.findOne({
+      where: {
+        ...args.body,
+        password: md5(args.body.password)
+      }
+    })
+      .then((res: any) => {
+        // TODO jwt
+        if (res) {
+          // 删除属性
+          delete res?.password
+          ctx.body = ctxBody({
+            success: true,
+            code: 200,
+            msg: '用户登录成功',
+            data: jwtEncryption(res)
+          })
+        } else {
+          ctx.body = loginError(res)
+        }
       })
       .catch(e => {
-        ctx.body = ctxBody({
-          success: false,
-          code: 500,
-          msg: '用户登录失败',
-          data: e
-        })
+        ctx.body = loginError(e)
       })
   }
 
@@ -80,9 +98,13 @@ class UserController {
     summary: '用户列表',
     tags: ['用户'],
     request: {
+      headers: headerParams(),
       query: paginationQuery()
-    }
+    },
   })
+  @middlewares([
+    jwtMust
+  ])
   @responses(CreateUserRes)
   async getUserList(ctx: Context, args: ParsedArgs<ICreateUserReq>) {
     await paginationMiddleware(ctx, User, '查询用户列表')
@@ -94,9 +116,13 @@ class UserController {
     summary: '删除指定用户',
     tags: ['用户'],
     request: {
+      headers: headerParams(),
       query: DeleteUserQuery
     }
   })
+  @middlewares([
+    jwtMust
+  ])
   @responses(DeleteUserRes)
   async deleteUser(ctx: Context, args: ParsedArgs<IDeleteUserQuery>) {
     await deleteByIdMiddleware(ctx, User, '用户')

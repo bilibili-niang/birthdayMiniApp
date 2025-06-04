@@ -1,4 +1,4 @@
-import { Column, DataType, Table, Length, IsEmail, IsUrl, Default } from 'sequelize-typescript'
+import { Column, DataType, Default, IsEmail, IsUrl, Length, Table, Unique } from 'sequelize-typescript'
 import BaseModel from '@/schema/baseModal'
 
 @Table({
@@ -7,6 +7,20 @@ import BaseModel from '@/schema/baseModal'
   // 启用软删除
 })
 export default class User extends BaseModel {
+
+  @Default(1)
+  @Column({
+    type: DataType.INTEGER,
+    comment: '角色id'
+  })
+  declare roleId: string
+
+  @Default(false)
+  @Column({
+    type: DataType.BOOLEAN,
+    comment: '是否是管理员'
+  })
+  declare isAdmin: boolean
 
   @Length({
     min: 2,
@@ -54,7 +68,6 @@ export default class User extends BaseModel {
   @Column({
     type: DataType.ENUM('男', '女', '保密'),
     comment: '性别',
-    defaultValue: '保密'
   })
   declare gender: string
 }
