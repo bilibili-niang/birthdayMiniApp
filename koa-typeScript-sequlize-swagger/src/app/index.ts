@@ -8,6 +8,7 @@ import staticFiles from 'koa-static'
 import { error, trace } from '@/config/log4j'
 import { ctxBody } from '@/utils'
 import { loggerMiddleware } from '@/middleware/loggerMiddleware'
+import { jwtMiddleware } from '@/middleware'
 
 const app = new koa()
 
@@ -41,7 +42,7 @@ app
       keepExtensions: true //保留拓展名
     }
   }))
-  // .use(jwtMiddleware)
+  .use(jwtMiddleware)
   //开放html模板的静态目录,你可以把打包后的html文件放到这个目录下
   .use(staticFiles(path.join(__dirname, '../static/views/'), { extensions: ['html'] }))
   .use(staticFiles(path.join(__dirname, '../logs/'), { extensions: ['log'] }))

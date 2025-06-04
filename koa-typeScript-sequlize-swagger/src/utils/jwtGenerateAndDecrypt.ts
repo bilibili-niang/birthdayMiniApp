@@ -1,5 +1,6 @@
 // const jwt = require('jsonwebtoken')
 import jwt from 'jsonwebtoken'
+import { salt } from '@/constant'
 
 /*
 * jwt 加密
@@ -8,7 +9,7 @@ import jwt from 'jsonwebtoken'
 * @return {string} - 加密后的token
 * */
 export const jwtEncryption = (data: object, expirationTime: string = '20s') => {
-  return jwt.sign(data, 'secret', { expiresIn: expirationTime })
+  return jwt.sign(data, salt, { expiresIn: expirationTime })
 }
 
 /*
@@ -17,5 +18,5 @@ export const jwtEncryption = (data: object, expirationTime: string = '20s') => {
 * @return {object} - 解密后的数据
 * */
 export const jwtDecryption = (token: string) => {
-  return jwt.verify(token, 'secret')
+  return jwt.verify(token, salt)
 }
