@@ -1,7 +1,7 @@
 import { z } from 'koa-swagger-decorator'
 import { commonResponse } from '@/controller/common'
 
-// 创建用户的请求
+// 创建/登录用户的请求
 const CreateUserReq = z.object({
   userName: z.string().nonempty(),
   password: z.string().nonempty(),
@@ -18,6 +18,11 @@ const CreateUserRes = commonResponse({
       updatedAt: z.string()
     }))
   })
+})
+
+// 用户登录的响应
+const UserLoginRes = commonResponse({
+  data: z.string(),
 })
 
 // 删除用户的query
@@ -37,5 +42,6 @@ export type IDeleteUserQuery = z.infer<typeof DeleteUserQuery>;
 export {
   CreateUserRes,
   CreateUserReq,
-  DeleteUserRes
+  DeleteUserRes,
+  UserLoginRes
 }

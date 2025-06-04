@@ -22,7 +22,6 @@ export default class User extends BaseModel {
   })
   declare isAdmin: boolean
 
-  @Unique
   @Length({
     min: 2,
     max: 10,

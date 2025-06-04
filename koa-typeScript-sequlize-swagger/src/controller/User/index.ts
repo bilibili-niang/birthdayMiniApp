@@ -1,12 +1,15 @@
+import jwt from 'jsonwebtoken'
 import md5 from 'md5'
-import { Context } from 'koa'
+import { Context, Next } from 'koa'
 import { body, middlewares, ParsedArgs, responses, routeConfig } from 'koa-swagger-decorator'
-import { CreateUserReq, CreateUserRes, DeleteUserQuery, DeleteUserRes, IDeleteUserQuery, } from './type'
+import { CreateUserReq, CreateUserRes, DeleteUserQuery, DeleteUserRes, IDeleteUserQuery, UserLoginRes } from './type'
 import { ICreateUserReq } from '@/controller/User/type'
 import User from '@/schema/user'
-import { ctxBody, deleteByIdMiddleware, paginationMiddleware } from '@/utils'
-import { headerParams, paginationQuery } from '@/controller/common/queryType'
+import { ctxBody, deleteByIdMiddleware, jwtEncryption, paginationMiddleware } from '@/utils'
+import { headerAuth, headerParams, paginationQuery } from '@/controller/common/queryType'
 import { jwtMust } from '@/middleware'
+import { salt } from '@/constant'
+import { error } from '@/config/log4j'
 
 
 class UserController {
@@ -16,7 +19,6 @@ class UserController {
     path: '/user/create',
     summary: '创建用户',
     tags: ['用户'],
-
   })
   @body(CreateUserReq)
   @responses(CreateUserRes)
@@ -51,7 +53,7 @@ class UserController {
     tags: ['用户', '登录']
   })
   @body(CreateUserReq)
-  @responses(CreateUserRes)
+  @responses(UserLoginRes)
   async UserLogin(ctx: Context, args: ParsedArgs<ICreateUserReq>) {
 
     const loginError = e => {
@@ -70,12 +72,15 @@ class UserController {
       }
     })
       .then((res: any) => {
+        // TODO jwt
         if (res) {
+          // 删除属性
+          delete res?.password
           ctx.body = ctxBody({
             success: true,
             code: 200,
             msg: '用户登录成功',
-            data: res
+            data: jwtEncryption(res)
           })
         } else {
           ctx.body = loginError(res)

@@ -8,7 +8,7 @@ import { salt } from '@/constant'
 * @param {string} expirationTime - 过期时间
 * @return {string} - 加密后的token
 * */
-export const jwtEncryption = (data: object, expirationTime: string = '20s') => {
+export const jwtEncryption = (data: object, expirationTime: string = '48h') => {
   return jwt.sign(data, salt, { expiresIn: expirationTime })
 }
 
