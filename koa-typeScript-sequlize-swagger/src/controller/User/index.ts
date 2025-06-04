@@ -1,3 +1,4 @@
+import md5 from 'md5'
 import { Context } from 'koa'
 import { body, middlewares, ParsedArgs, responses, routeConfig } from 'koa-swagger-decorator'
 import { CreateUserReq, CreateUserRes, DeleteUserQuery, DeleteUserRes, IDeleteUserQuery, } from './type'
@@ -20,7 +21,11 @@ class UserController {
   @body(CreateUserReq)
   @responses(CreateUserRes)
   async CreateUser(ctx: Context, args: ParsedArgs<ICreateUserReq>) {
-    await User.create(args.body)
+    const { password, ...restData } = args.body
+    await User.create({
+      ...restData,
+      password: md5(password)
+    })
       .then((res: any) => {
         ctx.body = ctxBody({
           success: true,
@@ -58,7 +63,12 @@ class UserController {
       })
     }
 
-    await User.findOne({ where: args.body })
+    await User.findOne({
+      where: {
+        ...args.body,
+        password: md5(args.body.password)
+      }
+    })
       .then((res: any) => {
         if (res) {
           ctx.body = ctxBody({
