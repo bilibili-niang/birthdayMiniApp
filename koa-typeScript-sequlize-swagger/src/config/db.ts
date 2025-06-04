@@ -1,10 +1,11 @@
 import { Sequelize } from 'sequelize-typescript'
 import User from '@/schema/user'
+import Authority from '@/schema/authority'
 import * as process from 'node:process'
 import * as mysql from 'mysql2/promise'
 import { info } from './log4j'
-import Authority from '@/schema/authority'
 import { setAdminUser } from '@/utils/initialize'
+import Resume from '@/schema/resume'
 
 // 根据环境确定数据库名称
 const NODE_ENV = process.env.NODE_ENV || 'local' // 默认使用 local 环境
@@ -33,7 +34,7 @@ const seq = new Sequelize(DATABASE_NAME, process.env.USER_NAME, process.env.DATA
     dialect: 'mysql',
     port: Number(process.env.DATABASE_PORT),
     logging: false,
-    models: [Authority, User],
+    models: [User, Authority, Resume],
     query: {
       raw: true
     }
