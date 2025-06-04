@@ -1,4 +1,4 @@
-import { Column, DataType, Default, IsEmail, IsUrl, Length, Table } from 'sequelize-typescript'
+import { Column, DataType, Default, IsEmail, IsUrl, Length, Table, Unique } from 'sequelize-typescript'
 import BaseModel from '@/schema/baseModal'
 
 @Table({
@@ -8,6 +8,14 @@ import BaseModel from '@/schema/baseModal'
 })
 export default class User extends BaseModel {
 
+  @Default(1)
+  @Column({
+    type: DataType.INTEGER,
+    comment: '角色id'
+  })
+  declare roleId: string
+
+  @Unique
   @Length({
     min: 2,
     max: 10,

@@ -19,7 +19,9 @@ export const paginationQuery = (params?: object) => {
 
 export const headerAuth = 'bladeauth'
 
-// 构建header中的校验
+/*
+* 构建header中的鉴权字段
+* */
 export const headerParams = () => z.object({
   [headerAuth]: z.string()
 })

@@ -15,6 +15,7 @@ class UserController {
     path: '/user/create',
     summary: '创建用户',
     tags: ['用户'],
+
   })
   @body(CreateUserReq)
   @responses(CreateUserRes)
@@ -39,7 +40,7 @@ class UserController {
           success: false,
           code: 500,
           msg: '创建用户失败',
-          data: e
+          data: e?.errors?.[0]?.message
         })
       })
   }
@@ -54,24 +55,30 @@ class UserController {
   @responses(CreateUserRes)
   async UserLogin(ctx: Context, args: ParsedArgs<ICreateUserReq>) {
 
+    const loginError = e => {
+      return ctxBody({
+        success: false,
+        code: 500,
+        msg: '用户登录失败',
+        data: e
+      })
+    }
+
     await User.findOne({ where: args.body })
       .then((res: any) => {
-        console.log('res', res)
-
-        ctx.body = ctxBody({
-          success: true,
-          code: 200,
-          msg: '用户登录成功',
-          data: res
-        })
+        if (res) {
+          ctx.body = ctxBody({
+            success: true,
+            code: 200,
+            msg: '用户登录成功',
+            data: res
+          })
+        } else {
+          ctx.body = loginError(res)
+        }
       })
       .catch(e => {
-        ctx.body = ctxBody({
-          success: false,
-          code: 500,
-          msg: '用户登录失败',
-          data: e
-        })
+        ctx.body = loginError(e)
       })
   }
 
@@ -100,6 +107,7 @@ class UserController {
     summary: '删除指定用户',
     tags: ['用户'],
     request: {
+      headers: headerParams(),
       query: DeleteUserQuery
     }
   })
