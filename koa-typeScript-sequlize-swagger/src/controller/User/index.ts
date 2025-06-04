@@ -19,12 +19,6 @@ class UserController {
   })
   @body(CreateUserReq)
   @responses(CreateUserRes)
-  @middlewares([
-    async (ctx: Context, next: any) => {
-      // 可以对ctx进行操作,然后放行
-      await next()
-    }
-  ])
   async CreateUser(ctx: Context, args: ParsedArgs<ICreateUserReq>) {
     await User.create(args.body)
       .then((res: any) => {

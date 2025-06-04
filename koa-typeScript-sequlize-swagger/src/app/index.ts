@@ -47,7 +47,6 @@ app
   .use(staticFiles(path.join(__dirname, '../static/views/'), { extensions: ['html'] }))
   .use(staticFiles(path.join(__dirname, '../logs/'), { extensions: ['log'] }))
   .use(indexRouter.routes())
-  // .use(validate)
   .on('error', async (err, ctx, next) => {
     ctx.status = 500
     ctx.body = err

@@ -4,6 +4,7 @@ import * as process from 'node:process'
 import * as mysql from 'mysql2/promise'
 import { info } from './log4j'
 import Authority from '@/schema/authority'
+import { setAdminUser } from '@/utils/initialize'
 
 // 根据环境确定数据库名称
 const NODE_ENV = process.env.NODE_ENV || 'local' // 默认使用 local 环境
@@ -61,7 +62,8 @@ const seq = new Sequelize(DATABASE_NAME, process.env.USER_NAME, process.env.DATA
       await seq.sync({ alter: true })
       info('数据库表结构创建/更新完成！')
       // 清除控制台
-
+      console.clear()
+      setAdminUser()
     } catch (syncError) {
       info(`表同步错误: ${syncError.message}`)
       throw syncError

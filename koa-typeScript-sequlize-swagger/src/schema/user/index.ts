@@ -15,6 +15,13 @@ export default class User extends BaseModel {
   })
   declare roleId: string
 
+  @Default(false)
+  @Column({
+    type: DataType.BOOLEAN,
+    comment: '是否是管理员'
+  })
+  declare isAdmin: boolean
+
   @Unique
   @Length({
     min: 2,
