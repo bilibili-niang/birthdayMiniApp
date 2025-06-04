@@ -103,6 +103,9 @@ class UserController {
       query: DeleteUserQuery
     }
   })
+  @middlewares([
+    jwtMust
+  ])
   @responses(DeleteUserRes)
   async deleteUser(ctx: Context, args: ParsedArgs<IDeleteUserQuery>) {
     await deleteByIdMiddleware(ctx, User, '用户')
