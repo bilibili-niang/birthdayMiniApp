@@ -63,7 +63,6 @@ const seq = new Sequelize(DATABASE_NAME, process.env.USER_NAME, process.env.DATA
       await seq.sync({ alter: true })
       info('数据库表结构创建/更新完成！')
       // 清除控制台
-      console.clear()
       setAdminUser()
     } catch (syncError) {
       info(`表同步错误: ${syncError.message}`)
