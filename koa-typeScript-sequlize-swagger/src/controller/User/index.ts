@@ -1,15 +1,12 @@
-import jwt from 'jsonwebtoken'
 import md5 from 'md5'
-import { Context, Next } from 'koa'
+import { Context } from 'koa'
 import { body, middlewares, ParsedArgs, responses, routeConfig } from 'koa-swagger-decorator'
 import { CreateUserReq, CreateUserRes, DeleteUserQuery, DeleteUserRes, IDeleteUserQuery, UserLoginRes } from './type'
 import { ICreateUserReq } from '@/controller/User/type'
 import User from '@/schema/user'
 import { ctxBody, deleteByIdMiddleware, jwtEncryption, paginationMiddleware } from '@/utils'
-import { headerAuth, headerParams, paginationQuery } from '@/controller/common/queryType'
+import { headerParams, paginationQuery } from '@/controller/common/queryType'
 import { jwtMust } from '@/middleware'
-import { salt } from '@/constant'
-import { error } from '@/config/log4j'
 
 
 class UserController {
