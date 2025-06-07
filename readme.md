@@ -2,9 +2,61 @@
 
 https://picui.cn/upload
 
-## 环境配置与命令说明
+### 后端启动:
 
-### 项目命令
+#### 环境变量
+
+```ts
+// 正式环境
+koa-typeScript-sequlize-swagger/.env.production
+// 测试环境
+koa-typeScript-sequlize-swagger/.env.development
+```
+开发环境,测试环境对应的数据库不同  
+`koa-typeScript-sequlize-swagger`为后端项目目录  
+在后端项目目录下启动:
+```shell
+cd koa-typeScript-sequlize-swagger
+pnpm i
+pnpm run dev
+```
+接口地址:  
+http://localhost:3279/  
+接口文档生成地址:  
+http://localhost:3279/swagger-html  
+apifox文档(测试环境下生成的swagger直接导入的):  
+https://1p4oqnri2p.apifox.cn/
+
+### 前端小程序
+
+项目目录:  
+miniApp/apps/brthday  
+
+```shell
+cd miniApp/apps/brthday  
+pnpm i
+pnpm run dev:weapp
+```
+taro+tsx+vue开发
+
+### 后台管理
+
+项目目录:  
+birthdayMiniApp/admin  
+
+```shell
+cd birthdayMiniApp/admin  
+pnpm i
+pnpm run dev
+```
+tax,vue开发
+
+
+## 后端
+
+### 环境配置与命令说明
+
+#### 项目命令
 
 项目提供了测试和正式两个环境的运行命令：
 
