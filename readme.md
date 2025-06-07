@@ -1,6 +1,9 @@
 > 图床
 
-https://picui.cn/upload
+http://image.icestone.work/
+账号密码:  
+icestone  
+icestone233
 
 ### 后端启动:
 
