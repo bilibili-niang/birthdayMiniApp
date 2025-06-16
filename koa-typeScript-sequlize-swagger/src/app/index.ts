@@ -11,7 +11,6 @@ import { loggerMiddleware } from '@/middleware/loggerMiddleware'
 import { jwtMiddleware } from '@/middleware'
 
 const app = new koa()
-
 // 监听错误的
 onError(app, {
   json: function (err, ctx) {
@@ -19,7 +18,6 @@ onError(app, {
     ctx.body = ctxBody({ msg: err.message })
   }
 })
-
 // 跨域
 // @ts-ignore
 app
@@ -30,11 +28,6 @@ app
       keepExtensions: true //保留拓展名
     }
   }))
-  .on('error', async (err, ctx, next) => {
-    ctx.status = 500
-    error('响应错误,' + JSON.stringify(err))
-    ctx.body = ctxBody({ data: err })
-  })
   .use(loggerMiddleware)
   .use(async (ctx, next) => {
     ctx.set('Access-Control-Allow-Origin', '*')
@@ -49,16 +42,14 @@ app
   .use(indexRouter.routes())
   .on('error', async (err, ctx, next) => {
     ctx.status = 500
-    ctx.body = err
-    error('响应错误,' + JSON.stringify(err))
+    error(JSON.stringify(err))
+    ctx.body = ctxBody({ data: err })
   })
   .use((ctx, next) => {
-    console.log('最后的ctx')
     trace('未知url' + ctx.request.url)
     ctx.body = ctxBody({
       code: 500,
       msg: `这里是无人之境`,
     })
   })
-
 export default app

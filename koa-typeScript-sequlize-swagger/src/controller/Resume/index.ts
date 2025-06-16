@@ -16,7 +16,7 @@ class ResumeController {
       headers: headerParams(),
     }
   })
-  @body(resumeCreateReq)
+  // @body(resumeCreateReq)
   @middlewares([
     jwtMust,
     validateUserExist
