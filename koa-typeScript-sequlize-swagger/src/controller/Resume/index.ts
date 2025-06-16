@@ -1,7 +1,7 @@
 import { Context } from 'koa'
 import { body, middlewares, ParsedArgs, responses, routeConfig } from 'koa-swagger-decorator'
 import { ctxBody } from '@/utils'
-import { resumeCreateReq, resumeListRes } from './type'
+import { resumeCreateReq, resumeListRes, resumeDetailRes, resumeUpdateReq, resumeUpdateRes, resumeDeleteRes } from './type'
 import { jwtMust, validateUserExist } from '@/middleware'
 import { headerParams, paginationQuery } from '@/controller/common'
 import { Resume } from '@/schema'
@@ -92,6 +92,200 @@ class ResumeController {
         msg: '获取简历列表失败',
         data: e?.message || '服务器错误'
       })
+    }
+  }
+
+  @routeConfig({
+    method: 'get',
+    path: '/resume/detail/:id',
+    summary: '获取简历详情',
+    tags: ['简历'],
+    request: {
+      headers: headerParams()
+    }
+  })
+  @middlewares([
+    jwtMust
+  ])
+  @responses(resumeDetailRes)
+  async getResumeDetail(ctx: Context) {
+    try {
+      // 从URL路径参数获取ID并转换为数字
+      const id = Number(ctx.params.id);
+      if (isNaN(id)) {
+        ctx.body = ctxBody({
+          success: false,
+          code: 400,
+          msg: '无效的简历ID',
+          data: null
+        });
+        return;
+      }
+      const userId = ctx.decode.id;
+
+      // 获取指定ID的简历，并确保属于当前用户
+      const resume = await Resume.findOne({
+        where: {
+          id,
+          userId
+        }
+      });
+
+      if (!resume) {
+        ctx.body = ctxBody({
+          success: false,
+          code: 404,
+          msg: '简历不存在或无权访问',
+          data: null
+        });
+        return;
+      }
+
+      ctx.body = ctxBody({
+        success: true,
+        code: 200,
+        msg: '获取简历详情成功',
+        data: resume
+      });
+    } catch (e) {
+      ctx.body = ctxBody({
+        success: false,
+        code: 500,
+        msg: '获取简历详情失败',
+        data: e?.message || '服务器错误'
+      });
+    }
+  }
+
+  @routeConfig({
+    method: 'put',
+    path: '/resume/update/:id',
+    summary: '更新简历',
+    tags: ['简历'],
+    request: {
+      headers: headerParams()
+    }
+  })
+  @body(resumeUpdateReq)
+  @middlewares([
+    jwtMust
+  ])
+  @responses(resumeUpdateRes)
+  async updateResume(ctx: Context, args: ParsedArgs<any>) {
+    try {
+      // 从URL路径参数获取ID并转换为数字
+      const id = Number(ctx.params.id);
+      if (isNaN(id)) {
+        ctx.body = ctxBody({
+          success: false,
+          code: 400,
+          msg: '无效的简历ID',
+          data: null
+        });
+        return;
+      }
+      const userId = ctx.decode.id;
+      const updateData = args.body;
+
+      // 查询指定简历，确保属于当前用户
+      const resume = await Resume.findOne({
+        where: {
+          id,
+          userId
+        }
+      });
+
+      if (!resume) {
+        ctx.body = ctxBody({
+          success: false,
+          code: 404,
+          msg: '简历不存在或无权更新',
+          data: null
+        });
+        return;
+      }
+
+      // 更新数据
+      await resume.update(updateData);
+
+      ctx.body = ctxBody({
+        success: true,
+        code: 200,
+        msg: '更新简历成功',
+        data: resume
+      });
+    } catch (e) {
+      ctx.body = ctxBody({
+        success: false,
+        code: 500,
+        msg: '更新简历失败',
+        data: e?.message || '服务器错误'
+      });
+    }
+  }
+
+  @routeConfig({
+    method: 'delete',
+    path: '/resume/delete/:id',
+    summary: '删除简历',
+    tags: ['简历'],
+    request: {
+      headers: headerParams()
+    }
+  })
+  @middlewares([
+    jwtMust
+  ])
+  @responses(resumeDeleteRes)
+  async deleteResume(ctx: Context) {
+    try {
+      // 从URL路径参数获取ID并转换为数字
+      const id = Number(ctx.params.id);
+      if (isNaN(id)) {
+        ctx.body = ctxBody({
+          success: false,
+          code: 400,
+          msg: '无效的简历ID',
+          data: null
+        });
+        return;
+      }
+      const userId = ctx.decode.id;
+
+      // 查询指定简历，确保属于当前用户
+      const resume = await Resume.findOne({
+        where: {
+          id,
+          userId
+        }
+      });
+
+      if (!resume) {
+        ctx.body = ctxBody({
+          success: false,
+          code: 404,
+          msg: '简历不存在或无权删除',
+          data: null
+        });
+        return;
+      }
+
+      // 删除简历
+      await resume.destroy();
+
+      ctx.body = ctxBody({
+        success: true,
+        code: 200,
+        msg: '删除简历成功',
+        data: null
+      });
+    } catch (e) {
+      ctx.body = ctxBody({
+        success: false,
+        code: 500,
+        msg: '删除简历失败',
+        data: e?.message || '服务器错误'
+      });
     }
   }
 }
