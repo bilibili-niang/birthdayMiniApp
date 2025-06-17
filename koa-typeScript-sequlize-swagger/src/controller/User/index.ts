@@ -8,9 +8,7 @@ import { ctxBody, deleteByIdMiddleware, jwtEncryption, paginationMiddleware } fr
 import { headerParams, paginationQuery } from '@/controller/common/queryType'
 import { jwtMust } from '@/middleware'
 
-
 class UserController {
-
   @routeConfig({
     method: 'post',
     path: '/user/create',
@@ -52,7 +50,6 @@ class UserController {
   @body(CreateUserReq)
   @responses(UserLoginRes)
   async UserLogin(ctx: Context, args: ParsedArgs<ICreateUserReq>) {
-
     const loginError = e => {
       return ctxBody({
         success: false,
@@ -61,7 +58,6 @@ class UserController {
         data: e
       })
     }
-
     await User.findOne({
       where: {
         ...args.body,
@@ -73,11 +69,21 @@ class UserController {
         if (res) {
           // 删除属性
           delete res?.password
+          const token = jwtEncryption(res)
+          const userInfo = {
+            id: res.id,
+            username: res.username,
+            nickname: res.nickname,
+            avatar: res.avatar
+          }
           ctx.body = ctxBody({
             success: true,
             code: 200,
             msg: '用户登录成功',
-            data: jwtEncryption(res)
+            data: {
+              token,
+              userInfo
+            }
           })
         } else {
           ctx.body = loginError(res)
@@ -87,7 +93,6 @@ class UserController {
         ctx.body = loginError(e)
       })
   }
-
 
   @routeConfig({
     method: 'get',
