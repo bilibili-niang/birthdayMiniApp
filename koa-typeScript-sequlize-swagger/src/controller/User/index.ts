@@ -86,6 +86,8 @@ class UserController {
             }
           })
         } else {
+          console.log('res')
+          console.log(res)
           ctx.body = loginError(res)
         }
       })
