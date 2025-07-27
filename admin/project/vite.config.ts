@@ -1,18 +1,16 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import vitePluginAliOss from 'vite-plugin-ali-oss'
-
+//vuetify按需导入
+import vuetify from 'vite-plugin-vuetify'
 import postCssPxToRem from 'postcss-pxtorem'
-
 // @ts-ignore
 import eslint from 'vite-plugin-eslint'
 
 const isProd = process.env.NODE_ENV !== 'development'
-
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const { ALI_OSS_ACCESS_KEY, ALI_OSS_SECRET_KEY, ALI_OSS_BUCKET, ALI_OSS_ENDPOINT, ALI_OSS_PUBLIC_PATH } = loadEnv(
@@ -35,10 +33,8 @@ export default defineConfig(({ mode }) => {
   console.log('环境变量', env)
   console.log('ossOptions：', ossOptions)
   console.log('===========================================')
-
   const isUseOSS = isProd && !(env.VITE_APP_SKIP_OSS === 'true')
   const isTest = mode === 'test'
-
   return {
     base: isUseOSS ? ALI_OSS_PUBLIC_PATH : `/${VITE_APP_NAME}`,
     define: {
@@ -52,6 +48,7 @@ export default defineConfig(({ mode }) => {
           }
         }
       }),
+      vuetify({ autoImport: true }),
       vueJsx({
         isCustomElement: (tag) => ['iconpark-icon'].includes(tag),
         mergeProps: false
@@ -92,7 +89,7 @@ export default defineConfig(({ mode }) => {
       preprocessorOptions: {
         scss: {
           javascriptEnabled: true,
-          additionalData: ["@use './src/styles/common.scss';"]
+          additionalData: ['@use \'./src/styles/common.scss\';']
         }
       },
       postcss: {

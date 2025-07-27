@@ -4,17 +4,15 @@ const routes: any[] = [
   {
     path: '/',
     name: 'index',
-    component: () => import('@/components/basicLayout/index'),
+    component: () => import('@/views/home/index'),
     meta: {
       showBreadcrumb: true
     },
     children: []
   }
 ]
-
 const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-
 export default router

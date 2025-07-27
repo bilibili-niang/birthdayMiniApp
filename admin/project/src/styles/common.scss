@@ -10,8 +10,6 @@
     border-radius: 8px;
   }
   &::-webkit-scrollbar-track {
-    //    background: $ui-bg;
-    //    opacity: .7;
   }
   &::-webkit-scrollbar-button {
     display: none;
@@ -22,3 +20,14 @@
     }
   }
 }
+html[theme="light"] {
+  $backColor: #3333;
+  background-color: $backColor;
+}
+html[theme="dark"] {
+  $backColor: #1f1f1f;
+  background-color: $backColor;
+}
+html {
+}
+// 深色模式下的变量
