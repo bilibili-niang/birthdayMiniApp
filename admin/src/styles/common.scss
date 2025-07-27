@@ -1,40 +1,3 @@
-.m-l-s {
-  margin-left: 10px;
-}
-.m-r-s {
-  margin-right: 10px;
-}
-.m-t-s {
-  margin-top: 10px;
-}
-// 有些组件的文字颜色可能无法跟随深色/浅色切换
-.font-theme-color {
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-.column {
-  display: flex;
-  flex-direction: column;
-}
-.w30percent {
-  width: 30%;
-}
-.w32percent {
-  width: 32%;
-}
-.loading-content {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-}
-.information-category {
-  width: 300px;
-}
 // 滚动条美化
 @mixin scrollbar {
   &::-webkit-scrollbar {
@@ -58,7 +21,4 @@
       display: block;
     }
   }
-}
-.p-20 {
-  padding: 20px;
 }
