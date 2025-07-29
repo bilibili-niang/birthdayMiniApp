@@ -11,7 +11,7 @@ export default defineComponent({
         <div>
           首页
           <Button variant="outlined">
-            Button
+            按钮
           </Button>
         </div>
       )

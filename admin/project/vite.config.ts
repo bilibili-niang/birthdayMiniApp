@@ -89,7 +89,7 @@ export default defineConfig(({ mode }) => {
       preprocessorOptions: {
         scss: {
           javascriptEnabled: true,
-          additionalData: ['@use \'./src/styles/common.scss\';']
+          additionalData: ['@use \'./src/styles/common.scss\';@use \'./src/styles/theme.scss\';']
         }
       },
       postcss: {

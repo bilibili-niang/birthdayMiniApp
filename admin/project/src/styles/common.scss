@@ -21,13 +21,14 @@
   }
 }
 html[theme="light"] {
-  $backColor: #3333;
-  background-color: $backColor;
+  $--v-theme-background: rgba(0, 0, 0, .1) !important;
+  background-color: var(--color-text-tertiary);
 }
 html[theme="dark"] {
-  $backColor: #1f1f1f;
-  background-color: $backColor;
+  $--v-theme-background: rgba(0, 0, 0, .4) !important;
+  background-color: var(--v-color-bg-50);
 }
 html {
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, .6);
 }
-// 深色模式下的变量
