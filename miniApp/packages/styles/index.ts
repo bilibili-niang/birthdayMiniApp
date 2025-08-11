@@ -1,5 +1,0 @@
-import './src/normalized.css'
-import './src/base.scss'
-import './src/font/index.scss'
-import './src/theme.scss'
-import './src/uno.scss'
