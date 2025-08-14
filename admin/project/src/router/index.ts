@@ -4,11 +4,28 @@ const routes: any[] = [
   {
     path: '/',
     name: 'index',
-    component: () => import('@/views/home/index'),
     meta: {
       showBreadcrumb: true
     },
-    children: []
+    redirect: '/home',
+    children: [
+      {
+        path: '/home',
+        meta: {
+          title: '首页'
+        },
+        name: 'home',
+        component: () => import('@/views/home/index'),
+      },
+      {
+        path: '/tool',
+        meta: {
+          title: '工具'
+        },
+        name: 'tool',
+        component: () => import('@/views/tool/index')
+      }
+    ]
   }
 ]
 const router = createRouter({

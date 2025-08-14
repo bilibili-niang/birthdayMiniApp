@@ -1,4 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -89,11 +91,14 @@ export default defineConfig(({ mode }) => {
       preprocessorOptions: {
         scss: {
           javascriptEnabled: true,
-          additionalData: ['@use \'./src/styles/common.scss\';@use \'./src/styles/theme.scss\';']
+          // additionalData: ['@use \'./src/styles/common.scss\';@use \'./src/styles/theme.scss\';']
         }
       },
       postcss: {
         plugins: [
+          // TODO tailwindcss 配置
+          tailwindcss,
+          autoprefixer,
           postCssPxToRem({
             // 自适应，px>rem转换
             rootValue: 1, // 75表示750设计稿，37.5表示375设计稿
