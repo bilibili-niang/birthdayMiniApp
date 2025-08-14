@@ -48,36 +48,11 @@
   "pages": [
     {
       "path": "pages/index/index",
-      "type": "home",
-      "layout": "tabbar",
-      "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "首页"
-      }
+      "type": "home"
     },
     {
       "path": "pages/about/about",
-      "type": "page",
-      "layout": "tabbar",
-      "style": {
-        "navigationBarTitleText": "关于"
-      }
-    },
-    {
-      "path": "pages/about/alova",
-      "type": "page",
-      "layout": "default",
-      "style": {
-        "navigationBarTitleText": "Alova 请求演示"
-      }
-    },
-    {
-      "path": "pages/about/vue-query",
-      "type": "page",
-      "layout": "default",
-      "style": {
-        "navigationBarTitleText": "Vue Query 请求演示"
-      }
+      "type": "page"
     }
   ],
   "subPackages": [
