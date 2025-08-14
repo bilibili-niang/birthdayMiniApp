@@ -11,6 +11,7 @@ import UniPages from '@uni-helper/vite-plugin-uni-pages'
 // @see https://github.com/uni-helper/vite-plugin-uni-platform
 // 需要与 @uni-helper/vite-plugin-uni-pages 插件一起使用
 import UniPlatform from '@uni-helper/vite-plugin-uni-platform'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 /**
  * 分包优化、模块异步跨包调用、组件异步跨包引用
  * @see https://github.com/uni-ku/bundle-optimizer
@@ -22,13 +23,11 @@ import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { defineConfig, loadEnv } from 'vite'
 import ViteRestart from 'vite-plugin-restart'
-
 // https://vitejs.dev/config/
 export default ({ command, mode }) => {
   // @see https://unocss.dev/
   // const UnoCSS = (await import('unocss/vite')).default
   // console.log(mode === process.env.NODE_ENV) // true
-
   // mode: 区分生产环境还是开发环境
   console.log('command, mode -> ', command, mode)
   // pnpm dev:h5 时得到 => serve development
@@ -38,10 +37,8 @@ export default ({ command, mode }) => {
   // pnpm dev:app 时得到 => build development (注意区别，command为build)
   // pnpm build:app 时得到 => build production
   // dev 和 build 命令可以分别使用 .env.development 和 .env.production 的环境变量
-
   const { UNI_PLATFORM } = process.env
   console.log('UNI_PLATFORM -> ', UNI_PLATFORM) // 得到 mp-weixin, h5, app 等
-
   const env = loadEnv(mode, path.resolve(process.cwd(), 'env'))
   const {
     VITE_APP_PORT,
@@ -53,11 +50,13 @@ export default ({ command, mode }) => {
     VITE_APP_PROXY_PREFIX,
   } = env
   console.log('环境变量 env -> ', env)
-
   return defineConfig({
     envDir: './env', // 自定义env目录
     base: VITE_APP_PUBLIC_BASE,
     plugins: [
+      vueJsx({
+        // options are passed on to @vue/babel-plugin-jsx
+      }),
       UniPages({
         exclude: ['**/components/**/**.*'],
         // homePage 通过 vue 文件的 route-block 的type="home"来设定
@@ -100,7 +99,6 @@ export default ({ command, mode }) => {
         },
         logger: false,
       }),
-
       ViteRestart({
         // 通过这个插件，在修改vite.config.js文件则不需要重新运行也生效配置
         restart: ['vite.config.js'],
@@ -145,7 +143,6 @@ export default ({ command, mode }) => {
         ],
       },
     },
-
     resolve: {
       alias: {
         '@': path.join(process.cwd(), './src'),
@@ -159,12 +156,12 @@ export default ({ command, mode }) => {
       // 仅 H5 端生效，其他端不生效（其他端走build，不走devServer)
       proxy: JSON.parse(VITE_APP_PROXY)
         ? {
-            [VITE_APP_PROXY_PREFIX]: {
-              target: VITE_SERVER_BASEURL,
-              changeOrigin: true,
-              rewrite: path => path.replace(new RegExp(`^${VITE_APP_PROXY_PREFIX}`), ''),
-            },
-          }
+          [VITE_APP_PROXY_PREFIX]: {
+            target: VITE_SERVER_BASEURL,
+            changeOrigin: true,
+            rewrite: path => path.replace(new RegExp(`^${VITE_APP_PROXY_PREFIX}`), ''),
+          },
+        }
         : undefined,
     },
     esbuild: {
