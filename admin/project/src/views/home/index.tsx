@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
 import { Button } from '@pkg/ui'
+import { jumpToTool } from '@/router/jump'
 
 export default defineComponent({
   name: 'componentName',
@@ -8,10 +9,21 @@ export default defineComponent({
   setup(props, { emit }) {
     return () => {
       return (
-        <div>
-          首页
-          <Button variant="outlined">
-            按钮
+        <div class="grid grid-cols-4 gap-4">
+          <div>
+            1
+          </div>
+          <div>
+            2
+          </div>
+
+          <Button
+            variant="outlined"
+            onClick={() => {
+              jumpToTool()
+            }}
+          >
+            看看工具
           </Button>
         </div>
       )

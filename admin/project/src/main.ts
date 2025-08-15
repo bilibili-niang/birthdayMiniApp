@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import './styles/tailwindcss.css'
 import vuetify from '@/plugins/index'
 import App from './App'
 import router from './router'
