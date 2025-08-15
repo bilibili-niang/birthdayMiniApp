@@ -1,6 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-import tailwindcss from 'tailwindcss'
-import autoprefixer from 'autoprefixer'
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -43,6 +42,8 @@ export default defineConfig(({ mode }) => {
       'import.meta.env.VITE_APP_NAME': `"${VITE_APP_NAME || ''}"`
     },
     plugins: [
+      // TODO tailwindcss 配置
+      tailwindcss(),
       vue({
         template: {
           compilerOptions: {
@@ -96,9 +97,6 @@ export default defineConfig(({ mode }) => {
       },
       postcss: {
         plugins: [
-          // TODO tailwindcss 配置
-          tailwindcss,
-          autoprefixer,
           postCssPxToRem({
             // 自适应，px>rem转换
             rootValue: 1, // 75表示750设计稿，37.5表示375设计稿
@@ -114,9 +112,11 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3300,
       proxy: {
-        '/prefixes-': {
-          target: 'targetUrl',
-          changeOrigin: true
+        '/api': {
+          target: 'https://birthday.icestone.work',
+          changeOrigin: true,
+          // 覆写,替换掉/api
+          rewrite: (path) => path.replace(/^\/api/, '')
         },
       }
     }
