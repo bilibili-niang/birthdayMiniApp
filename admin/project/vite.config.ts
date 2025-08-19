@@ -4,7 +4,6 @@ import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import topLevelAwait from 'vite-plugin-top-level-await'
-import vitePluginAliOss from 'vite-plugin-ali-oss'
 //vuetify按需导入
 import vuetify from 'vite-plugin-vuetify'
 import postCssPxToRem from 'postcss-pxtorem'
@@ -19,12 +18,12 @@ export default defineConfig(({ mode }) => {
     process.cwd(),
     'ALI_OSS'
   )
-  const ossOptions = {
-    accessKeyId: ALI_OSS_ACCESS_KEY,
-    accessKeySecret: ALI_OSS_SECRET_KEY,
-    bucket: ALI_OSS_BUCKET,
-    endpoint: ALI_OSS_ENDPOINT
-  }
+  /*  const ossOptions = {
+      accessKeyId: ALI_OSS_ACCESS_KEY,
+      accessKeySecret: ALI_OSS_SECRET_KEY,
+      bucket: ALI_OSS_BUCKET,
+      endpoint: ALI_OSS_ENDPOINT
+    }*/
   const env = loadEnv(mode, process.cwd(), 'VITE_APP')
   const VITE_APP_NAME = env.VITE_APP_NAME || ''
   console.log('===========================================')
@@ -32,7 +31,6 @@ export default defineConfig(({ mode }) => {
   console.log('NODE_ENV：', process.env.NODE_ENV)
   console.log('构建目标', mode)
   console.log('环境变量', env)
-  console.log('ossOptions：', ossOptions)
   console.log('===========================================')
   const isUseOSS = isProd && !(env.VITE_APP_SKIP_OSS === 'true')
   const isTest = mode === 'test'
@@ -62,7 +60,7 @@ export default defineConfig(({ mode }) => {
         promiseImportName: (i) => `__tla_${i}`
       }),
       // @ts-ignore
-      isUseOSS ? vitePluginAliOss(ossOptions) : undefined
+      // isUseOSS ? vitePluginAliOss(ossOptions) : undefined
     ],
     build: {
       minify: isTest ? false : true,
@@ -113,10 +111,13 @@ export default defineConfig(({ mode }) => {
       port: 3300,
       proxy: {
         '/api': {
-          target: 'https://birthday.icestone.work',
+          // target: 'https://birthday.icestone.work',
+          target: process.env.VITE_APP_PROXY_TARGET,
           changeOrigin: true,
           // 覆写,替换掉/api
-          rewrite: (path) => path.replace(/^\/api/, '')
+          rewrite: (path) => {
+            return path.replace(/^\/api/, '')
+          }
         },
       }
     }
