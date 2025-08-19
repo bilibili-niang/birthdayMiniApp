@@ -1,5 +1,5 @@
-import { defineComponent, ref } from 'vue'
-import { Button, Input } from '@pkg/ui'
+import { defineComponent, onMounted, ref } from 'vue'
+import { Button, Input, List, ListItem, ListItemSubtitle, ListItemTitle } from '@pkg/ui'
 import { jumpBack } from '@/router/jump'
 import { $transform } from '@/api'
 
@@ -13,7 +13,29 @@ function toCamelCase(str: string) {
       }
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
     })
-    .join('')
+    .join('');
+}
+
+// 封装浏览器数据库的读写方法
+const localStorageKey = 'translationHistory'
+
+function saveToLocalStorage(newRecord: any) {
+  let history = readFromLocalStorage()
+  if (!history) {
+    history = []
+  }
+
+  // 去重：如果新记录的关键字已存在，则移除旧记录
+  history = history.filter(record => record.query !== newRecord.query)
+
+  // 添加新记录到数组开头
+  history.unshift(newRecord)
+  localStorage.setItem(localStorageKey, JSON.stringify(history))
+}
+
+function readFromLocalStorage(): any[] | null {
+  const data = localStorage.getItem(localStorageKey)
+  return data ? JSON.parse(data) : null
 }
 
 export default defineComponent({
@@ -23,9 +45,22 @@ export default defineComponent({
   setup(props, { emit }) {
 
     const query = ref('局部变量')
-    const data = ref([])
-
+    const data = ref([] as string[])
+    const history = ref([] as any[])
     const isLoading = ref(false)
+
+    // 从 localStorage 读取所有查询记录并在页面加载时回显
+    onMounted(() => {
+      const savedHistory = readFromLocalStorage()
+      if (savedHistory) {
+        history.value = savedHistory
+        if (savedHistory.length > 0) {
+          const lastRecord = savedHistory[savedHistory.length - 1]
+          query.value = lastRecord.query
+          data.value = lastRecord.translation
+        }
+      }
+    })
 
     const handleQuery = () => {
       if (query.value) {
@@ -38,7 +73,18 @@ export default defineComponent({
           .then(res => {
             if (res.success && res.data && Array.isArray(res.data.translation)) {
               // 使用toCamelCase函数处理每个翻译结果
-              data.value = res.data.translation.map(item => toCamelCase(item))
+              const translation = res.data.translation.map(item => toCamelCase(item))
+              data.value = translation
+
+              // 保存查询结果到 localStorage
+              saveToLocalStorage({
+                query: query.value,
+                translation: translation
+              })
+
+              // 更新历史记录
+              history.value = readFromLocalStorage() || []
+
               console.log('data.value:')
               console.log(data.value)
             } else {
@@ -81,7 +127,7 @@ export default defineComponent({
               </Button>
             </div>
 
-            <div class="flex flex-col ">
+            <div class="flex flex-col">
               {data.value.map(p => (
                 <div class="">{p}</div>
               ))}
@@ -92,6 +138,17 @@ export default defineComponent({
               )}
             </div>
 
+            <div class="mt-4 pa-3 rounded-lg bg-grey-lighten-5 elevation-2">
+              <h3 class="text-h6 mb-2">历史查询记录</h3>
+              <List>
+                {history.value.map((record, index) => (
+                  <ListItem key={index} class="mb-2">
+                    <ListItemTitle>{record.query}</ListItemTitle>
+                    <ListItemSubtitle>{record.translation.join(', ')}</ListItemSubtitle>
+                  </ListItem>
+                ))}
+              </List>
+            </div>
           </div>
         </div>
       )
