@@ -2,5 +2,9 @@
 import request from '@/api/request'
 
 export const $transform = async (data: object) => {
-  return request.post('/api/tool/translate', data)
+  return request({
+    method: 'post',
+    url: '/api/tool/translate',
+    data,
+  })
 }

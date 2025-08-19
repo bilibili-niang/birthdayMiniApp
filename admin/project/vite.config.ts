@@ -111,11 +111,12 @@ export default defineConfig(({ mode }) => {
       port: 3300,
       proxy: {
         '/api': {
-          // target: 'https://birthday.icestone.work',
-          target: process.env.VITE_APP_PROXY_TARGET,
+          // target: process.env.VITE_APP_PROXY_TARGET,
+          target: 'http://localhost:3279',
           changeOrigin: true,
           // 覆写,替换掉/api
           rewrite: (path) => {
+
             return path.replace(/^\/api/, '')
           }
         },
