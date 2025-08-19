@@ -6,6 +6,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import topLevelAwait from 'vite-plugin-top-level-await'
 //vuetify按需导入
 import vuetify from 'vite-plugin-vuetify'
+
+
 import postCssPxToRem from 'postcss-pxtorem'
 // @ts-ignore
 import eslint from 'vite-plugin-eslint'
@@ -49,7 +51,7 @@ export default defineConfig(({ mode }) => {
           }
         }
       }),
-      vuetify({ autoImport: true }),
+      vuetify({ autoImport: true, }),
       vueJsx({
         isCustomElement: (tag) => ['iconpark-icon'].includes(tag),
         mergeProps: false

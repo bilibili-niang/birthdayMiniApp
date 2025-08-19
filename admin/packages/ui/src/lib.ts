@@ -1,5 +1,14 @@
 import './styles/settings.scss'
 import 'vuetify/_styles.scss'
+import * as vuetify from 'vuetify'
 
 export { default as Button } from './components/button/index'
 export { default as Input } from './components/input/index'
+export { default as List } from './components/list/index'
+export { default as ListItem } from './components/listItem/index'
+export { default as ListItemSubtitle } from './components/listItemSubtitle/index'
+export { default as ListItemTitle } from './components/listItemTitle/index'
+
+// @ts-ignore
+// export * from 'vuetify/components'
+export { vuetify }

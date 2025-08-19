@@ -9,22 +9,17 @@ export default defineComponent({
   setup(props, { emit }) {
     return () => {
       return (
-        <div class="grid grid-cols-4 gap-4">
-          <div>
-            1
+        <div class="flex flex-row w-full">
+          <div class="flex flex-row bg-red-50 ml-auto mr-auto w-75">
+            <Button
+              variant="outlined"
+              onClick={() => {
+                jumpToTool()
+              }}
+            >
+              看看工具
+            </Button>
           </div>
-          <div>
-            2
-          </div>
-
-          <Button
-            variant="outlined"
-            onClick={() => {
-              jumpToTool()
-            }}
-          >
-            看看工具
-          </Button>
         </div>
       )
     }

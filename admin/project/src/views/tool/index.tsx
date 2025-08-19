@@ -1,5 +1,8 @@
 import { defineComponent, onMounted, ref } from 'vue'
-import { Button, Input, List, ListItem, ListItemSubtitle, ListItemTitle } from '@pkg/ui'
+import {
+  Button, Input, List, ListItem, ListItemSubtitle, ListItemTitle,
+  vuetify
+} from '@pkg/ui'
 import { jumpBack } from '@/router/jump'
 import { $transform } from '@/api'
 
@@ -13,7 +16,7 @@ function toCamelCase(str: string) {
       }
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
     })
-    .join('');
+    .join('')
 }
 
 // 封装浏览器数据库的读写方法
@@ -49,8 +52,25 @@ export default defineComponent({
     const history = ref([] as any[])
     const isLoading = ref(false)
 
+    console.log('vuetify')
+    console.log(vuetify)
+    // vuetify.useTheme()
+
+
+    vuetify.createVuetify({
+      theme: {
+        defaultTheme: 'dark', // 'light' | 'dark' | 'system'
+      },
+    })
+
+
     // 从 localStorage 读取所有查询记录并在页面加载时回显
     onMounted(() => {
+      init()
+    })
+
+    const init = () => {
+
       const savedHistory = readFromLocalStorage()
       if (savedHistory) {
         history.value = savedHistory
@@ -60,7 +80,7 @@ export default defineComponent({
           data.value = lastRecord.translation
         }
       }
-    })
+    }
 
     const handleQuery = () => {
       if (query.value) {
@@ -108,7 +128,9 @@ export default defineComponent({
               <Button
                 class="mr-2"
                 variant="outlined"
-                onClick={jumpBack}
+                onClick={() => {
+                  jumpBack()
+                }}
               >
                 back
               </Button>
@@ -137,18 +159,30 @@ export default defineComponent({
                 </div>
               )}
             </div>
+            {history.value?.length > 0 && (
+              <div class="mt-4 pa-3 rounded-lg bg-grey-lighten-5 elevation-2">
+                <div class="flex-row flex justify-between">
+                  <h3 class="text-h6 mb-2">历史查询记录</h3>
+                  <Button
+                    onClick={() => {
+                      localStorage.removeItem(localStorageKey)
+                      setTimeout(init, 500)
+                    }}
+                  >
+                    清除一下
+                  </Button>
+                </div>
+                <List>
+                  {history.value.map((record, index) => (
+                    <ListItem key={index} class="mb-2">
+                      <ListItemTitle>{record.query}</ListItemTitle>
+                      <ListItemSubtitle>{record.translation.join(', ')}</ListItemSubtitle>
+                    </ListItem>
+                  ))}
+                </List>
+              </div>
+            )}
 
-            <div class="mt-4 pa-3 rounded-lg bg-grey-lighten-5 elevation-2">
-              <h3 class="text-h6 mb-2">历史查询记录</h3>
-              <List>
-                {history.value.map((record, index) => (
-                  <ListItem key={index} class="mb-2">
-                    <ListItemTitle>{record.query}</ListItemTitle>
-                    <ListItemSubtitle>{record.translation.join(', ')}</ListItemSubtitle>
-                  </ListItem>
-                ))}
-              </List>
-            </div>
           </div>
         </div>
       )

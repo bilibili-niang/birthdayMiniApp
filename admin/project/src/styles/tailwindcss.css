@@ -15,4 +15,7 @@
   .color-text {
     color: var(--text-color);
   }
+  .w-90vw {
+    width: 90vw;
+  }
 }

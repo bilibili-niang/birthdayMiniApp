@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import './styles/common.scss'
+import './styles/theme.scss'
 import './styles/tailwindcss.css'
 import vuetify from '@/plugins/index'
 import App from './App'
