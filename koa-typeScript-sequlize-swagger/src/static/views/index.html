@@ -1,77 +1,81 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="zh-cn" theme="dark" primary-color="cyan">
 <head>
-    <meta charset="UTF-8">
-    <title>夜曲-周杰伦</title>
+    <meta charset="UTF-8"/>
+    <link rel="icon" href=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
     <style>
+      html,
       body {
+        margin: 0;
+        padding: 0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      #app[data-mounted] + #app-loading {
+        display: none;
+      }
+      #app-loading {
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        align-content: center;
-        text-align: center;
-        background: #0f172a;
-        flex: 1;
-        margin: 0;
-        height: 100vh;
-        color: ghostwhite;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
       }
-      a {
-        color: ghostwhite;
+      #app-loading img {
+        width: 128px;
+        mix-blend-mode: multiply;
+        filter: contrast(2);
+      }
+      #app-loading .app-loading__progress {
+        width: 240px;
+        height: 8px;
+        border-radius: 16px;
+        margin-top: 36px;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.05);
+        i {
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.7);
+          border-radius: inherit;
+          animation: app-loading__progress 1s both;
+          transition: all 0.3s 1s;
+        }
+      }
+      #app-loading h5 {
+        margin-top: 36px;
+        font-size: 16px;
+        opacity: 0.6;
+        letter-spacing: 1px;
+      }
+      @keyframes app-loading__progress {
+        from {
+          transform: translate3d(-100%, 0, 0);
+        }
+        to {
+          transform: translate3d(-10%, 0, 0);
+        }
       }
     </style>
+  <script type="module" crossorigin src="/assets/index-DHe084VL.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-N6nKVYoF.js">
+  <link rel="stylesheet" crossorigin href="/assets/vendor-BMid-lwM.css">
+  <link rel="stylesheet" crossorigin href="/assets/index-CGXuYXJZ.css">
 </head>
 <body>
-一群嗜血的螞蟻 被腐肉所吸引 <br/>
-我面無表情 看孤獨的風景 <br/>
-失去妳 愛恨開始分明 <br/>
-失去妳 還有什麼事好關心? <br/>
-當鴿子不再象徵和平 <br/>
-我終於被提醒 廣場上餵食的是禿鷹 <br/>
-我用漂亮的押韻形容被掠奪一空的愛情 <br/>
-啊 烏雲開始遮蔽 夜色不乾淨 <br/>
-公園裡 葬禮的回音在漫天飛行 <br/>
-送妳的白色玫瑰在純黑的環境凋零 <br/>
-烏鴉在樹枝上詭異的很安靜 <br/>
-靜靜聽 我黑色的大衣 想溫暖妳 <br/>
-日漸冰冷的回憶 走過的 走過的生命 <br/>
-啊 四周瀰漫霧氣 我在空曠的墓地 老去後還愛妳 <br/>
-為妳彈奏蕭邦的夜曲 紀念我死去的愛情 <br/>
-跟夜風一樣的聲音 心碎的很好聽 <br/>
-手在鍵盤敲很輕 我給的思念很小心 <br/>
-妳埋葬的地方叫幽冥 <br/>
-為妳彈奏蕭邦的夜曲 紀念我死去的愛情 <br/>
-而我為妳隱姓埋名 在月光下彈琴 <br/>
-對妳心跳的感應 還是如此溫熱親近 <br/>
-懷念妳那鮮紅的唇印 <br/>
-那些斷翅的蜻蜓散落在這森林 <br/>
-而我的眼睛沒有絲毫同情 <br/>
-失去妳 淚水混濁不清 <br/>
-失去妳 我連笑容都有陰影 <br/>
-風在長滿青苔的屋頂 <br/>
-嘲笑我的傷心像一口沒有水的枯井 <br/>
-我用淒美的字型描繪後悔莫及的那愛情 <br/>
-為妳彈奏蕭邦的夜曲 紀念我死去的愛情 <br/>
-跟夜風一樣的聲音 心碎的很好聽 <br/>
-手在鍵盤敲很輕 我給的思念很小心 <br/>
-妳埋葬的地方叫幽冥 <br/>
-為妳彈奏蕭邦的夜曲 紀念我死去的愛情 <br/>
-而我為妳隱姓埋名 在月光下彈琴 <br/>
-對妳心跳的感應 還是如此溫熱親近 <br/>
-懷念妳那鮮紅的唇印 <br/>
-一群嗜血的螞蟻 被腐肉所吸引 <br/>
-我面無表情 看孤獨的風景 <br/>
-失去妳 愛恨開始分明 <br/>
-失去妳 還有什麼事好關心? <br/>
-當鴿子不再象徵和平 <br/>
-我終於被提醒 廣場上餵食的是禿鷹 <br/>
-我用漂亮的押韻形容被掠奪一空的愛情
-
-<div>
-    <!--跳转log文件-->
-    <a href="/detail.log" target="_blank">detail</a>
-    <a href="/normal.log" target="_blank">normal</a>
-    <a href="/warn_error.log" target="_blank">warn_error</a>
-</div>
+<div id="app"></div>
+<div id="app-loading">
+    <h5>loading...</h5>
+</div>
 </body>
 </html>
