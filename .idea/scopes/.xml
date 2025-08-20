@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="后端接口" pattern="file[birthdayMiniApp]:koa-typeScript-sequlize-swagger//*" />
+</component>

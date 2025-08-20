@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="后台页面" pattern="file[birthdayMiniApp]:admin//*" />
+</component>

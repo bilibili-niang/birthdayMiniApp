@@ -21,7 +21,7 @@ export default defineComponent({
     init()
     return () => {
       return (
-        <div>
+        <div class="app-page">
           <RouterView/>
         </div>
       )
