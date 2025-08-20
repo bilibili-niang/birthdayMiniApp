@@ -107,6 +107,62 @@ cd "$frontendPath" || {
     exit 1
 }
 
+# 准备 Node 与 pnpm 环境（兼容宝塔面板的非交互Shell）
+echo "[DEBUG] 初始化 nvm 与 pnpm 环境"
+echo "[DEBUG] 当前执行用户: $(id -u -n), HOME: $HOME"
+
+# 自动探测 NVM_DIR 并加载 nvm.sh
+detect_and_load_nvm() {
+  local candidates=(
+    "$HOME/.nvm"
+    "/root/.nvm"
+    "/usr/local/nvm"
+    "/opt/nvm"
+    "/www/server/nvm"
+    "/home/www/.nvm"
+  )
+  for dir in "${candidates[@]}"; do
+    if [ -s "$dir/nvm.sh" ]; then
+      export NVM_DIR="$dir"
+      . "$dir/nvm.sh"
+      [ -s "$dir/bash_completion" ] && . "$dir/bash_completion"
+      echo "[DEBUG] 已加载 nvm: $dir"
+      return 0
+    fi
+  done
+  return 1
+}
+
+detect_and_load_nvm || echo "[WARN] 未找到 nvm.sh，请确认已安装 nvm"
+
+# 使用更兼容老系统的 Node 版本（如 CentOS7）
+if command -v nvm >/dev/null 2>&1; then
+  nvm use --delete-prefix v16.20.2 >/dev/null 2>&1 || nvm install v16.20.2
+else
+  echo "[WARN] nvm 不可用，继续使用系统内的 node（若版本不兼容请安装 nvm）"
+fi
+hash -r
+
+# 确保可用 pnpm（优先 corepack，其次 npm 全局）
+if ! command -v pnpm >/dev/null 2>&1; then
+  corepack enable || true
+  corepack prepare pnpm@8.15.8 --activate || npm i -g pnpm@8.15.8
+fi
+
+# 将全局 bin 加入 PATH，避免找不到 pnpm
+if command -v npm >/dev/null 2>&1; then
+  export PATH="$(npm bin -g):$PATH"
+fi
+hash -r
+
+# 切换更稳的 npm 源（可根据需要移除）
+npm config set registry https://registry.npmmirror.com >/dev/null 2>&1 || true
+
+# 打印版本确认
+echo "[DEBUG] Node 版本: $(command -v node >/dev/null 2>&1 && node -v || echo '未找到')"
+echo "[DEBUG] pnpm 版本: $(command -v pnpm >/dev/null 2>&1 && pnpm -v || echo '未找到')"
+[ -x "$(command -v pnpm)" ] || { echo "错误：pnpm 未就绪"; echo "End"; exit 1; }
+
 # 安装依赖
 echo "[DEBUG] 执行: pnpm install"
 pnpm install || {
