@@ -118,7 +118,6 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
           // 覆写,替换掉/api
           rewrite: (path) => {
-
             return path.replace(/^\/api/, '')
           }
         },
