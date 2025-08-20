@@ -18,9 +18,9 @@ echo "[DEBUG] 设置Git配置"
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 
-# 自动获取并添加 GitHub 的主机密钥
-echo "[DEBUG] 自动扫描并添加 GitHub 的主机密钥"
-ssh-keyscan github.com >> ~/.ssh/known_hosts
+# 添加 GitHub 的主机密钥
+echo "[DEBUG] 添加 GitHub 的主机密钥"
+echo "github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==" >> ~/.ssh/known_hosts
 chmod 644 ~/.ssh/known_hosts
 
 gitPath="/www/wwwroot/$projectName"
@@ -71,17 +71,17 @@ else
         echo "End"
         exit 1
     }
-    
+
     # 获取默认分支名称
     defaultBranch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
     echo "[DEBUG] 默认分支：$defaultBranch"
-    
+
     git reset --hard "origin/$defaultBranch" || {
         echo "错误：Git reset失败"
         echo "End"
         exit 1
     }
-    
+
     echo "[DEBUG] 拉取分支：$defaultBranch"
     git pull origin "$defaultBranch" || {
         echo "错误：Git pull失败"
@@ -89,118 +89,6 @@ else
         exit 1
     }
 fi
-
-# ==================================================================
-# 构建和部署前端项目
-# ==================================================================
-echo "[DEBUG] 开始构建和部署前端项目"
-
-# 定义前端和后端路径
-frontendPath="admin/project"
-backendStaticPath="koa-typeScript-sequlize-swagger/src/static/views"
-
-# 切换到前端项目目录
-echo "[DEBUG] 切换到目录: $gitPath/$frontendPath"
-cd "$frontendPath" || {
-    echo "错误：无法切换到 $frontendPath 目录"
-    echo "End"
-    exit 1
-}
-
-# 准备 Node 与 pnpm 环境（兼容宝塔面板的非交互Shell）
-echo "[DEBUG] 初始化 nvm 与 pnpm 环境"
-echo "[DEBUG] 当前执行用户: $(id -u -n), HOME: $HOME"
-
-# 自动探测 NVM_DIR 并加载 nvm.sh
-detect_and_load_nvm() {
-  local candidates=(
-    "$HOME/.nvm"
-    "/root/.nvm"
-    "/usr/local/nvm"
-    "/opt/nvm"
-    "/www/server/nvm"
-    "/home/www/.nvm"
-  )
-  for dir in "${candidates[@]}"; do
-    if [ -s "$dir/nvm.sh" ]; then
-      export NVM_DIR="$dir"
-      . "$dir/nvm.sh"
-      [ -s "$dir/bash_completion" ] && . "$dir/bash_completion"
-      echo "[DEBUG] 已加载 nvm: $dir"
-      return 0
-    fi
-  done
-  return 1
-}
-
-detect_and_load_nvm || echo "[WARN] 未找到 nvm.sh，请确认已安装 nvm"
-
-# 使用更兼容老系统的 Node 版本（如 CentOS7）
-if command -v nvm >/dev/null 2>&1; then
-  nvm use --delete-prefix v16.20.2 >/dev/null 2>&1 || nvm install v16.20.2
-else
-  echo "[WARN] nvm 不可用，继续使用系统内的 node（若版本不兼容请安装 nvm）"
-fi
-hash -r
-
-# 确保可用 pnpm（优先 corepack，其次 npm 全局）
-if ! command -v pnpm >/dev/null 2>&1; then
-  corepack enable || true
-  corepack prepare pnpm@8.15.8 --activate || npm i -g pnpm@8.15.8
-fi
-
-# 将全局 bin 加入 PATH，避免找不到 pnpm
-if command -v npm >/dev/null 2>&1; then
-  export PATH="$(npm bin -g):$PATH"
-fi
-hash -r
-
-# 切换更稳的 npm 源（可根据需要移除）
-npm config set registry https://registry.npmmirror.com >/dev/null 2>&1 || true
-
-# 打印版本确认
-echo "[DEBUG] Node 版本: $(command -v node >/dev/null 2>&1 && node -v || echo '未找到')"
-echo "[DEBUG] pnpm 版本: $(command -v pnpm >/dev/null 2>&1 && pnpm -v || echo '未找到')"
-[ -x "$(command -v pnpm)" ] || { echo "错误：pnpm 未就绪"; echo "End"; exit 1; }
-
-# 安装依赖
-echo "[DEBUG] 执行: pnpm install"
-pnpm install || {
-    echo "错误：pnpm install 失败"
-    echo "End"
-    exit 1
-}
-
-# 打包项目
-echo "[DEBUG] 执行: pnpm build"
-pnpm build || {
-    echo "错误：pnpm build 失败"
-    echo "End"
-    exit 1
-}
-
-# 移动打包后的文件到后端目录
-echo "[DEBUG] 移动打包文件到 $gitPath/$backendStaticPath"
-# 确保目标目录存在
-mkdir -p "../../$backendStaticPath"
-# 首先清空目标目录的内容
-echo "[DEBUG] 清空目标目录: ../../$backendStaticPath/"
-rm -rf "../../$backendStaticPath/"*
-# 移动新文件
-echo "[DEBUG] 移动 dist/* 到 ../../$backendStaticPath/"
-mv -f dist/* "../../$backendStaticPath/" || {
-    echo "错误：移动文件失败"
-    echo "End"
-    exit 1
-}
-
-# 返回项目根目录
-echo "[DEBUG] 返回项目根目录"
-cd ../../ || {
-    echo "错误：无法返回项目根目录"
-    echo "End"
-    exit 1
-}
 
 # 设置目录权限
 echo "设置目录权限"
