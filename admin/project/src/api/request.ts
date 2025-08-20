@@ -68,7 +68,7 @@ declare module 'axios' {
 }
 
 const request: AxiosInstance = axios.create({
-  baseURL: '',
+  baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 30000, // 请求超时时间
   headers: {
     ...getAuthHeaders()

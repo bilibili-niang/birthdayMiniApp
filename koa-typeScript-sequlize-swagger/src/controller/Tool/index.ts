@@ -16,13 +16,8 @@ class ToolController {
   @responses(TranslateResType)
   async translateWord(ctx: Context, args) {
     const { keyword } = args.body
-    console.log('keyword')
-    console.log(keyword)
     await $transform(keyword)
       .then(res => {
-        console.log('res:')
-        console.log(res)
-
         ctx.body = ctxBody({
           success: true,
           code: 200,
