@@ -90,6 +90,62 @@ else
     }
 fi
 
+# ==================================================================
+# 构建和部署前端项目
+# ==================================================================
+echo "[DEBUG] 开始构建和部署前端项目"
+
+# 定义前端和后端路径
+frontendPath="admin/project"
+backendStaticPath="koa-typeScript-sequlize-swagger/src/static/views"
+
+# 切换到前端项目目录
+echo "[DEBUG] 切换到目录: $gitPath/$frontendPath"
+cd "$frontendPath" || {
+    echo "错误：无法切换到 $frontendPath 目录"
+    echo "End"
+    exit 1
+}
+
+# 安装依赖
+echo "[DEBUG] 执行: pnpm install"
+pnpm install || {
+    echo "错误：pnpm install 失败"
+    echo "End"
+    exit 1
+}
+
+# 打包项目
+echo "[DEBUG] 执行: pnpm build"
+pnpm build || {
+    echo "错误：pnpm build 失败"
+    echo "End"
+    exit 1
+}
+
+# 移动打包后的文件到后端目录
+echo "[DEBUG] 移动打包文件到 $gitPath/$backendStaticPath"
+# 确保目标目录存在
+mkdir -p "../../$backendStaticPath"
+# 首先清空目标目录的内容
+echo "[DEBUG] 清空目标目录: ../../$backendStaticPath/"
+rm -rf "../../$backendStaticPath/"*
+# 移动新文件
+echo "[DEBUG] 移动 dist/* 到 ../../$backendStaticPath/"
+mv -f dist/* "../../$backendStaticPath/" || {
+    echo "错误：移动文件失败"
+    echo "End"
+    exit 1
+}
+
+# 返回项目根目录
+echo "[DEBUG] 返回项目根目录"
+cd ../../ || {
+    echo "错误：无法返回项目根目录"
+    echo "End"
+    exit 1
+}
+
 # 设置目录权限
 echo "设置目录权限"
 chown -R www:www "$gitPath" || {
