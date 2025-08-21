@@ -10,7 +10,7 @@ export default defineComponent({
     return () => {
       return (
         <div class="flex flex-row w-full">
-          <div class="flex flex-row bg-red-50 ml-auto mr-auto w-75">
+          <div class="flex flex-row ml-auto mr-auto w-75 pt-5">
             <Button
               variant="outlined"
               onClick={() => {

@@ -1,8 +1,5 @@
 import { defineComponent, onMounted, ref } from 'vue'
-import {
-  Button, Input, List, ListItem, ListItemSubtitle, ListItemTitle,
-  vuetify
-} from '@pkg/ui'
+import { Button, Input, List, ListItem, ListItemSubtitle, ListItemTitle, vuetify } from '@pkg/ui'
 import { jumpBack } from '@/router/jump'
 import { $transform } from '@/api'
 
@@ -84,8 +81,6 @@ export default defineComponent({
 
     const handleQuery = () => {
       if (query.value) {
-        console.log('query.value:')
-        console.log(query.value)
         isLoading.value = true
         $transform({
           keyword: query.value
