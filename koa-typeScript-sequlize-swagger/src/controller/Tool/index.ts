@@ -8,7 +8,7 @@ class ToolController {
 
   @routeConfig({
     method: 'post',
-    path: '/tool/translate',
+    path: '/api/tool/translate',
     summary: '翻译',
     tags: ['工具', '翻译'],
   })

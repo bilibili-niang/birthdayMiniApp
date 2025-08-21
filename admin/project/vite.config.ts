@@ -7,7 +7,6 @@ import topLevelAwait from 'vite-plugin-top-level-await'
 //vuetify按需导入
 import vuetify from 'vite-plugin-vuetify'
 
-
 import postCssPxToRem from 'postcss-pxtorem'
 // @ts-ignore
 import eslint from 'vite-plugin-eslint'
@@ -34,10 +33,10 @@ export default defineConfig(({ mode }) => {
   console.log('构建目标', mode)
   console.log('环境变量', env)
   console.log('===========================================')
-  const isUseOSS = isProd && !(env.VITE_APP_SKIP_OSS === 'true')
+  // const isUseOSS = isProd && !(env.VITE_APP_SKIP_OSS === 'true')
   const isTest = mode === 'test'
   return {
-    base: isUseOSS ? ALI_OSS_PUBLIC_PATH : `/${VITE_APP_NAME}`,
+    // base: isUseOSS ? ALI_OSS_PUBLIC_PATH : `/${VITE_APP_NAME}`,
     define: {
       'import.meta.env.VITE_APP_NAME': `"${VITE_APP_NAME || ''}"`
     },
