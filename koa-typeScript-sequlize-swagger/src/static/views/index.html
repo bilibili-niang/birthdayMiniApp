@@ -58,6 +58,19 @@
         opacity: 0.6;
         letter-spacing: 1px;
       }
+      /* dark theme adjustments before app mounts */
+      html[theme="dark"] #app-loading {
+        background-color: #121212;
+      }
+      html[theme="dark"] #app-loading .app-loading__progress {
+        background-color: rgba(255, 255, 255, 0.12);
+      }
+      html[theme="dark"] #app-loading .app-loading__progress i {
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+      html[theme="dark"] #app-loading h5 {
+        color: rgba(255, 255, 255, 0.85);
+      }
       @keyframes app-loading__progress {
         from {
           transform: translate3d(-100%, 0, 0);
@@ -67,10 +80,10 @@
         }
       }
     </style>
-  <script type="module" crossorigin src="/assets/index-DM7bAIgO.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/vendor-N6nKVYoF.js">
-  <link rel="stylesheet" crossorigin href="/assets/vendor-BMid-lwM.css">
-  <link rel="stylesheet" crossorigin href="/assets/index-CYiVLtJm.css">
+  <script type="module" crossorigin src="/assets/index-CZCa09lz.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-gMTP76c6.js">
+  <link rel="stylesheet" crossorigin href="/assets/vendor-BdE5aJz4.css">
+  <link rel="stylesheet" crossorigin href="/assets/index-DjrZpOHg.css">
 </head>
 <body>
 <div id="app"></div>
