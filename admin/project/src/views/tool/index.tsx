@@ -54,11 +54,7 @@ export default defineComponent({
     // vuetify.useTheme()
 
 
-    vuetify.createVuetify({
-      theme: {
-        defaultTheme: 'dark', // 'light' | 'dark' | 'system'
-      },
-    })
+    // 不要在组件内重复创建 vuetify 实例，已在全局启用暗色
 
 
     // 从 localStorage 读取所有查询记录并在页面加载时回显
@@ -155,9 +151,9 @@ export default defineComponent({
               )}
             </div>
             {history.value?.length > 0 && (
-              <div class="mt-4 pa-3 rounded-lg bg-grey-lighten-5 elevation-2">
-                <div class="flex-row flex justify-between">
-                  <h3 class="text-h6 mb-2">历史查询记录</h3>
+              <div class="mt-4 p-3 rounded-lg elevation-2 border border-[var(--ui-border-color)] bg-[var(--ui-bg)] text-[var(--color-text-base)]">
+                <div class="flex-row flex justify-between !p-3">
+                  <h3 class="text-h6 mb-2 ">历史查询记录</h3>
                   <Button
                     onClick={() => {
                       localStorage.removeItem(localStorageKey)

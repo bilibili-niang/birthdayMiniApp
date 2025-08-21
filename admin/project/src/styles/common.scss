@@ -20,15 +20,18 @@
     }
   }
 }
+/*
+  页面背景使用 theme.scss 中定义的 --v-color-bg-* 变量
+  注意：不要使用文本颜色变量作为背景色
+*/
 html[theme="light"] {
-  $--v-theme-background: rgba(0, 0, 0, .1) !important;
-  background-color: var(--color-text-tertiary);
+  /* 纯白背景 */
+  background-color: var(--v-color-bg-300);
 }
 html[theme="dark"] {
-  $--v-theme-background: rgba(0, 0, 0, .4) !important;
-  background-color: var(--v-color-bg-50);
+  /* 深色背景，接近 Vuetify dark 背景 */
+  background-color: var(--v-color-bg-600);
 }
 html {
   overflow: hidden;
-  background-color: rgba(0, 0, 0, .6);
 }
