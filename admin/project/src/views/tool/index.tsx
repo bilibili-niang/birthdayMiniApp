@@ -1,6 +1,5 @@
 import { defineComponent, onMounted, ref } from 'vue'
-import { Button, Input, List, ListItem, ListItemSubtitle, ListItemTitle, vuetify } from '@pkg/ui'
-import { VSnackbar, VIcon, VBtn } from 'vuetify/components'
+import { Button, Input, List, ListItem, ListItemSubtitle, ListItemTitle, vuetify, notifySuccess, notifyError } from '@pkg/ui'
 import { copyText } from '@/utils/copy'
 import { jumpBack } from '@/router/jump'
 import { $transform } from '@/api'
@@ -50,18 +49,12 @@ export default defineComponent({
     const data = ref([] as string[])
     const history = ref([] as any[])
     const isLoading = ref(false)
-    const snackbar = ref(false)
-    const snackbarText = ref('')
-    const snackbarTimeout = ref(2000)
-    const snackbarColor = ref<'success' | 'error' | 'info'>('success')
-    const snackbarIcon = ref('mdi-check-circle')
+    // 已改为使用全局通知：notifySuccess/notifyError
 
     const handleCopy = async (text: string) => {
       const ok = await copyText(text)
-      snackbarText.value = ok ? '已复制到剪贴板' : '复制失败，请手动复制'
-      snackbarColor.value = ok ? 'success' : 'error'
-      snackbarIcon.value = ok ? 'mdi-check-circle' : 'mdi-alert-circle'
-      snackbar.value = true
+      if (ok) notifySuccess('已复制到剪贴板')
+      else notifyError('复制失败，请手动复制')
     }
 
     console.log('vuetify')
@@ -119,6 +112,7 @@ export default defineComponent({
           })
           .catch(err => {
             console.error('Error in translation:', err)
+            notifyError('查询失败')
           })
           .finally(() => {
             isLoading.value = false
@@ -197,32 +191,7 @@ export default defineComponent({
             )}
 
           </div>
-          {/* snackbar 提示 */}
-          <VSnackbar
-            v-model={snackbar.value}
-            timeout={snackbarTimeout.value}
-            location="top end"
-            color={snackbarColor.value}
-            rounded="lg"
-            variant="tonal"
-            transition="slide-x-reverse-transition"
-            v-slots={{
-              actions: () => {
-                const TBtn = VBtn as any
-                return (
-                <TBtn variant="text" onClick={() => (snackbar.value = false)}>
-                  关闭
-                </TBtn>
-                )
-              },
-              default: () => (
-                <div class="flex items-center">
-                  <VIcon class="mr-2" icon={snackbarIcon.value}></VIcon>
-                  <span>{snackbarText.value}</span>
-                </div>
-              )
-            }}
-          />
+          {/* 已改为全局通知，无需内嵌 VSnackbar */}
         </div>
       )
     }

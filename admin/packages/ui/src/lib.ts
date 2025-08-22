@@ -8,6 +8,7 @@ export { default as List } from './components/list/index'
 export { default as ListItem } from './components/listItem/index'
 export { default as ListItemSubtitle } from './components/listItemSubtitle/index'
 export { default as ListItemTitle } from './components/listItemTitle/index'
+export { notify, notifySuccess, notifyError, installNotify } from './components/notify/index'
 
 // @ts-ignore
 // export * from 'vuetify/components'
