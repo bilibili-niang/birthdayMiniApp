@@ -107,94 +107,71 @@ const formatMessage = (message: string, context?: LogContext) => {
   return message
 }
 
+// 仅在非法路由时入库
+// 白名单：静态资源、swagger相关、favicon、常见文档/日志后缀
+const ILLEGAL_ROUTE_WHITELIST: RegExp[] = [
+  /^\/swagger(?:-|\/)?/i,     // /swagger, /swagger-html, /swagger-json
+  /^\/docs?/i,                 // /doc, /docs
+  /^\/favicon\.ico$/i,
+  /\.(?:html|css|js|png|jpg|jpeg|gif|svg|ico|txt|map|log)$/i
+]
+
+const persistIfIllegal = async (level: string, reason: string, context?: LogContext) => {
+  try {
+    const method = context?.method
+    const path = context?.path
+    if (!method || !path) return
+    // 命中白名单，直接跳过
+    if (ILLEGAL_ROUTE_WHITELIST.some(reg => reg.test(path))) return
+    const { isLegalRoute } = await import('@/router')
+    const legal = isLegalRoute(method, path)
+    if (!legal) {
+      await logIllegalRequest({
+        ip: context?.ip,
+        method,
+        path,
+        statusCode: context?.statusCode,
+        level,
+        reason,
+        headers: context?.headers,
+        payload: context?.payload,
+        userAgent: context?.userAgent
+      })
+    }
+  } catch (err: any) {
+    // 避免递归，这里直接用底层 logger 或 console
+    try { errorLogger.error(`非法路由持久化判断失败: ${err?.message || err}`) } catch (_) { /* noop */ }
+  }
+}
+
 const trace = (e: string, context?: LogContext) => {
   traceLogger.trace(formatMessage(e, context))
-  logIllegalRequest({
-    ip: context?.ip,
-    method: context?.method,
-    path: context?.path,
-    statusCode: context?.statusCode,
-    level: 'trace',
-    reason: e,
-    headers: context?.headers,
-    payload: context?.payload,
-    userAgent: context?.userAgent
-  })
+  persistIfIllegal('trace', e, context)
 }
 
 const debug = (e: string, context?: LogContext) => {
   debugLogger.debug(formatMessage(e, context))
-  logIllegalRequest({
-    ip: context?.ip,
-    method: context?.method,
-    path: context?.path,
-    statusCode: context?.statusCode,
-    level: 'debug',
-    reason: e,
-    headers: context?.headers,
-    payload: context?.payload,
-    userAgent: context?.userAgent
-  })
+  persistIfIllegal('debug', e, context)
 }
 
 const info = (e: string, context?: LogContext) => {
   infoLogger.info(formatMessage(e, context))
-  logIllegalRequest({
-    ip: context?.ip,
-    method: context?.method,
-    path: context?.path,
-    statusCode: context?.statusCode,
-    level: 'info',
-    reason: e,
-    headers: context?.headers,
-    payload: context?.payload,
-    userAgent: context?.userAgent
-  })
+  persistIfIllegal('info', e, context)
 }
 
 const warn = (e: string, context?: LogContext) => {
   warnLogger.warn(formatMessage(e, context))
-  logIllegalRequest({
-    ip: context?.ip,
-    method: context?.method,
-    path: context?.path,
-    statusCode: context?.statusCode,
-    level: 'warn',
-    reason: e,
-    headers: context?.headers,
-    payload: context?.payload,
-    userAgent: context?.userAgent
-  })
+  persistIfIllegal('warn', e, context)
 }
 
 const error = (e: string, context?: LogContext) => {
   errorLogger.error(formatMessage(e, context))
-  logIllegalRequest({
-    ip: context?.ip,
-    method: context?.method,
-    path: context?.path,
-    statusCode: context?.statusCode,
-    level: 'error',
-    reason: e,
-    headers: context?.headers,
-    payload: context?.payload,
-    userAgent: context?.userAgent
-  })
+  persistIfIllegal('error', e, context)
 }
 
 const fatal = (e: string, context?: LogContext) => {
   fatalLogger.fatal(formatMessage(e, context))
-  logIllegalRequest({
-    ip: context?.ip,
-    method: context?.method,
-    path: context?.path,
-    statusCode: context?.statusCode,
-    level: 'fatal',
-    reason: e,
-    headers: context?.headers,
-    payload: context?.payload,
-    userAgent: context?.userAgent
-  })
+  persistIfIllegal('fatal', e, context)
 }
 
 // 初始化日志文件
