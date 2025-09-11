@@ -6,6 +6,7 @@ import * as mysql from 'mysql2/promise'
 import { info } from './log4j'
 import { setAdminUser } from '@/utils/initialize'
 import Resume from '@/schema/resume'
+import IllegalRequest from '@/schema/illegalRequest'
 
 // 根据环境确定数据库名称
 const NODE_ENV = process.env.NODE_ENV || 'local' // 默认使用 local 环境
@@ -34,7 +35,7 @@ const seq = new Sequelize(DATABASE_NAME, process.env.USER_NAME, process.env.DATA
     dialect: 'mysql',
     port: Number(process.env.DATABASE_PORT),
     logging: false,
-    models: [User, Authority, Resume],
+    models: [User, Authority, Resume, IllegalRequest],
     query: {
       raw: true
     }
