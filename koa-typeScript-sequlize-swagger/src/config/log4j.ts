@@ -90,6 +90,12 @@ const fatalLogger = log4js.getLogger('fatal')
 
 interface LogContext {
   ip?: string;
+  method?: string;
+  path?: string;
+  statusCode?: number;
+  headers?: any;
+  payload?: any;
+  userAgent?: string;
 
   [key: string]: any;
 }
@@ -101,28 +107,71 @@ const formatMessage = (message: string, context?: LogContext) => {
   return message
 }
 
+// 仅在非法路由时入库
+// 白名单：静态资源、swagger相关、favicon、常见文档/日志后缀
+const ILLEGAL_ROUTE_WHITELIST: RegExp[] = [
+  /^\/swagger(?:-|\/)?/i,     // /swagger, /swagger-html, /swagger-json
+  /^\/docs?/i,                 // /doc, /docs
+  /^\/favicon\.ico$/i,
+  /\.(?:html|css|js|png|jpg|jpeg|gif|svg|ico|txt|map|log)$/i
+]
+
+const persistIfIllegal = async (level: string, reason: string, context?: LogContext) => {
+  try {
+    const method = context?.method
+    const path = context?.path
+    if (!method || !path) return
+    // 命中白名单，直接跳过
+    if (ILLEGAL_ROUTE_WHITELIST.some(reg => reg.test(path))) return
+    const { isLegalRoute } = await import('@/router')
+    const legal = isLegalRoute(method, path)
+    if (!legal) {
+      await logIllegalRequest({
+        ip: context?.ip,
+        method,
+        path,
+        statusCode: context?.statusCode,
+        level,
+        reason,
+        headers: context?.headers,
+        payload: context?.payload,
+        userAgent: context?.userAgent
+      })
+    }
+  } catch (err: any) {
+    // 避免递归，这里直接用底层 logger 或 console
+    try { errorLogger.error(`非法路由持久化判断失败: ${err?.message || err}`) } catch (_) { /* noop */ }
+  }
+}
+
 const trace = (e: string, context?: LogContext) => {
   traceLogger.trace(formatMessage(e, context))
+  persistIfIllegal('trace', e, context)
 }
 
 const debug = (e: string, context?: LogContext) => {
   debugLogger.debug(formatMessage(e, context))
+  persistIfIllegal('debug', e, context)
 }
 
 const info = (e: string, context?: LogContext) => {
   infoLogger.info(formatMessage(e, context))
+  persistIfIllegal('info', e, context)
 }
 
 const warn = (e: string, context?: LogContext) => {
   warnLogger.warn(formatMessage(e, context))
+  persistIfIllegal('warn', e, context)
 }
 
 const error = (e: string, context?: LogContext) => {
   errorLogger.error(formatMessage(e, context))
+  persistIfIllegal('error', e, context)
 }
 
 const fatal = (e: string, context?: LogContext) => {
   fatalLogger.fatal(formatMessage(e, context))
+  persistIfIllegal('fatal', e, context)
 }
 
 // 初始化日志文件
@@ -151,4 +200,39 @@ export {
   warn,
   error,
   fatal
+}
+
+// 将非法请求信息写入数据库，避免与 log4js 同步耦合
+// 动态导入模型，防止循环依赖及提升加载时机
+export interface IllegalRequestLog {
+  ip?: string
+  method?: string
+  path?: string
+  statusCode?: number
+  level?: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal' | string
+  reason?: string
+  headers?: any
+  payload?: any
+  userAgent?: string
+}
+
+export const logIllegalRequest = async (payload: IllegalRequestLog) => {
+  try {
+    const { default: IllegalRequest } = await import('@/schema/illegalRequest')
+    const record = {
+      ip: payload.ip || '',
+      method: payload.method || '',
+      path: payload.path || '',
+      statusCode: payload.statusCode ?? null,
+      level: payload.level || 'warn',
+      reason: payload.reason || '',
+      headers: payload.headers ? JSON.stringify(payload.headers).slice(0, 2000) : null,
+      payload: payload.payload ? JSON.stringify(payload.payload).slice(0, 4000) : null,
+      userAgent: payload.userAgent || ''
+    }
+    await IllegalRequest.create(record as any)
+  } catch (e) {
+    // 写库失败不影响主流程，仅记录错误日志
+    error(`写入非法请求日志失败: ${e?.message || e}`)
+  }
 }

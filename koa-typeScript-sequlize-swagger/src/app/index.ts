@@ -42,14 +42,31 @@ app
   .use(indexRouter.routes())
   .on('error', async (err, ctx, next) => {
     ctx.status = 500
-    error(JSON.stringify(err))
+    error(JSON.stringify(err), {
+      ip: ctx.ip,
+      method: ctx.method,
+      path: ctx.path,
+      statusCode: ctx.status,
+      headers: ctx.headers,
+      payload: ctx.request.body ?? ctx.query,
+      userAgent: ctx.headers['user-agent'] as string
+    })
     ctx.body = ctxBody({ data: err })
   })
   .use((ctx, next) => {
-    trace('未知url' + ctx.request.url)
+    trace('未知url ' + ctx.request.url, {
+      ip: ctx.ip,
+      method: ctx.method,
+      path: ctx.path,
+      statusCode: 404,
+      headers: ctx.headers,
+      payload: ctx.request.body ?? ctx.query,
+      userAgent: ctx.headers['user-agent'] as string
+    })
     ctx.body = ctxBody({
       code: 500,
       msg: `这里是无人之境`,
     })
   })
+
 export default app
