@@ -1,5 +1,5 @@
-import { createVNode, render, reactive, nextTick, type App, type AppContext } from 'vue'
-import { VSnackbar, VBtn, VIcon } from 'vuetify/components'
+import { type App, type AppContext, createVNode, nextTick, reactive, render } from 'vue'
+import { VBtn, VIcon, VSnackbar } from 'vuetify/components'
 
 export type NotifyOptions = {
   text: string
@@ -21,7 +21,6 @@ export function installNotify(app: App) {
 export function _getUiAppContext() {
   return appContext
 }
-
 
 export function notify(opts: NotifyOptions) {
   const state = reactive({

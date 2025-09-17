@@ -1,13 +1,10 @@
 {
-  "name": "@birthday-mini-app/core",
+  "name": "@pkg/core",
   "version": "1.0.0",
-  "description": "Core functionality for birthday mini app admin",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "private": true,
+  "description": "逻辑处理",
+  "type": "module",
+  "main": "./src/lib.ts",
   "scripts": {
     "build": "vite build",
     "dev": "vite",

@@ -17,6 +17,9 @@ importers:
       '@antv/l7-maps':
         specifier: ^2.22.0
         version: 2.23.0
+      '@pkg/core':
+        specifier: workspace:*
+        version: link:packages/core
       '@pkg/ui':
         specifier: workspace:*
         version: link:packages/ui

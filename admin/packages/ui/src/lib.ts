@@ -1,6 +1,6 @@
+import * as vuetify from 'vuetify'
 import './styles/settings.scss'
 import 'vuetify/_styles.scss'
-import * as vuetify from 'vuetify'
 
 export { default as Button } from './components/button/index'
 export { default as Input } from './components/input/index'
@@ -13,5 +13,4 @@ export { createModal } from './components/modal/service'
 export { notify, notifySuccess, notifyError, installNotify } from './components/notify/index'
 
 // @ts-ignore
-// export * from 'vuetify/components'
 export { vuetify }
