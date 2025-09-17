@@ -1,5 +1,6 @@
 /* eslint-disable */
 import axios, { AxiosError, type AxiosInstance } from 'axios'
+import { openLoginModal, waitForLogin } from '@/composables/authFlow'
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -68,16 +69,31 @@ declare module 'axios' {
 }
 
 const request: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_API,
+  // 通过 any 规避类型报错，保持 Vite 环境变量读取
+  baseURL: (import.meta as any).env?.VITE_APP_BASE_API,
   timeout: 30000, // 请求超时时间
   headers: {
     ...getAuthHeaders()
   }
 })
 
-const err = (error: AxiosError) => {
-  if (error.response?.status === 401) {
-    // 拦截登录
+const err = async (error: AxiosError & { config?: any }) => {
+  const status = error.response?.status
+  const originalConfig = error.config || ({} as any)
+  if (status === 401) {
+    // 触发全局登录弹窗
+    openLoginModal()
+    try {
+      // 等待登录完成
+      await waitForLogin()
+      // 避免无限重试，只重试一次
+      if (!originalConfig.__retried401) {
+        originalConfig.__retried401 = true
+        // 重新附加最新头信息
+        Object.assign(originalConfig.headers ??= {}, getAuthHeaders())
+        return request(originalConfig)
+      }
+    } catch {}
   }
   return Promise.reject(error)
 }

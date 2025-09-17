@@ -8,6 +8,8 @@ export { default as List } from './components/list/index'
 export { default as ListItem } from './components/listItem/index'
 export { default as ListItemSubtitle } from './components/listItemSubtitle/index'
 export { default as ListItemTitle } from './components/listItemTitle/index'
+export { default as Modal } from './components/modal/index'
+export { createModal } from './components/modal/service'
 export { notify, notifySuccess, notifyError, installNotify } from './components/notify/index'
 
 // @ts-ignore

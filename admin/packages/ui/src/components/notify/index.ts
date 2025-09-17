@@ -17,6 +17,12 @@ export function installNotify(app: App) {
   appContext = app._context
 }
 
+// 供内部复用（例如程序化 Modal 组件）
+export function _getUiAppContext() {
+  return appContext
+}
+
+
 export function notify(opts: NotifyOptions) {
   const state = reactive({
     model: true,
@@ -35,7 +41,11 @@ export function notify(opts: NotifyOptions) {
     ])
 
   const actionsSlot = () =>
-    createVNode(VBtn as any, { variant: 'text', onClick: () => { state.model = false } }, { default: () => '关闭' })
+    createVNode(VBtn as any, {
+      variant: 'text', onClick: () => {
+        state.model = false
+      }
+    }, { default: () => '关闭' })
 
   const vnode = createVNode(
     VSnackbar as any,
