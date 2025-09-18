@@ -23,8 +23,7 @@
       ]
     },
     "types": [
-      "vuetify",
-      "@vuetify/types"
+      "vuetify"
     ]
   },
   "include": [
