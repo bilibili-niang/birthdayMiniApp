@@ -2,6 +2,7 @@ import { defineComponent } from 'vue'
 import { Button } from '@pkg/ui'
 import { useCrud } from '@pkg/core'
 import './index.scss'
+import router from '@/router'
 
 // 定义 useCrud 的选项类型
 interface CrudOptions {
@@ -40,6 +41,13 @@ export default defineComponent({
               测试
             </Button>
           </div>
+          <Button
+            onClick={() => {
+              router.push('/jsf')
+            }}
+          >
+            跳转jsf页面路由
+          </Button>
         </div>
 
       </div>

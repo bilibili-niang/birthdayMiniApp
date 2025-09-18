@@ -4,8 +4,10 @@ import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import topLevelAwait from 'vite-plugin-top-level-await'
-//vuetify按需导入
+// vuetify按需导入
 import vuetify from 'vite-plugin-vuetify'
+// 自动生成路由
+import Pages from 'vite-plugin-pages'
 
 import postCssPxToRem from 'postcss-pxtorem'
 // @ts-ignore
@@ -41,6 +43,18 @@ export default defineConfig(({ mode }) => {
       'import.meta.env.VITE_APP_NAME': `"${VITE_APP_NAME || ''}"`
     },
     plugins: [
+      // 自动生成路由
+      Pages({
+        dirs: 'src/views',
+        extensions: ['vue', 'tsx'],
+        exclude: ['**/components/**', '**/composables/**', '**/__tests__/**'],
+        importMode: 'async',
+        routeBlockLang: 'json5',
+        extendRoute(route) {
+          // 可以在这里扩展路由配置
+          return route
+        }
+      }),
       // TODO tailwindcss 配置
       tailwindcss(),
       vue({
