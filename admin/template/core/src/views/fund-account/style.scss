@@ -1,0 +1,36 @@
+.merchant-detail-page {
+  .fund-account {
+    margin: 0 16px 16px;
+    padding: 18px 24px;
+    background-color: $color-bg-100;
+    border-radius: 10px;
+    h2 {
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      .icon {
+        opacity: 0.4;
+      }
+    }
+    .list {
+      display: flex;
+      .item {
+        padding: 8px 50px;
+        &:first-child {
+          padding-left: 0;
+        }
+      }
+      .label {
+        font-size: 16px;
+        color: $color-text-secondary;
+      }
+      .value {
+        font-size: 40px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+    }
+  }
+}
