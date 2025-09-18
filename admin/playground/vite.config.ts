@@ -90,8 +90,9 @@ export default defineConfig(({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'modern',
+          silenceDeprecations: ['import'],
           javascriptEnabled: true,
-          // additionalData: ['@use \'./src/styles/common.scss\';@use \'./src/styles/theme.scss\';']
         }
       },
       postcss: {
