@@ -1,6 +1,6 @@
 ﻿import { defineComponent } from 'vue'
 import { RouterView } from 'vue-router'
-import RouteSidebar from './components/RouteSidebar'
+import RouteSidebar from './components/RouteSidebar.vue'
 import './assets/route-sidebar.css'
 
 export default defineComponent({
