@@ -1,5 +1,5 @@
-import { createVNode, render, reactive, nextTick, type App, type AppContext } from 'vue'
-import { VSnackbar, VBtn, VIcon } from 'vuetify/components'
+import { type App, type AppContext, createVNode, nextTick, reactive, render } from 'vue'
+import { VBtn, VIcon, VSnackbar } from 'vuetify/components'
 
 export type NotifyOptions = {
   text: string
@@ -15,6 +15,11 @@ let appContext: AppContext | null = null
 
 export function installNotify(app: App) {
   appContext = app._context
+}
+
+// 供内部复用（例如程序化 Modal 组件）
+export function _getUiAppContext() {
+  return appContext
 }
 
 export function notify(opts: NotifyOptions) {
@@ -35,7 +40,11 @@ export function notify(opts: NotifyOptions) {
     ])
 
   const actionsSlot = () =>
-    createVNode(VBtn as any, { variant: 'text', onClick: () => { state.model = false } }, { default: () => '关闭' })
+    createVNode(VBtn as any, {
+      variant: 'text', onClick: () => {
+        state.model = false
+      }
+    }, { default: () => '关闭' })
 
   const vnode = createVNode(
     VSnackbar as any,
