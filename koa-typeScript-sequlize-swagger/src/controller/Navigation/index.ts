@@ -12,6 +12,7 @@ class NavigationController {
     tags: ['装修', '导航'],
     request: {
       query: z.object({
+        scene: z.string().optional(),
         origin: z.string().optional(),
         merchantId: z.string().optional()
       })
@@ -19,10 +20,17 @@ class NavigationController {
   })
   async actived(ctx: Context) {
     try {
-      const { origin } = ctx.parsed.query as any
+      const { origin, scene } = ctx.parsed.query as any
+      const resolvedScene = typeof scene !== 'undefined' && scene !== null && scene !== ''
+        ? String(scene)
+        : (typeof origin !== 'undefined' && origin !== null && origin !== '' ? String(origin) : undefined)
+      if (!resolvedScene) {
+        ctx.body = ctxBody({ success: false, code: 400, msg: 'scene 必传（可使用 origin 作为别名）', data: null })
+        return
+      }
       const where: any = { status: 1 }
       // 与小程序端参数对齐：origin 映射到后端的 scene 字段
-      if (origin) where.scene = String(origin)
+      where.scene = resolvedScene
 
       const row: any = await Navigation.findOne({
         where,
@@ -60,8 +68,8 @@ class NavigationController {
         return next
       }
 
-      // 仅在指定 origin（如 yesong）时执行规范化，避免影响其它场景
-      if (origin) {
+      // 仅在指定 scene（如 yesong）时执行规范化，避免影响其它场景
+      if (resolvedScene) {
         parsedConfig = normalizeTabLabels(parsedConfig)
       }
 
@@ -84,8 +92,8 @@ class NavigationController {
   })
   @body(z.object({
     name: z.string().nonempty(),
-    scene: z.string().optional(),
-    status: z.coerce.number().default(1),
+    scene: z.string().nonempty(),
+    status: z.coerce.number().default(0),
     editUser: z.string().optional(),
     // 允许传入 object 或 string（JSON），统一入库为字符串
     config: z.union([z.string(), z.record(z.any())]).optional(),
@@ -99,6 +107,13 @@ class NavigationController {
         payload.config = JSON.stringify(payload.config)
       }
       const res = await Navigation.create(payload)
+      // 保证同一个 scene 仅有一个激活记录
+      if (Number(res.status) === 1 && res.scene) {
+        await Navigation.update(
+          { status: 0 },
+          { where: { scene: String(res.scene), id: { [Op.ne]: res.id }, status: 1 } }
+        )
+      }
       ctx.body = ctxBody({ success: true, code: 200, msg: '创建导航成功', data: res })
     } catch (e: any) {
       ctx.body = ctxBody({ success: false, code: 500, msg: '创建导航失败', data: e?.message || e })
@@ -107,12 +122,12 @@ class NavigationController {
 
   @routeConfig({
     method: 'put',
-    path: '/navigation/update',
+    path: '/navigation/:id',
     summary: '更新导航配置',
     tags: ['装修', '导航']
   })
   @body(z.object({
-    id: z.string().nonempty(),
+    id: z.string().optional(),
     name: z.string().optional(),
     scene: z.string().optional(),
     status: z.coerce.number().optional(),
@@ -123,13 +138,27 @@ class NavigationController {
   }))
   async update(ctx: Context) {
     try {
-      const { id, ...rest } = ctx.parsed.body as any
+      const pathId = (ctx.params as any)?.id
+      const { id: bodyId, ...rest } = ctx.parsed.body as any
+      const id = String(pathId || bodyId || '')
+      if (!id) {
+        ctx.body = ctxBody({ success: false, code: 400, msg: '缺少更新目标：id 必须在路径中提供', data: null })
+        return
+      }
       const payload = { ...rest }
       if (payload.config && typeof payload.config === 'object') {
         payload.config = JSON.stringify(payload.config)
       }
       await Navigation.update(payload, { where: { id } })
       const latest = await Navigation.findOne({ where: { id } })
+      // 保证同一个 scene 仅有一个激活记录
+      const latestScene = latest?.scene ?? rest?.scene
+      if (latestScene && Number(latest?.status ?? rest?.status) === 1) {
+        await Navigation.update(
+          { status: 0 },
+          { where: { scene: String(latestScene), id: { [Op.ne]: id }, status: 1 } }
+        )
+      }
       ctx.body = ctxBody({ success: true, code: 200, msg: '更新导航成功', data: latest })
     } catch (e: any) {
       ctx.body = ctxBody({ success: false, code: 500, msg: '更新导航失败', data: e?.message || e })
