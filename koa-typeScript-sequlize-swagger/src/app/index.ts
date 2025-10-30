@@ -30,9 +30,19 @@ app
   }))
   .use(loggerMiddleware)
   .use(async (ctx, next) => {
+    // CORS 设置：允许本地开发的跨域与自定义头
     ctx.set('Access-Control-Allow-Origin', '*')
-    ctx.set('Access-Control-Allow-Headers', 'Content-Type')
-    ctx.set('Access-Control-Allow-Methods', 'GET, POST, PUT,  DELETE')
+    // 允许前端发送的头，包含 Authorization 与 Blade-Auth 等
+    const reqHeaders = ctx.get('Access-Control-Request-Headers')
+    const allowHeaders = reqHeaders || 'Content-Type, Authorization, Blade-Auth'
+    ctx.set('Access-Control-Allow-Headers', allowHeaders)
+    ctx.set('Access-Control-Expose-Headers', 'Content-Type, Authorization, Blade-Auth')
+    ctx.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+    // 预检请求直接返回，避免浏览器阻塞
+    if (ctx.method === 'OPTIONS') {
+      ctx.status = 204
+      return
+    }
     await next()
   })
   .use(jwtMiddleware)
