@@ -25,6 +25,7 @@
   "license": "MIT",
   "description": "nodejs的后端模板,使用了koa,typescript,koa-swagger-decorator,zod等",
   "dependencies": {
+    "@faker-js/faker": "^9.9.0",
     "@types/koa-static": "^4.0.4",
     "axios": "^1.11.0",
     "crypto-js": "^4.2.0",
@@ -52,8 +53,8 @@
   "devDependencies": {
     "@koa/router": "^12.0.0",
     "@types/koa": "^2.15.0",
-    "@types/koa-bodyparser": "^4.3.12",
     "@types/koa__router": "^12.0.0",
+    "@types/koa-bodyparser": "^4.3.12",
     "@types/lodash": "^4.17.14",
     "cross-env": "^7.0.3",
     "koa-swagger-decorator": "^2.2.1",
