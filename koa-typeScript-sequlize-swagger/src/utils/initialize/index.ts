@@ -5,6 +5,7 @@ import md5 from 'md5'
 import User from '@/schema/user'
 import Navigation from '@/schema/navigation'
 import { info } from '@/config/log4j'
+import SystemPage from '@/schema/systemPage'
 
 // 初始化管理员用户
 export const setAdminUser = () => {
@@ -76,5 +77,37 @@ export const setDefaultNavigation = async () => {
     info('默认导航种子：创建成功')
   } catch (e) {
     info(`默认导航种子：创建失败 -> ${e?.message ?? e}`)
+  }
+}
+
+// 初始化系统页面（仅当指定 scene 下不存在未删除记录时）
+export const setDefaultSystemPages = async () => {
+  try {
+    const scene = 'yesong'
+    const count = await SystemPage.count({ where: { scene, isDeleted: 0 } })
+    if (count > 0) {
+      info(`系统页面种子：检测到 scene=${scene} 已存在 ${count} 条记录，跳过创建`)
+      return
+    }
+
+    const defaults = [
+      { key: 'home', name: '首页', title: '首页' },
+      { key: 'profile', name: '个人中心', title: '个人中心' },
+      { key: 'car', name: '购物车', title: '购物车' }
+    ]
+
+    for (const item of defaults) {
+      await SystemPage.create({
+        ...item,
+        scene,
+        isProtected: 1,
+        editUser: 'system',
+        description: '系统初始化默认页面（不可删除）'
+      })
+    }
+
+    info('系统页面种子：创建成功')
+  } catch (e: any) {
+    info(`系统页面种子：创建失败 -> ${e?.message ?? e}`)
   }
 }

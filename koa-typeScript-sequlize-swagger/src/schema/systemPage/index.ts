@@ -120,4 +120,12 @@ export default class SystemPage extends BaseModel {
     comment: '是否删除（0 否 1 是）'
   })
   declare isDeleted: number
+
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+    comment: '是否系统保护（1 为不可删除）'
+  })
+  declare isProtected: number
 }

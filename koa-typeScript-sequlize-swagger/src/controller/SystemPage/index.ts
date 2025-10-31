@@ -8,7 +8,7 @@ class SystemPageController {
     method: 'post',
     path: '/system-page/create',
     summary: '创建系统页面',
-    tags: ['装修', '系统页面']
+    tags: ['装修-系统装修']
   })
   @body(
     z.object({
@@ -81,7 +81,7 @@ class SystemPageController {
     method: 'put',
     path: '/system-page/:id',
     summary: '更新系统页面',
-    tags: ['装修', '系统页面']
+    tags: ['装修-系统装修']
   })
   @body(
     z.object({
@@ -157,7 +157,7 @@ class SystemPageController {
     method: 'delete',
     path: '/system-page/delete',
     summary: '删除系统页面',
-    tags: ['装修', '系统页面'],
+    tags: ['装修-系统装修'],
     request: {
       query: z.object({ id: z.string().nonempty() })
     }
@@ -165,6 +165,16 @@ class SystemPageController {
   async delete(ctx: any) {
     try {
       const { id } = ctx.parsed.query as any
+      // 先查询，若为系统保护页面则禁止删除
+      const row: any = await SystemPage.findOne({ where: { id } })
+      if (!row) {
+        ctx.body = ctxBody({ success: false, code: 404, msg: '指定页面不存在', data: null })
+        return
+      }
+      if (Number(row.isProtected) === 1) {
+        ctx.body = ctxBody({ success: false, code: 403, msg: '系统默认页面不可删除', data: { id } })
+        return
+      }
       // 软删除（paranoid）并标记 isDeleted
       await SystemPage.update({ isDeleted: 1 }, { where: { id } })
       const count = await SystemPage.destroy({ where: { id } })
@@ -182,7 +192,7 @@ class SystemPageController {
     method: 'get',
     path: '/system-page/detail',
     summary: '系统页面详情',
-    tags: ['装修', '系统页面'],
+    tags: ['装修-系统装修'],
     request: {
       query: z.object({ id: z.string().nonempty() })
     }
@@ -234,7 +244,7 @@ class SystemPageController {
     method: 'get',
     path: '/system-page/list',
     summary: '系统页面列表（分页）',
-    tags: ['装修', '系统页面'],
+    tags: ['装修-系统装修'],
     request: {
       query: z.object({
         scene: z.string().optional(),

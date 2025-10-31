@@ -8,7 +8,7 @@ class DecorateController {
     method: 'get',
     path: '/decorate/customize/list',
     summary: '自定义装修页面列表（分页）',
-    tags: ['装修', '自定义页面'],
+    tags: ['装修-自定义装修'],
     request: {
       query: z.object({
         scene: z.string().optional(),
