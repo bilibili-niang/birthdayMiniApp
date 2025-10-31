@@ -59,8 +59,8 @@ export default class SystemPage extends BaseModel {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
-    comment: '页面唯一键（如 services-list）'
+    allowNull: true,
+    comment: '页面唯一键（如 services-list）；自定义页面可为空'
   })
   declare key: string
 

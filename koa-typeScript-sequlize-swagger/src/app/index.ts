@@ -1,6 +1,7 @@
 // koa的挂载和静态资源开放等
 import koa from 'koa'
 import indexRouter from '@/router/index'
+import apiIndexRouter from '@/router/api-index'
 import koaBody from 'koa-body'
 import path from 'path'
 import onError from 'koa-onerror'
@@ -52,6 +53,8 @@ app
   // 开放上传目录作为静态资源，便于通过 /upload/filename 直接访问
   .use(staticFiles(path.join(__dirname, '../upload')))
   .use(indexRouter.routes())
+  // 同时挂载带 /api 前缀的路由，兼容前端请求以 /api 开头
+  .use(apiIndexRouter.routes())
   .on('error', async (err, ctx, next) => {
     ctx.status = 500
     error(JSON.stringify(err), {

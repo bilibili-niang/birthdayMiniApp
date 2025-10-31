@@ -13,7 +13,8 @@ class SystemPageController {
   @body(
     z.object({
       scene: z.string().nonempty(),
-      key: z.string().nonempty(),
+      // 自定义页面无需 key，系统页面可继续传入
+      key: z.string().optional(),
       title: z.string().nonempty(),
       tags: z.string().optional(),
       decorate: z.union([z.string(), z.record(z.any())]).optional(),

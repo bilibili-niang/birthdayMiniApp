@@ -93,7 +93,8 @@ export const setDefaultSystemPages = async () => {
     const defaults = [
       { key: 'home', name: '首页', title: '首页' },
       { key: 'profile', name: '个人中心', title: '个人中心' },
-      { key: 'car', name: '购物车', title: '购物车' }
+      // 修正系统页面键值：car -> cart，与前端保持一致
+      { key: 'cart', name: '购物车', title: '购物车' }
     ]
 
     for (const item of defaults) {

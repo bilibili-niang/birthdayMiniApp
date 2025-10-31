@@ -9,6 +9,7 @@ import Resume from '@/schema/resume'
 import IllegalRequest from '@/schema/illegalRequest'
 import Navigation from '@/schema/navigation'
 import SystemPage from '@/schema/systemPage'
+import CustomPage from '@/schema/customPage'
 
 // 根据环境确定数据库名称
 const NODE_ENV = process.env.NODE_ENV || 'local' // 默认使用 local 环境
@@ -37,7 +38,7 @@ const seq = new Sequelize(DATABASE_NAME, process.env.USER_NAME, process.env.DATA
     dialect: 'mysql',
     port: Number(process.env.DATABASE_PORT),
     logging: false,
-    models: [User, Authority, Resume, IllegalRequest, Navigation, SystemPage],
+    models: [User, Authority, Resume, IllegalRequest, Navigation, SystemPage, CustomPage],
     query: {
       raw: true
     }
