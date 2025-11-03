@@ -9,7 +9,7 @@ class NavigationController {
     method: 'get',
     path: '/navigation/actived',
     summary: '获取当前激活的导航配置（仅返回一条）',
-    tags: ['装修', '导航'],
+    tags: ['装修-系统装修'],
     request: {
       query: z.object({
         scene: z.string().optional(),
@@ -88,7 +88,7 @@ class NavigationController {
     method: 'post',
     path: '/navigation/create',
     summary: '创建导航配置',
-    tags: ['装修', '导航']
+    tags: ['装修-系统装修']
   })
   @body(z.object({
     name: z.string().nonempty(),
@@ -124,7 +124,7 @@ class NavigationController {
     method: 'put',
     path: '/navigation/:id',
     summary: '更新导航配置',
-    tags: ['装修', '导航']
+    tags: ['装修-系统装修']
   })
   @body(z.object({
     id: z.string().optional(),
@@ -169,7 +169,7 @@ class NavigationController {
     method: 'delete',
     path: '/navigation/delete',
     summary: '删除导航配置',
-    tags: ['装修', '导航'],
+    tags: ['装修-系统装修'],
     request: {
       query: z.object({ id: z.string().nonempty() })
     }
@@ -192,7 +192,7 @@ class NavigationController {
     method: 'get',
     path: '/navigation/detail',
     summary: '导航配置详情',
-    tags: ['装修', '导航'],
+    tags: ['装修-系统装修'],
     request: {
       query: z.object({ id: z.string().nonempty() })
     }
@@ -235,7 +235,7 @@ class NavigationController {
     method: 'get',
     path: '/navigation/list',
     summary: '导航配置列表（分页）',
-    tags: ['装修', '导航'],
+    tags: ['装修-系统装修'],
     request: {
       query: z.object({
         scene: z.string().optional(),

@@ -4,10 +4,12 @@ import Authority from '@/schema/authority'
 import * as process from 'node:process'
 import * as mysql from 'mysql2/promise'
 import { info } from './log4j'
-import { setAdminUser, setDefaultNavigation } from '@/utils/initialize'
+import { setAdminUser, setDefaultNavigation, setDefaultSystemPages } from '@/utils/initialize'
 import Resume from '@/schema/resume'
 import IllegalRequest from '@/schema/illegalRequest'
 import Navigation from '@/schema/navigation'
+import SystemPage from '@/schema/systemPage'
+import CustomPage from '@/schema/customPage'
 
 // 根据环境确定数据库名称
 const NODE_ENV = process.env.NODE_ENV || 'local' // 默认使用 local 环境
@@ -36,7 +38,7 @@ const seq = new Sequelize(DATABASE_NAME, process.env.USER_NAME, process.env.DATA
     dialect: 'mysql',
     port: Number(process.env.DATABASE_PORT),
     logging: false,
-    models: [User, Authority, Resume, IllegalRequest, Navigation],
+    models: [User, Authority, Resume, IllegalRequest, Navigation, SystemPage, CustomPage],
     query: {
       raw: true
     }
@@ -68,6 +70,8 @@ const seq = new Sequelize(DATABASE_NAME, process.env.USER_NAME, process.env.DATA
       setAdminUser()
       // 生成默认导航（仅在首次启动且表为空时）
       await setDefaultNavigation()
+      // 生成默认系统页面（仅在首次启动且指定场景无记录时）
+      await setDefaultSystemPages()
     } catch (syncError) {
       info(`表同步错误: ${syncError.message}`)
       throw syncError
