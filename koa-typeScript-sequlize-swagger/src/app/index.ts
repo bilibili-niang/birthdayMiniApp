@@ -50,6 +50,7 @@ app
   .use(jwtMiddleware)
   //开放html模板的静态目录,你可以把打包后的html文件放到这个目录下
   .use(staticFiles(path.join(__dirname, '../static/views/'), { extensions: ['html'] }))
+  .use(staticFiles(path.join(__dirname, '../static/icons/'), { extensions: ['png'] }))
   .use(staticFiles(path.join(__dirname, '../logs/'), { extensions: ['log'] }))
   // 开放上传目录作为静态资源，挂载到 /upload 前缀，访问 /upload/<filename>
   .use(mount('/upload', staticFiles(path.join(__dirname, '../upload'))))

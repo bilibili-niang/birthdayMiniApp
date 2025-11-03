@@ -2,8 +2,73 @@ import { body, routeConfig, z } from 'koa-swagger-decorator'
 import { Op } from 'sequelize'
 import { ctxBody, formatDateTime } from '@/utils'
 import CustomPage from '@/schema/customPage'
+import SystemPage from '@/schema/systemPage'
 
 class DecorateController {
+  @routeConfig({
+    method: 'get',
+    path: '/decorate/system/detail',
+    summary: '系统装修页面详情（按 key/scene 查询）',
+    tags: ['装修-系统装修'],
+    request: {
+      query: z.object({
+        key: z.string().nonempty(),
+        scene: z.string().optional()
+      })
+    }
+  })
+  async systemDetail(ctx: any) {
+    try {
+      const { key, scene } = ctx.parsed.query as any
+      if (!key) {
+        ctx.body = ctxBody({ success: false, code: 400, msg: 'key 不能为空', data: null })
+        return
+      }
+
+      const where: any = { key }
+      if (scene) where.scene = scene
+      where.isDeleted = 0
+
+      const row: any = await SystemPage.findOne({ where, order: [['updatedAt', 'DESC']] })
+      if (!row) {
+        ctx.body = ctxBody({ success: false, code: 404, msg: '未找到匹配的系统页面', data: null })
+        return
+      }
+
+      let parsedDecorate: any = null
+      if (row?.decorate) {
+        try { parsedDecorate = JSON.parse(row.decorate) } catch (_) { parsedDecorate = row.decorate }
+      }
+
+      ctx.body = ctxBody({
+        success: true,
+        code: 200,
+        msg: '获取系统装修页面详情成功',
+        data: {
+          id: row.id,
+          tenantId: row.tenantId,
+          key: row.key,
+          title: row.title,
+          tags: row.tags,
+          decorate: parsedDecorate,
+          origin: row.origin,
+          version: row.version,
+          createUser: row.createUser,
+          updateUser: row.updateUser,
+          createTime: formatDateTime(row.createdAt),
+          updateTime: formatDateTime(row.updatedAt),
+          isDeleted: row.isDeleted,
+          // 兼容旧字段
+          name: row.name,
+          scene: row.scene,
+          editUser: row.editUser,
+          description: row.description
+        }
+      })
+    } catch (e: any) {
+      ctx.body = ctxBody({ success: false, code: 500, msg: '获取系统装修页面详情失败', data: e?.message || e })
+    }
+  }
   @routeConfig({
     method: 'get',
     path: '/decorate/customize/list',
