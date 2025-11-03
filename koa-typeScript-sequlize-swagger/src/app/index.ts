@@ -6,6 +6,7 @@ import koaBody from 'koa-body'
 import path from 'path'
 import onError from 'koa-onerror'
 import staticFiles from 'koa-static'
+import mount from 'koa-mount'
 import { error, trace } from '@/config/log4j'
 import { ctxBody } from '@/utils'
 import { loggerMiddleware } from '@/middleware/loggerMiddleware'
@@ -50,8 +51,8 @@ app
   //开放html模板的静态目录,你可以把打包后的html文件放到这个目录下
   .use(staticFiles(path.join(__dirname, '../static/views/'), { extensions: ['html'] }))
   .use(staticFiles(path.join(__dirname, '../logs/'), { extensions: ['log'] }))
-  // 开放上传目录作为静态资源，便于通过 /upload/filename 直接访问
-  .use(staticFiles(path.join(__dirname, '../upload')))
+  // 开放上传目录作为静态资源，挂载到 /upload 前缀，访问 /upload/<filename>
+  .use(mount('/upload', staticFiles(path.join(__dirname, '../upload'))))
   .use(indexRouter.routes())
   // 同时挂载带 /api 前缀的路由，兼容前端请求以 /api 开头
   .use(apiIndexRouter.routes())
