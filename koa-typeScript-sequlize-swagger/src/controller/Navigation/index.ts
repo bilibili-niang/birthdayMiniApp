@@ -14,7 +14,6 @@ class NavigationController {
       query: z.object({
         scene: z.string().optional(),
         origin: z.string().optional(),
-        merchantId: z.string().optional()
       })
     }
   })

@@ -20,7 +20,6 @@ class SystemPageController {
       decorate: z.union([z.string(), z.record(z.any())]).optional(),
       origin: z.coerce.number().optional(),
       version: z.string().optional(),
-      merchantId: z.string().optional(),
       tenantId: z.string().optional(),
       editUser: z.string().optional(),
       description: z.string().optional(),
@@ -54,7 +53,6 @@ class SystemPageController {
         data: {
           id: res.id,
           tenantId: res.tenantId,
-          merchantId: res.merchantId,
           key: res.key,
           title: res.title,
           tags: res.tags,
@@ -94,7 +92,6 @@ class SystemPageController {
       decorate: z.union([z.string(), z.record(z.any())]).optional(),
       origin: z.coerce.number().optional(),
       version: z.string().optional(),
-      merchantId: z.string().optional(),
       tenantId: z.string().optional(),
       editUser: z.string().optional(),
       description: z.string().optional(),
@@ -131,7 +128,6 @@ class SystemPageController {
         data: {
           id: latest.id,
           tenantId: latest.tenantId,
-          merchantId: latest.merchantId,
           key: latest.key,
           title: latest.title,
           tags: latest.tags,
@@ -217,7 +213,6 @@ class SystemPageController {
         data: {
           id: row.id,
           tenantId: row.tenantId,
-          merchantId: row.merchantId,
           key: row.key,
           title: row.title,
           tags: row.tags,

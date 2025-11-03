@@ -47,7 +47,6 @@ class DecorateController {
         data: {
           id: row.id,
           tenantId: row.tenantId,
-          merchantId: row.merchantId,
           key: row.key,
           title: row.title,
           tags: row.tags,
