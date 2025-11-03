@@ -6,6 +6,7 @@ import User from '@/schema/user'
 import Navigation from '@/schema/navigation'
 import { info } from '@/config/log4j'
 import SystemPage from '@/schema/systemPage'
+import CustomPage from '@/schema/customPage'
 
 // 初始化管理员用户
 export const setAdminUser = () => {
@@ -83,31 +84,53 @@ export const setDefaultNavigation = async () => {
 // 初始化系统页面（仅当指定 scene 下不存在未删除记录时）
 export const setDefaultSystemPages = async () => {
   try {
-    const scene = 'yesong'
-    const count = await SystemPage.count({ where: { scene, isDeleted: 0 } })
-    if (count > 0) {
-      info(`系统页面种子：检测到 scene=${scene} 已存在 ${count} 条记录，跳过创建`)
-      return
-    }
-
-    const defaults = [
+    // 需要确保的系统页面键值
+    const requiredPages = [
       { key: 'home', name: '首页', title: '首页' },
-      { key: 'profile', name: '个人中心', title: '个人中心' },
-      // 修正系统页面键值：car -> cart，与前端保持一致
-      { key: 'cart', name: '购物车', title: '购物车' }
+      { key: 'category', name: '分类', title: '分类' },
+      { key: 'cart', name: '购物车', title: '购物车' },
+      { key: 'profile', name: '个人中心', title: '个人中心' }
     ]
 
-    for (const item of defaults) {
-      await SystemPage.create({
-        ...item,
-        scene,
-        isProtected: 1,
-        editUser: 'system',
-        description: '系统初始化默认页面（不可删除）'
-      })
+    // 收集所有已存在的场景（Navigation、CustomPage、SystemPage）
+    const scenes = new Set<string>()
+
+    const navScenes = await Navigation.findAll({ attributes: ['scene'] })
+    navScenes.forEach(s => s.scene && scenes.add(s.scene))
+
+    const customScenes = await CustomPage.findAll({ attributes: ['scene'] })
+    customScenes.forEach(s => s.scene && scenes.add(s.scene))
+
+    const sysScenes = await SystemPage.findAll({ attributes: ['scene'] })
+    sysScenes.forEach(s => s.scene && scenes.add(s.scene))
+
+    // 如果系统内尚未出现任何场景，则默认以 yesong 为初始场景
+    if (scenes.size === 0) {
+      scenes.add('yesong')
     }
 
-    info('系统页面种子：创建成功')
+    let createdCount = 0
+    for (const scene of scenes) {
+      for (const page of requiredPages) {
+        const exist = await SystemPage.findOne({ where: { scene, key: page.key, isDeleted: 0 } })
+        if (!exist) {
+          await SystemPage.create({
+            ...page,
+            scene,
+            isProtected: 1,
+            editUser: 'system',
+            description: '系统初始化默认页面（不可删除）'
+          })
+          createdCount++
+        }
+      }
+    }
+
+    if (createdCount > 0) {
+      info(`系统页面种子：已为 ${[...scenes].join(', ')} 创建 ${createdCount} 条缺失页面`)
+    } else {
+      info(`系统页面种子：所有场景的必备页面均已存在，无需创建`)
+    }
   } catch (e: any) {
     info(`系统页面种子：创建失败 -> ${e?.message ?? e}`)
   }
