@@ -1,0 +1,1 @@
+{"version":3,"file":"js/326.js","mappings":";;;;;;;;AAA8C;AAM9C,+DAAeA,mEAAe,E","sources":["webpack://@anteng/yesong/./src/pages/login.tsx"],"sourcesContent":["import { CommonLoginPage } from '@anteng/core'\r\n\r\ndefinePageConfig({\r\n  navigationStyle: 'custom'\r\n})\r\n\r\nexport default CommonLoginPage\r\n"],"names":["CommonLoginPage"],"sourceRoot":""}

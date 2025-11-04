@@ -1,0 +1,29 @@
+.custom-page-error {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.85714rem;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  color: #ddd;
+  font-weight: bold;
+}
+
+.index-page__tab-page .custom-page-content {
+  padding-bottom: 0.85714rem;
+  padding-bottom: 4.35714rem;
+  padding-bottom: calc(4.35714rem + constant(safe-area-inset-bottom) * 1);
+  padding-bottom: calc(4.35714rem + env(safe-area-inset-bottom) * 1);
+  /* #ifndef h5 */
+  /* #endif */
+}
+
+/*# sourceMappingURL=885.1a35a784e976575ab629.css.map*/
