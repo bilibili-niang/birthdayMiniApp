@@ -1,12 +1,13 @@
 // koa的挂载和静态资源开放等
 import koa from 'koa'
-import indexRouter from '@/router/index'
+import indexRouter, { isLegalRoute } from '@/router/index'
 import apiIndexRouter from '@/router/api-index'
 import koaBody from 'koa-body'
 import path from 'path'
 import onError from 'koa-onerror'
 import staticFiles from 'koa-static'
 import mount from 'koa-mount'
+import fs from 'fs'
 import { error, trace } from '@/config/log4j'
 import { ctxBody } from '@/utils'
 import { loggerMiddleware } from '@/middleware/loggerMiddleware'
@@ -57,6 +58,44 @@ app
   .use(indexRouter.routes())
   // 同时挂载带 /api 前缀的路由，兼容前端请求以 /api 开头
   .use(apiIndexRouter.routes())
+  // SPA 路由回退：当请求的路径没有匹配到任何接口或静态文件时，返回就近的 index.html
+  .use(async (ctx, next) => {
+    // 先让前面中间件（静态与路由）有机会处理
+    await next()
+
+    const method = ctx.method
+    const pathName = ctx.path
+
+    // 仅对 GET/HEAD 并且未产生响应的请求做回退处理
+    const isGetLike = method === 'GET' || method === 'HEAD'
+    const noResponse = ctx.body === undefined || ctx.status === 404
+    const matchedRoute = isLegalRoute(method, pathName)
+
+    if (isGetLike && noResponse && !matchedRoute) {
+      const viewsRoot = path.join(__dirname, '../static/views')
+
+      // 逐级向上查找最近的 index.html
+      const segments = pathName.split('/').filter(Boolean)
+      for (let i = segments.length; i >= 1; i--) {
+        const candidate = path.join(viewsRoot, ...segments.slice(0, i), 'index.html')
+        if (fs.existsSync(candidate)) {
+          ctx.type = 'html'
+          ctx.status = 200
+          ctx.body = fs.createReadStream(candidate)
+          return
+        }
+      }
+
+      // 根目录兜底：/static/views/index.html
+      const rootIndex = path.join(viewsRoot, 'index.html')
+      if (fs.existsSync(rootIndex)) {
+        ctx.type = 'html'
+        ctx.status = 200
+        ctx.body = fs.createReadStream(rootIndex)
+        return
+      }
+    }
+  })
   .on('error', async (err, ctx, next) => {
     ctx.status = 500
     error(JSON.stringify(err), {
@@ -70,7 +109,11 @@ app
     })
     ctx.body = ctxBody({ data: err })
   })
-  .use((ctx, next) => {
+  // 未匹配到任何资源时才返回自定义 404 响应
+  .use((ctx) => {
+    if (ctx.body !== undefined && ctx.status !== 404) {
+      return
+    }
     trace('未知url ' + ctx.request.url, {
       ip: ctx.ip,
       method: ctx.method,
@@ -80,8 +123,9 @@ app
       payload: ctx.request.body ?? ctx.query,
       userAgent: ctx.headers['user-agent'] as string
     })
+    ctx.status = 404
     ctx.body = ctxBody({
-      code: 500,
+      code: 404,
       msg: `这里是无人之境`,
     })
   })
