@@ -13,6 +13,9 @@ import { ctxBody } from '@/utils'
 import { loggerMiddleware } from '@/middleware/loggerMiddleware'
 import { jwtMiddleware } from '@/middleware'
 
+// yesong H5 构建产物目录（挂载到 /mini-app）
+const yesongH5Root = path.resolve(__dirname, '../../../../web-mini/apps/yesong/dist/h5/mini-app')
+
 const app = new koa()
 // 监听错误的
 onError(app, {
@@ -55,6 +58,8 @@ app
   .use(staticFiles(path.join(__dirname, '../logs/'), { extensions: ['log'] }))
   // 开放上传目录作为静态资源，挂载到 /upload 前缀，访问 /upload/<filename>
   .use(mount('/upload', staticFiles(path.join(__dirname, '../upload'))))
+  // 将 web-mini 的 H5 打包产物挂载到 /mini-app，直接提供静态资源服务
+  .use(mount('/mini-app', staticFiles(yesongH5Root)))
   .use(indexRouter.routes())
   // 同时挂载带 /api 前缀的路由，兼容前端请求以 /api 开头
   .use(apiIndexRouter.routes())
@@ -76,6 +81,20 @@ app
         ctx.status = 200
         ctx.body = fs.createReadStream(adminIndex)
         return
+      }
+    }
+
+    // 当访问 /mini-app 且未被前面中间件处理时，对非静态资源做 SPA 回退到打包入口
+    if (isGetLike && noResponse && pathName.startsWith('/mini-app')) {
+      const isAsset = /\.(js|css|png|jpe?g|gif|svg|ico|json|map|woff2?|ttf)$/.test(pathName)
+      if (!isAsset) {
+        const miniIndex = path.join(yesongH5Root, 'index.html')
+        if (fs.existsSync(miniIndex)) {
+          ctx.type = 'html'
+          ctx.status = 200
+          ctx.body = fs.createReadStream(miniIndex)
+          return
+        }
       }
     }
   })
