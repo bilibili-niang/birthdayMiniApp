@@ -38,3 +38,4 @@ deploy_versions/
 .temp/
 .rn_temp/
 .swc
+/koa-typeScript-sequlize-swagger/src/static/views/yesong-admin/
