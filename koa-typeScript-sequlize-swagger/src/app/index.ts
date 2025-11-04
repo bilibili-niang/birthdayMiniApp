@@ -1,6 +1,6 @@
 // koa的挂载和静态资源开放等
 import koa from 'koa'
-import indexRouter, { isLegalRoute } from '@/router/index'
+import indexRouter from '@/router/index'
 import apiIndexRouter from '@/router/api-index'
 import koaBody from 'koa-body'
 import path from 'path'
@@ -58,40 +58,23 @@ app
   .use(indexRouter.routes())
   // 同时挂载带 /api 前缀的路由，兼容前端请求以 /api 开头
   .use(apiIndexRouter.routes())
-  // SPA 路由回退：当请求的路径没有匹配到任何接口或静态文件时，返回就近的 index.html
+  // SPA 路由回退：仅对 yesong-admin 前缀的路径进行回退，返回固定入口 index.html
   .use(async (ctx, next) => {
     // 先让前面中间件（静态与路由）有机会处理
     await next()
 
     const method = ctx.method
     const pathName = ctx.path
-
-    // 仅对 GET/HEAD 并且未产生响应的请求做回退处理
     const isGetLike = method === 'GET' || method === 'HEAD'
     const noResponse = ctx.body === undefined || ctx.status === 404
-    const matchedRoute = isLegalRoute(method, pathName)
 
-    if (isGetLike && noResponse && !matchedRoute) {
-      const viewsRoot = path.join(__dirname, '../static/views')
-
-      // 逐级向上查找最近的 index.html
-      const segments = pathName.split('/').filter(Boolean)
-      for (let i = segments.length; i >= 1; i--) {
-        const candidate = path.join(viewsRoot, ...segments.slice(0, i), 'index.html')
-        if (fs.existsSync(candidate)) {
-          ctx.type = 'html'
-          ctx.status = 200
-          ctx.body = fs.createReadStream(candidate)
-          return
-        }
-      }
-
-      // 根目录兜底：/static/views/index.html
-      const rootIndex = path.join(viewsRoot, 'index.html')
-      if (fs.existsSync(rootIndex)) {
+    // 仅当以 /yesong-admin 开头且没有被前面中间件处理时，回退到固定入口
+    if (isGetLike && noResponse && pathName.startsWith('/yesong-admin')) {
+      const adminIndex = path.join(__dirname, '../static/views/yesong-admin/index.html')
+      if (fs.existsSync(adminIndex)) {
         ctx.type = 'html'
         ctx.status = 200
-        ctx.body = fs.createReadStream(rootIndex)
+        ctx.body = fs.createReadStream(adminIndex)
         return
       }
     }
