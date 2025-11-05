@@ -63,7 +63,7 @@ app
   .use(indexRouter.routes())
   // 同时挂载带 /api 前缀的路由，兼容前端请求以 /api 开头
   .use(apiIndexRouter.routes())
-  // SPA 路由回退：仅对 yesong-admin 前缀的路径进行回退，返回固定入口 index.html
+  // SPA 路由回退：优先匹配 mini-app，其次匹配 yesong-admin
   .use(async (ctx, next) => {
     // 先让前面中间件（静态与路由）有机会处理
     await next()
@@ -73,19 +73,8 @@ app
     const isGetLike = method === 'GET' || method === 'HEAD'
     const noResponse = ctx.body === undefined || ctx.status === 404
 
-    // 仅当以 /yesong-admin 开头且没有被前面中间件处理时，回退到固定入口
-    if (isGetLike && noResponse && pathName.startsWith('/yesong-admin')) {
-      const adminIndex = path.join(__dirname, '../static/views/yesong-admin/index.html')
-      if (fs.existsSync(adminIndex)) {
-        ctx.type = 'html'
-        ctx.status = 200
-        ctx.body = fs.createReadStream(adminIndex)
-        return
-      }
-    }
-
-    // 当访问 /mini-app 且未被前面中间件处理时，对非静态资源做 SPA 回退到打包入口
-    if (isGetLike && noResponse && pathName.startsWith('/mini-app')) {
+    // 1) mini-app 优先：当路径包含 mini-app 且未被处理时，对非静态资源回退到打包入口
+    if (isGetLike && noResponse && pathName.includes('mini-app')) {
       const isAsset = /\.(js|css|png|jpe?g|gif|svg|ico|json|map|woff2?|ttf)$/.test(pathName)
       if (!isAsset) {
         const miniIndex = path.join(yesongH5Root, 'index.html')
@@ -95,6 +84,17 @@ app
           ctx.body = fs.createReadStream(miniIndex)
           return
         }
+      }
+    }
+
+    // 2) yesong-admin 兜底：当以 /yesong-admin 开头且未被处理时，回退到 admin 的入口
+    if (isGetLike && noResponse && pathName.startsWith('/yesong-admin')) {
+      const adminIndex = path.join(__dirname, '../static/views/yesong-admin/index.html')
+      if (fs.existsSync(adminIndex)) {
+        ctx.type = 'html'
+        ctx.status = 200
+        ctx.body = fs.createReadStream(adminIndex)
+        return
       }
     }
   })
