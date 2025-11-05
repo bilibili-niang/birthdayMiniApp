@@ -7,6 +7,7 @@ import Navigation from '@/schema/navigation'
 import { info } from '@/config/log4j'
 import SystemPage from '@/schema/systemPage'
 import CustomPage from '@/schema/customPage'
+import { defaultPages } from '@/config'
 
 // 初始化管理员用户
 export const setAdminUser = () => {
@@ -85,12 +86,7 @@ export const setDefaultNavigation = async () => {
 export const setDefaultSystemPages = async () => {
   try {
     // 需要确保的系统页面键值
-    const requiredPages = [
-      { key: 'home', name: '首页', title: '首页' },
-      { key: 'category', name: '分类', title: '分类' },
-      { key: 'cart', name: '购物车', title: '购物车' },
-      { key: 'profile', name: '个人中心', title: '个人中心' }
-    ]
+    const requiredPages =defaultPages
 
     // 收集所有已存在的场景（Navigation、CustomPage、SystemPage）
     const scenes = new Set<string>()

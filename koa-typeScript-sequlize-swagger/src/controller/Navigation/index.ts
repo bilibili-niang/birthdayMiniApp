@@ -176,6 +176,16 @@ class NavigationController {
   async delete(ctx: Context) {
     try {
       const { id } = ctx.parsed.query as any
+      // 先查询，若状态为启用（使用中）则禁止删除
+      const row: any = await Navigation.findOne({ where: { id } })
+      if (!row) {
+        ctx.body = ctxBody({ success: false, code: 404, msg: '指定导航不存在', data: null })
+        return
+      }
+      if (Number(row.status) === 1) {
+        ctx.body = ctxBody({ success: false, code: 403, msg: '当前导航处于使用中，无法删除，请先禁用', data: { id } })
+        return
+      }
       const count = await Navigation.destroy({ where: { id } })
       if (count === 0) {
         ctx.body = ctxBody({ success: false, code: 404, msg: '指定导航不存在', data: null })
