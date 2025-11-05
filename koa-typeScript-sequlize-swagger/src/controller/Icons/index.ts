@@ -24,6 +24,24 @@ const isImage = (filename: string) => {
   return filename.match(/\.(png|jpg|jpeg|gif|webp|svg)$/i)
 }
 
+const toPosixPath = (p: string) => p.split(path.sep).join('/')
+
+const collectImagesRecursive = (dir: string, baseRoot: string): string[] => {
+  const result: string[] = []
+  const items = fs.readdirSync(dir)
+  for (const name of items) {
+    const full = path.join(dir, name)
+    const stat = fs.statSync(full)
+    if (stat.isDirectory()) {
+      result.push(...collectImagesRecursive(full, baseRoot))
+    } else if (stat.isFile() && isImage(name)) {
+      const rel = path.relative(baseRoot, full)
+      result.push(toPosixPath(rel))
+    }
+  }
+  return result
+}
+
 class IconsController {
   @routeConfig({
     method: 'get',
@@ -55,32 +73,28 @@ class IconsController {
         .readdirSync(iconsRoot)
         .filter((name) => fs.statSync(path.join(iconsRoot, name)).isDirectory())
 
-      // 如果传入 cate，则仅返回该分类
       if (cateFromQuery) {
         categories = categories.filter((name) => name === cateFromQuery)
       }
 
-      const data: SourceTab[] = categories.map((cate) => {
-        const dir = path.join(iconsRoot, cate)
-        const files = fs
-          .readdirSync(dir)
-          .filter((f) => fs.statSync(path.join(dir, f)).isFile())
-          .filter((f) => !!isImage(f))
+      const data: SourceTab[] = categories
+        .map((cate) => {
+          const relPaths = collectImagesRecursive(path.join(iconsRoot, cate), iconsRoot)
+          if (!relPaths.length) return null
+          const sources: ImageItem[] = relPaths.map((rel) => ({
+            url: encodeURI(`${origin}/${rel}`),
+            width: 400,
+            height: 400,
+            name: path.basename(rel),
+            alias: ''
+          }))
 
-        const sources: ImageItem[] = files.map((f) => ({
-          // 注意：不带域名，前端会按环境变量拼接域名
-          url: `${origin}/${cate}/${f}`,
-          width: 400,
-          height: 400,
-          name: f,
-          alias: ''
-        }))
-
-        return {
-          title: cate,
-          sources
-        }
-      })
+          return {
+            title: cate,
+            sources
+          }
+        })
+        .filter(Boolean) as SourceTab[]
 
       ctx.body = ctxBody({ success: true, code: 200, msg: '获取图标素材成功', data })
     } catch (e: any) {
