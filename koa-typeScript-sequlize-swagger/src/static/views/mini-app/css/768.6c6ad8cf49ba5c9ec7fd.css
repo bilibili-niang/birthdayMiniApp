@@ -1,0 +1,133 @@
+.goods-sku-modal .actions .action-item.primary {
+  background-color: rgb(132, 71, 25);
+}
+
+.goods-sku-modal .spec-item.selected {
+  border-color: rgb(132, 71, 25);
+  background-color: rgba(132, 71, 25, 0.08);
+  color: rgb(132, 71, 25);
+}
+
+page,
+:root {
+  --anteng-color-primary: rgba(132, 71, 25, 1);
+  --anteng-color-primary-rgb: 132, 71, 25;
+  --anteng-color-primary-400: rgba(132, 71, 25, 1);
+  --anteng-color-primary-600: rgba(114, 63, 22, 1);
+}
+
+.community-publish {
+  padding: 1.14286rem;
+}
+
+.form-item {
+  margin-bottom: 0.85714rem;
+}
+
+.form-item .label {
+  font-size: 0.92857rem;
+  color: #666;
+}
+
+.form-item .input,
+.form-item .textarea {
+  margin-top: 0.42857rem;
+  display: block;
+  width: 100%;
+  background: #fff;
+  border: 0.07143rem solid #e6e6e6;
+  border-radius: 0.85714rem;
+  padding: 0.71429rem 0.85714rem;
+  font-size: 1rem;
+  -webkit-transition: border-color 0.2s ease, -webkit-box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, -webkit-box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, -webkit-box-shadow 0.2s ease;
+}
+
+.form-item .input {
+  height: 2.85714rem;
+  line-height: 1.42857rem;
+}
+
+.form-item .input::-webkit-input-placeholder, .form-item .textarea::-webkit-input-placeholder {
+  color: #9aa0a6;
+}
+
+.form-item .input::-moz-placeholder, .form-item .textarea::-moz-placeholder {
+  color: #9aa0a6;
+}
+
+.form-item .input:-ms-input-placeholder, .form-item .textarea:-ms-input-placeholder {
+  color: #9aa0a6;
+}
+
+.form-item .input::-ms-input-placeholder, .form-item .textarea::-ms-input-placeholder {
+  color: #9aa0a6;
+}
+
+.form-item .input::placeholder,
+.form-item .textarea::placeholder {
+  color: #9aa0a6;
+}
+
+.form-item .input:focus,
+.form-item .textarea:focus {
+  border-color: rgb(132, 71, 25);
+  -webkit-box-shadow: 0 0 0 0.21429rem rgba(132, 71, 25, 0.15);
+          box-shadow: 0 0 0 0.21429rem rgba(132, 71, 25, 0.15);
+}
+
+.form-item .textarea {
+  min-height: 8.57143rem;
+  line-height: 1.6;
+}
+
+.upload-hint {
+  margin-top: 0.57143rem;
+  padding: 0.85714rem;
+  background: #fafafa;
+  border: 0.07143rem dashed #e5e5e5;
+  border-radius: 0.57143rem;
+  color: #999;
+  font-size: 0.85714rem;
+}
+
+.publish-actions {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0.85714rem;
+  bottom: 12px;
+  bottom: calc(0.85714rem + constant(safe-area-inset-bottom) * 1);
+  bottom: calc(0.85714rem + env(safe-area-inset-bottom) * 1);
+  /* #ifndef h5 */
+  /* #endif */
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.71429rem;
+  margin-top: 1.14286rem;
+}
+
+.publish-actions .btn {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 2.57143rem;
+  line-height: 2.57143rem;
+  border-radius: 1.28571rem;
+  text-align: center;
+}
+
+.publish-actions .btn.ghost {
+  background: #fff;
+  border: 0.07143rem solid #e5e5e5;
+  color: #333;
+}
+
+.publish-actions .btn.primary {
+  background: rgb(132, 71, 25);
+  color: #fff;
+}
+
+/*# sourceMappingURL=768.6c6ad8cf49ba5c9ec7fd.css.map*/
