@@ -7,5 +7,6 @@ export const defaultPages = [
   { key: 'coffeeHome', name: '测试-咖啡首页', title: '测试-咖啡首页' },
   { key: 'coffeeMine', name: '测试-个人中心', title: '测试-个人中心' },
   { key: 'coffeeOrder', name: '测试-点单列表', title: '测试-点单列表' },
-  { key: 'coffeeWorkShop', name: '测试-文创列表', title: '测试-文创列表' }
+  { key: 'coffeeWorkShop', name: '测试-文创列表', title: '测试-文创列表' },
+  { key: 'coffeeCommunity', name: '测试-社区', title: '测试-社区' }
 ]
