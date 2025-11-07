@@ -1004,8 +1004,8 @@ var taro = __webpack_require__(1880);
 var interaction = __webpack_require__(7888);
 // EXTERNAL MODULE: ./src/packageA/posterMaking/create/dataProcessing/index.ts
 var dataProcessing = __webpack_require__(1810);
-// EXTERNAL MODULE: ../../packages/ui/src/index.ts + 20 modules
-var src = __webpack_require__(5788);
+// EXTERNAL MODULE: ../../packages/ui/src/index.ts + 27 modules
+var src = __webpack_require__(4176);
 // EXTERNAL MODULE: ./src/packageA/posterMaking/create/PosterBuilder/index.vue + 5 modules
 var PosterBuilder = __webpack_require__(1987);
 // EXTERNAL MODULE: ../../node_modules/.pnpm/pinia@2.3.1_typescript@5.9.3_vue@3.5.22_typescript@5.9.3_/node_modules/pinia/dist/pinia.mjs + 1 modules
@@ -1035,8 +1035,8 @@ var downloadImage = function downloadImage(src) {
 };
 // EXTERNAL MODULE: ./src/stores/index.ts + 3 modules
 var stores = __webpack_require__(6685);
-// EXTERNAL MODULE: ../../packages/core/src/api/index.ts
-var api = __webpack_require__(9394);
+// EXTERNAL MODULE: ../../packages/core/src/api/index.ts + 2 modules
+var api = __webpack_require__(6319);
 // EXTERNAL MODULE: ./src/packageA/posterMaking/create/PosterBuilder/utils/tools.ts
 var tools = __webpack_require__(962);
 // EXTERNAL MODULE: ../../packages/config/index.ts + 1 modules

@@ -10,7 +10,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _anteng_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4078);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4243);
 /* harmony import */ var _tarojs_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6618);
-/* harmony import */ var _anteng_ui__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5788);
+/* harmony import */ var _anteng_ui__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4176);
 /* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1880);
 /* harmony import */ var _components_goods_list__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7889);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(3058);

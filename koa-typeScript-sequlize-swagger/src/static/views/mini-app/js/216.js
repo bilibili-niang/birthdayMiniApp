@@ -844,7 +844,7 @@ var constants_discount_coupon = __webpack_require__(3674);
 
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(419);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8506);
-/* harmony import */ var _anteng_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5788);
+/* harmony import */ var _anteng_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4176);
 /* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3939);
 /* harmony import */ var _anteng_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4078);
 
@@ -1034,7 +1034,7 @@ var DISCOUNT_COUPON_SCENE_OPTIONS = [{
 /* unused harmony export useGoodsSuitableShops */
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(419);
 /* harmony import */ var E_anteng_web_mini_node_modules_pnpm_babel_runtime_7_28_4_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7970);
-/* harmony import */ var _anteng_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5788);
+/* harmony import */ var _anteng_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4176);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4243);
 /* harmony import */ var _shop_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3401);
 /* harmony import */ var _anteng_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4078);
@@ -1256,7 +1256,7 @@ var ShopList = (0,vue__WEBPACK_IMPORTED_MODULE_0__/* .defineComponent */ .pM)({
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(419);
-/* harmony import */ var _anteng_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5788);
+/* harmony import */ var _anteng_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4176);
 /* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8892);
 /* harmony import */ var _anteng_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2344);
 /* harmony import */ var _constants_discount_coupon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3674);
@@ -1486,8 +1486,8 @@ var discount_coupon = __webpack_require__(7591);
 // EXTERNAL MODULE: ../../node_modules/.pnpm/dayjs@1.11.18/node_modules/dayjs/dayjs.min.js
 var dayjs_min = __webpack_require__(6552);
 var dayjs_min_default = /*#__PURE__*/__webpack_require__.n(dayjs_min);
-// EXTERNAL MODULE: ../../packages/ui/src/index.ts + 20 modules
-var src = __webpack_require__(5788);
+// EXTERNAL MODULE: ../../packages/ui/src/index.ts + 27 modules
+var src = __webpack_require__(4176);
 // EXTERNAL MODULE: ./src/router/index.ts + 1 modules
 var router = __webpack_require__(3058);
 // EXTERNAL MODULE: ./src/constants/discount-coupon.ts
@@ -2585,7 +2585,7 @@ var couponReceiveCountLimitOptions = [{
 /* harmony export */   g: function() { return /* binding */ CouponItemButton; }
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(419);
-/* harmony import */ var _anteng_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5788);
+/* harmony import */ var _anteng_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4176);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8506);
 /* harmony import */ var _anteng_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4078);
 /* harmony import */ var _packages_utils_src_render__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3113);
