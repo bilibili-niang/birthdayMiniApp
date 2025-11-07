@@ -78,8 +78,8 @@ var components = __webpack_require__(6618);
 var global = __webpack_require__(63);
 // EXTERNAL MODULE: ../../packages/core/lib.ts + 30 modules
 var lib = __webpack_require__(4078);
-// EXTERNAL MODULE: ../../packages/ui/src/index.ts + 20 modules
-var src = __webpack_require__(5788);
+// EXTERNAL MODULE: ../../packages/ui/src/index.ts + 27 modules
+var src = __webpack_require__(4176);
 // EXTERNAL MODULE: ../../node_modules/.pnpm/@vue+runtime-dom@3.5.22/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js
 var runtime_dom_esm_bundler = __webpack_require__(8506);
 // EXTERNAL MODULE: ./src/api/order/index.ts
@@ -178,8 +178,8 @@ var router = __webpack_require__(3058);
 }));
 // EXTERNAL MODULE: ./src/api/index.ts + 4 modules
 var api = __webpack_require__(5816);
-// EXTERNAL MODULE: ./src/utils/index.tsx + 4 modules
-var utils = __webpack_require__(4569);
+// EXTERNAL MODULE: ./src/utils/index.tsx + 3 modules
+var utils = __webpack_require__(2753);
 // EXTERNAL MODULE: ./src/api/coupon/index.ts
 var coupon = __webpack_require__(590);
 // EXTERNAL MODULE: ./src/constants/index.ts + 3 modules
@@ -213,6 +213,8 @@ var useDiscountCouponStore = (0,pinia/* defineStore */.nY)('discount-coupon', fu
 });
 // EXTERNAL MODULE: ../../packages/config/index.ts + 1 modules
 var config = __webpack_require__(3250);
+// EXTERNAL MODULE: ./src/api/request.ts
+var request = __webpack_require__(2422);
 ;// ./src/packageMain/tab-pages/profile/index.tsx
 
 
@@ -222,7 +224,7 @@ var config = __webpack_require__(3250);
 
 
 
-// import Assets from './assets'
+
 
 
 
@@ -253,6 +255,8 @@ function _isSlot(s) {
       isLogin = _storeToRefs2.isLogin,
       nickname = _storeToRefs2.nickname,
       phone = _storeToRefs2.phone;
+    console.log('user.value:');
+    console.log(user.value);
     var logout = function logout() {
       return userStore.logout();
     };
@@ -300,8 +304,6 @@ function _isSlot(s) {
       }
     });
     var discountCouponStore = useDiscountCouponStore();
-    var _storeToRefs4 = (0,pinia/* storeToRefs */.bP)(discountCouponStore),
-      discountCouponCounts = _storeToRefs4.discountCouponCounts;
     (0,runtime_core_esm_bundler/* onMounted */.sV)(function () {
       isLogin.value && init();
       discountCouponStore.getDiscountCouponCounts();
@@ -317,10 +319,13 @@ function _isSlot(s) {
         "style": commonNavigatorStyle.value
       }, null), isLogin.value ? (0,runtime_core_esm_bundler/* createVNode */.bF)("div", {
         "class": "user-info",
-        "onClick": router/* navigateToSettings */.Ox
+        "onClick": function onClick() {
+          console.log('user.value:');
+          console.log(user.value);
+        }
       }, [(0,runtime_core_esm_bundler/* createVNode */.bF)("img", {
         "class": "user-avatar",
-        "src": user.value.avatar || config/* DEFAULT_AVATAR */.k_,
+        "src": request/* REQUEST_DOMAIN */.F7 + user.value.avatar || config/* DEFAULT_AVATAR */.k_,
         "alt": ""
       }, null), (0,runtime_core_esm_bundler/* createVNode */.bF)("div", {
         "class": "user-info-text"

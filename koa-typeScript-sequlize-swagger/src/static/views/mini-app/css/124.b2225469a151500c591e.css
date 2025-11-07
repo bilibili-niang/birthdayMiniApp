@@ -1,0 +1,29 @@
+.p_goods-list__search {
+  width: 100%;
+  height: 2.28571rem;
+  background-color: #f5f6fa;
+  border-radius: 2.28571rem;
+  position: relative;
+  z-index: 0;
+}
+.p_goods-list__search .anteng-search {
+  pointer-events: none;
+}
+.p_goods-list__search .clear {
+  width: 1.71429rem;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 20;
+}
+.p_goods-list__content {
+  padding-bottom: 1.71429rem;
+  padding-bottom: 24px;
+  padding-bottom: calc(1.71429rem + constant(safe-area-inset-bottom) * 1);
+  padding-bottom: calc(1.71429rem + env(safe-area-inset-bottom) * 1);
+  /* #ifndef h5 */
+  /* #endif */
+}
+
+/*# sourceMappingURL=124.b2225469a151500c591e.css.map*/

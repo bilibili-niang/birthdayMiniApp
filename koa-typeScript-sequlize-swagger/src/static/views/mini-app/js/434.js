@@ -18,8 +18,8 @@ var runtime_core_esm_bundler = __webpack_require__(419);
 var lib = __webpack_require__(4078);
 // EXTERNAL MODULE: ../../node_modules/.pnpm/@vue+reactivity@3.5.22/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js
 var reactivity_esm_bundler = __webpack_require__(4243);
-// EXTERNAL MODULE: ../../packages/ui/src/index.ts + 20 modules
-var src = __webpack_require__(5788);
+// EXTERNAL MODULE: ../../packages/ui/src/index.ts + 27 modules
+var src = __webpack_require__(4176);
 // EXTERNAL MODULE: ./src/router/index.ts + 1 modules
 var router = __webpack_require__(3058);
 // EXTERNAL MODULE: ../../node_modules/.pnpm/@tarojs+taro-h5@3.6.19_post_da7972770e25b9a0e4578ad5dbaa81ed/node_modules/@tarojs/taro-h5/dist/api/taro.js

@@ -78,8 +78,8 @@ var components = __webpack_require__(6618);
 var reactivity_esm_bundler = __webpack_require__(4243);
 // EXTERNAL MODULE: ../../node_modules/.pnpm/pinia@2.3.1_typescript@5.9.3_vue@3.5.22_typescript@5.9.3_/node_modules/pinia/dist/pinia.mjs + 1 modules
 var pinia = __webpack_require__(9700);
-// EXTERNAL MODULE: ../../packages/ui/src/index.ts + 20 modules
-var src = __webpack_require__(5788);
+// EXTERNAL MODULE: ../../packages/ui/src/index.ts + 27 modules
+var src = __webpack_require__(4176);
 ;// ../../node_modules/.pnpm/@nutui+nutui-taro@4.3.14_vue@3.5.22_typescript@5.9.3_/node_modules/@nutui/nutui-taro/dist/packages/ellipsis/index.css
 // extracted by mini-css-extract-plugin
 

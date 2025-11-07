@@ -1,0 +1,70 @@
+.launch-page__logo {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.launch-page__logo-image {
+  width: 3.42857rem;
+  height: 3.42857rem;
+  background-color: #f3f3f3;
+  border-radius: 0.57143rem;
+  margin-right: 0.85714rem;
+  margin-left: -0.85714rem;
+}
+
+.launch-page__logo-text {
+  font-size: 1.71429rem;
+  font-weight: bold;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  background: -webkit-linear-gradient(145deg, #4c53d2, #2fb3ff);
+  background: -webkit-linear-gradient(305deg, #4c53d2, #2fb3ff);
+  background: linear-gradient(145deg, #4c53d2, #2fb3ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.launch-get-merchant-error {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80vh;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: rgba(0, 0, 0, 0.35);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2;
+}
+
+.launch-get-merchant-error .btn {
+  width: 8.57143rem;
+  height: 2.28571rem;
+  background-color: var(--anteng-color-primary);
+  color: var(--anteng-color-primary-text, #fff);
+  margin-top: 1.71429rem;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 2.28571rem;
+}
+
+/*# sourceMappingURL=472.fa78dcda7bee0cdc07eb.css.map*/

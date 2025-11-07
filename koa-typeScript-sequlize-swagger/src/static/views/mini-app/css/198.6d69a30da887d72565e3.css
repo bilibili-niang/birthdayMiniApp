@@ -1,0 +1,67 @@
+.jd-cashier-page {
+  overflow: hidden;
+}
+
+.jd-cashier {
+  padding: 0.85714rem 1.07143rem;
+  background-color: #fff;
+  margin: 0.85714rem;
+  border-radius: 0.71429rem;
+  border: 0.14286rem solid #fff;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 84, 84, 0.1)), to(#fff));
+  background-image: -webkit-linear-gradient(top, rgba(255, 84, 84, 0.1), #fff);
+  background-image: linear-gradient(to bottom, rgba(255, 84, 84, 0.1), #fff);
+}
+
+.jd-cashier .title {
+  font-size: 1.42857rem;
+  font-weight: 500;
+  color: #ff5454;
+}
+
+.jd-cashier .subtitle {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.92857rem;
+  margin-top: 0.28571rem;
+}
+
+.jd-cashier .main-button {
+  margin: 1.71429rem auto 0.85714rem auto;
+  width: 70%;
+  height: 3.5rem;
+  border-radius: 0.57143rem;
+  background-color: #ff5454;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.14286rem;
+  letter-spacing: 0.14286rem;
+  position: relative;
+}
+
+.jd-cashier .main-button:hover, .jd-cashier .main-button:active {
+  background-color: rgba(255, 84, 84, 0.85);
+}
+
+.jd-cashier .main-button::before {
+  content: "";
+  background-image: url(https://dev-cdn.anteng.cn/upload/8c5b8cfa1ee768f2658e436dc76875e7.png);
+  background-size: contain;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  width: 3.92857rem;
+  height: 2.85714rem;
+  position: absolute;
+  bottom: 0;
+  left: -0.57143rem;
+}
+
+/*# sourceMappingURL=198.6d69a30da887d72565e3.css.map*/
