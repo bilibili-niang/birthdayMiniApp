@@ -1,11 +1,13 @@
 import { Context } from 'koa'
 import path from 'path'
 import fs from 'fs'
-import { routeConfig, z } from 'koa-swagger-decorator'
+import { responses, routeConfig, z } from 'koa-swagger-decorator'
 import { ctxBody } from '@/utils'
+import { commonResponse } from '@/controller/common'
 
 type ImageItem = {
   url: string
+  uri?: string
   width: number
   height: number
   name?: string
@@ -55,6 +57,22 @@ class IconsController {
       })
     }
   })
+  @responses(commonResponse({
+    data: z.array(z.object({
+      title: z.string(),
+      icon: z.string().optional(),
+      cover: z.string().optional(),
+      col: z.number().optional(),
+      sources: z.array(z.object({
+        url: z.string(),
+        uri: z.string().optional(),
+        width: z.number(),
+        height: z.number(),
+        name: z.string().optional(),
+        alias: z.string().optional()
+      }))
+    }))
+  }))
   async list(ctx: Context) {
     try {
       // 与 app/index.ts 保持一致的静态目录定位
@@ -83,6 +101,7 @@ class IconsController {
           if (!relPaths.length) return null
           const sources: ImageItem[] = relPaths.map((rel) => ({
             url: encodeURI(`${origin}/${rel}`),
+            uri: encodeURI(`/${rel}`),
             width: 400,
             height: 400,
             name: path.basename(rel),

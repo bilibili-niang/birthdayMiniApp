@@ -15,6 +15,11 @@ import { jwtMiddleware } from '@/middleware'
 
 // yesong H5 构建产物目录（挂载到 /mini-app）
 const yesongH5Root = path.resolve(__dirname, '../../../../web-mini/apps/yesong/dist/h5/mini-app')
+// 视频静态目录（挂载到 /video）
+const videoRoot = path.join(__dirname, '../static/video')
+if (!fs.existsSync(videoRoot)) {
+  fs.mkdirSync(videoRoot, { recursive: true })
+}
 
 const app = new koa()
 // 监听错误的
@@ -58,6 +63,8 @@ app
   .use(staticFiles(path.join(__dirname, '../logs/'), { extensions: ['log'] }))
   // 开放上传目录作为静态资源，挂载到 /upload 前缀，访问 /upload/<filename>
   .use(mount('/upload', staticFiles(path.join(__dirname, '../upload'))))
+  // 开放视频目录，挂载到 /video 前缀，访问 /video/<filename>.mp4
+  .use(mount('/video', staticFiles(videoRoot)))
   // 将 web-mini 的 H5 打包产物挂载到 /mini-app，直接提供静态资源服务
   .use(mount('/mini-app', staticFiles(yesongH5Root)))
   .use(indexRouter.routes())
