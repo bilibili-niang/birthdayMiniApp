@@ -924,13 +924,9 @@ var stores_profile = __webpack_require__(1002);
       // 登录后再拉取余额
       if (isLogin.value) profileStore.getAccountBalance();
     });
-    var avatar = (0,runtime_core_esm_bundler/* computed */.EW)(function () {
-      var _user$value;
-      return ((_user$value = user.value) === null || _user$value === void 0 ? void 0 : _user$value.avatar) || config/* DEFAULT_AVATAR */.k_;
-    });
     var nickname = (0,runtime_core_esm_bundler/* computed */.EW)(function () {
-      var _user$value2;
-      return ((_user$value2 = user.value) === null || _user$value2 === void 0 ? void 0 : _user$value2.nickname) || '游客';
+      var _user$value;
+      return ((_user$value = user.value) === null || _user$value === void 0 ? void 0 : _user$value.nickname) || '游客';
     });
     return function () {
       return (0,runtime_core_esm_bundler/* createVNode */.bF)(lib/* BasePage */.vo, {
@@ -960,7 +956,7 @@ var stores_profile = __webpack_require__(1002);
                       return [(0,runtime_core_esm_bundler/* createVNode */.bF)(components/* Image */._V, {
                         "class": "avatar",
                         "mode": "aspectFill",
-                        "src": request/* REQUEST_DOMAIN */.F7 + user.value.avatar
+                        "src": request/* REQUEST_DOMAIN */.F7 + config/* DEFAULT_AVATAR */.k_
                       }, null), (0,runtime_core_esm_bundler/* createVNode */.bF)(components/* View */.Ss, {
                         "class": "info"
                       }, {
